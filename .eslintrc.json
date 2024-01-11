@@ -1,0 +1,28 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:tailwindcss/recommended",
+    "plugin:@tanstack/eslint-plugin-query/recommended"
+  ],
+  "rules": {
+    "tailwindcss/no-custom-classname": "off",
+    "tailwindcss/classnames-order": "error",
+    "unused-imports/no-unused-imports": "error"
+  },
+  "plugins": ["unused-imports"],
+  "settings": {
+    "tailwindcss": {
+      "callees": ["clsx", "cn"],
+      "config": "tailwind.config.ts"
+    },
+    "next": {
+      "rootDir": ["src/apps/*/"]
+    }
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parser": "@typescript-eslint/parser"
+    }
+  ]
+}
