@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import React from "react";
 import { GlobalProvider } from "./global-provider";
+import { cn } from "@/utils/cn";
+import NavigationBar from "@/components/common/NavigationBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,9 +16,16 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <GlobalProvider>{children}</GlobalProvider>
+      <body className={cn(inter.className)}>
+        <GlobalProvider>
+          <div className="flex h-full w-full flex-col items-center justify-center">
+            <NavigationBar />
+            <div className="h-full w-full max-w-[--max-width] flex-1 px-4">{children}</div>
+          </div>
+        </GlobalProvider>
       </body>
     </html>
   );
 }
+
+// "mx-auto max-w-[--max-width]"
