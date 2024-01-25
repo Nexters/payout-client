@@ -21,8 +21,8 @@ jobs:
                   API_TOKEN_GITHUB: ${{ secrets.DIVIDEND_CLIENT_TOKEN }}
               with:
                   source-directory: 'output'
-                  destination-github-username: stakbucks
-                  destination-repository-name: kekeche-deploy
+                  destination-github-username: JinleeJeong
+                  destination-repository-name: dividend-client
                   user-email: ${{ secrets.ACCOUNT_EMAIL }}
                   commit-message: ${{ github.event.commits[0].message }}
                   target-branch: main
