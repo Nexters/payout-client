@@ -12,7 +12,121 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      fontSize: {
+        h0: [
+          "32px",
+          {
+            lineHeight: "41.6px",
+            letterSpacing: "-0.64px",
+            fontWeight: 600,
+          },
+        ],
+        h1: [
+          "28px",
+          {
+            lineHeight: "33.6px",
+            letterSpacing: "-0.56px",
+            fontWeight: 600,
+          },
+        ],
+        h2: [
+          "24px",
+          {
+            lineHeight: "31.2px",
+            letterSpacing: "-0.48px",
+            fontWeight: 600,
+          },
+        ],
+        "h3-semibold": [
+          "20px",
+          {
+            lineHeight: "27.3px",
+            letterSpacing: "-0.42px",
+            fontWeight: 600,
+          },
+        ],
+        h3: [
+          "20px",
+          {
+            lineHeight: "25.2px",
+            letterSpacing: "-0.42px",
+            fontWeight: 400,
+          },
+        ],
+        h4: [
+          "18px",
+          {
+            lineHeight: "23.4px",
+            letterSpacing: "-0.36px",
+            fontWeight: 600,
+          },
+        ],
+        h5: [
+          "16px",
+          {
+            lineHeight: "20.8px",
+            letterSpacing: "-0.32px",
+            fontWeight: 600,
+          },
+        ],
+        h6: [
+          "14px",
+          {
+            lineHeight: "16.8px",
+            letterSpacing: "-0.28px",
+            fontWeight: 600,
+          },
+        ],
 
+        body0: [
+          "18px",
+          {
+            lineHeight: "21.6px",
+            letterSpacing: "-0.36px",
+            fontWeight: 400,
+          },
+        ],
+        body1: [
+          "16px",
+          {
+            lineHeight: "19.5px",
+            letterSpacing: "-0.3px",
+            fontWeight: 400,
+          },
+        ],
+        body2: [
+          "15px",
+          {
+            lineHeight: "18.2px",
+            letterSpacing: "-0.28px",
+            fontWeight: 400,
+          },
+        ],
+        body3: [
+          "14px",
+          {
+            lineHeight: "16.9px",
+            letterSpacing: "-0.26px",
+            fontWeight: 400,
+          },
+        ],
+        body4: [
+          "12px",
+          {
+            lineHeight: "15.6px",
+            letterSpacing: "-0.24px",
+            fontWeight: 400,
+          },
+        ],
+        body5: [
+          "10px",
+          {
+            lineHeight: "13px",
+            letterSpacing: "-0.2px",
+            fontWeight: 400,
+          },
+        ],
+      },
       colors: {
         transparent: "transparent",
         current: "currentColor",

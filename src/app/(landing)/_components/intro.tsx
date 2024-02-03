@@ -15,9 +15,9 @@ const Intro = () => {
           <Tag title="1 Min" />
         </div>
         <div className="flex flex-col items-center justify-center gap-2 text-center">
-          <h1 className="whitespace-pre-wrap text-[28px] font-semibold leading-[120%] tracking-[-0.56px] text-grey-900">{`Self-Check Your\nDividend Portfolio`}</h1>
-          <h5 className=" font-normal leading-[120%] text-grey-700">
-            <span className="font-semibold text-main-700">No Bank Integration</span> Required
+          <h1 className="whitespace-pre-wrap text-h1 text-grey-900">{`Self-Check Your\nDividend Portfolio`}</h1>
+          <h5 className="text-h5 font-normal text-grey-700">
+            <span className="text-h5 text-main-700">No Bank Integration</span> Required
           </h5>
         </div>
       </div>
@@ -29,7 +29,11 @@ const Intro = () => {
 };
 
 const Tag = ({ title }: { title: string }) => {
-  return <div className="flex items-center justify-center rounded bg-main-100 px-2 py-1 text-main-700">{title}</div>;
+  return (
+    <div className="flex items-center justify-center rounded bg-main-100 px-2 py-1 text-body3 text-main-700">
+      {title}
+    </div>
+  );
 };
 
 export default Intro;
