@@ -2,7 +2,7 @@ import { Viewport } from "next";
 import React from "react";
 
 export const viewport: Viewport = {
-  themeColor: "var(--color-purple-100)",
+  themeColor: "#DDE0F8",
 };
 
 const LandingLayout = ({ children }: { children: React.ReactNode }) => {
