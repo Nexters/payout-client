@@ -197,6 +197,8 @@ const config: Config = {
         "grey-700": "var(--color-grey-700)",
         "grey-800": "var(--color-grey-800)",
         "grey-900": "var(--color-grey-900)",
+
+        "error": "var(--color-error)"
       },
     },
   },

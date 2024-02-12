@@ -82,6 +82,9 @@ body,
   --color-grey-700: #4e5968;
   --color-grey-800: #333d4b;
   --color-grey-900: #191f28;
+
+  /* Error Color */
+  --color-error: #ff2f54;
 }
 
 @layer base {
