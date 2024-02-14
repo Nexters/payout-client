@@ -2,10 +2,95 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body,
+:root {
+  height: 100%;
+}
+
+:root {
+  --color-white: #fff;
+
+  /* Main Color */
+  --color-main-50: #eff1fc;
+  --color-main-100: #d6dcfc;
+  --color-main-200: #bdc7fc;
+  --color-main-300: #a4b2fc;
+  --color-main-400: #8b9cfc;
+  --color-main-500: #768bfc;
+  --color-main-600: #627afc;
+  --color-main-700: #4f6afc;
+  --color-main-800: #3f5cfc;
+  --color-main-900: #3751e1;
+
+  /* Navy Color */
+  --color-navy-50: #e8ebf7;
+  --color-navy-100: #d9def2;
+  --color-navy-200: #b3bde5;
+  --color-navy-300: #8d9cd8;
+  --color-navy-400: #687bca;
+  --color-navy-500: #425abd;
+  --color-navy-600: #354897;
+  --color-navy-700: #283773;
+  --color-navy-800: #1a244c;
+  --color-navy-900: #0d1226;
+
+  /* Purple Color */
+  --color-purple-50: #f2f3fc;
+  --color-purple-100: #dde0f8;
+  --color-purple-200: #c3c8f3;
+  --color-purple-300: #a1a9ec;
+  --color-purple-400: #7f89e6;
+  --color-purple-500: #5d6adf;
+  --color-purple-600: #3b4bd8;
+  --color-purple-700: #2736c4;
+  --color-purple-800: #202da2;
+  --color-purple-900: #192380;
+
+  /* Blue Color */
+  --color-blue-50: #ebf5ff;
+  --color-blue-100: #d6ebff;
+  --color-blue-200: #b8dcff;
+  --color-blue-300: #94caff;
+  --color-blue-400: #70b8ff;
+  --color-blue-500: #4da7ff;
+  --color-blue-600: #389dff;
+  --color-blue-700: #0f88ff;
+  --color-blue-800: #0074e5;
+  --color-blue-900: #005fbd;
+
+  /* Green Color */
+  --color-green-50: #e6f9fa;
+  --color-green-100: #d8f3f6;
+  --color-green-200: #a0ecf2;
+  --color-green-300: #5fe4ed;
+  --color-green-400: #31dde8;
+  --color-green-500: #17c2cd;
+  --color-green-600: #14a9b3;
+  --color-green-700: #118f97;
+  --color-green-800: #0e757c;
+  --color-green-900: #0b5b60;
+
+  /* Grey Color */
+  --color-grey-50: #f9fafb;
+  --color-grey-100: #f2f4f6;
+  --color-grey-200: #e5e8eb;
+  --color-grey-300: #d1d6db;
+  --color-grey-400: #b0b8c1;
+  --color-grey-500: #8b95a1;
+  --color-grey-600: #6b7684;
+  --color-grey-700: #4e5968;
+  --color-grey-800: #333d4b;
+  --color-grey-900: #191f28;
+
+  /* Error Color */
+  --color-error: #ff2f54;
+}
+
 @layer base {
-	body {
-		width: 100%;
-        max-width: 768px;
-        margin: 0 auto;
-	}
+  body {
+    width: 100%;
+    max-width: 768px;
+    margin: 0 auto;
+  }
 }
