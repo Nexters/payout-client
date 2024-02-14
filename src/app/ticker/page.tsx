@@ -1,16 +1,14 @@
 import { Drawer as DrawerPrimitive } from "@/components/ui/drawer";
 import { TickerDrawer } from "./_components/ticker-drawer";
 import Intro from "./_components/intro";
-import TickerList from "./_components/ticker-list";
+import Content from "./_components/content";
 
 export default function TickerPage() {
   return (
     <DrawerPrimitive>
       <div className="flex h-full w-full flex-col pt-11">
         <Intro />
-        {/* TODO Ticker state */}
-        <TickerList />
-
+        <Content />
       </div>
       <TickerDrawer />
       <div className="fixed inset-x-0 bottom-4 flex w-full justify-center pt-12" 

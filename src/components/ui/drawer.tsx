@@ -45,7 +45,7 @@ const DrawerContent = React.forwardRef<
 DrawerContent.displayName = "DrawerContent";
 
 const DrawerHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div className={cn("grid gap-1.5 p-4 text-center sm:text-left", className)} {...props} />
+  <div className={cn("grid gap-1.5 p-4 text-h3 text-gray-900", className)} {...props} />
 );
 DrawerHeader.displayName = "DrawerHeader";
 
@@ -66,14 +66,6 @@ const DrawerTitle = React.forwardRef<
 ));
 DrawerTitle.displayName = DrawerPrimitive.Title.displayName;
 
-const DrawerDescription = React.forwardRef<
-  React.ElementRef<typeof DrawerPrimitive.Description>,
-  React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Description>
->(({ className, ...props }, ref) => (
-  <DrawerPrimitive.Description ref={ref} className={cn("text-muted-foreground text-sm", className)} {...props} />
-));
-DrawerDescription.displayName = DrawerPrimitive.Description.displayName;
-
 export {
   Drawer,
   DrawerPortal,
@@ -84,5 +76,4 @@ export {
   DrawerHeader,
   DrawerFooter,
   DrawerTitle,
-  DrawerDescription,
 };
