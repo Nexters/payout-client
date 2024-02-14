@@ -18,8 +18,9 @@ export const TickerDrawer = React.memo(() => {
   const [drawerType, setDrawerType] = useState<DrawerType>('name');
   const [tickerCount, setTickerCount] = useState<number>(0);
 
-  const handleClickTicker = (index: number) => {
+  const handleClickTicker = (name: string) => {
     setDrawerType('count');
+    setTickerName(name);
   }
 
   const isClickableButton = useMemo(() => {

@@ -4,7 +4,7 @@ import React from "react";
 
 interface TickerProps {
   hasShared?: boolean;
-  onClick: (index: number) => void;
+  onClick: (index: string) => void;
 }
 
 const TickerList = React.memo(({ hasShared, onClick }: TickerProps) => {
@@ -12,7 +12,7 @@ const TickerList = React.memo(({ hasShared, onClick }: TickerProps) => {
     <div className="flex h-full w-full flex-1 flex-col items-start">
       <div className="flex w-full flex-1 flex-col items-start gap-4 overflow-scroll px-4 py-6">
         {Array.from({ length: 5 }, (_, index) => (
-          <div key={index} className="flex w-full justify-between" onClick={() => onClick(index)}>
+          <div key={index} className="flex w-full justify-between" onClick={() => onClick('AAPL')}>
             <div className="flex">
               <div className="mr-4 flex h-10 w-10 items-center justify-center rounded-full border border-gray-100 bg-gray-50" />
               <div>

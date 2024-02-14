@@ -39,10 +39,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       const relatedTarget = event.relatedTarget as HTMLElement;
       if (!relatedTarget || !relatedTarget.closest(`.input-container${type}`)) {
         if (type === 'number' && Number(props.value) <= 0) {
-          setInputState('error');
+          return setInputState('error');
         }
 
-        setInputState('default');
+        return setInputState('default');
       }
     }
 
