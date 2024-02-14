@@ -9,7 +9,7 @@ const Intro = () => {
       }}
       className="flex h-[478px] w-full flex-col items-center gap-[60px] pt-11"
     >
-      <div className="flex w-full max-w-[375px] flex-col items-center justify-center gap-4 px-5 pt-5">
+      <header className="flex w-full max-w-[375px] flex-col items-center justify-center gap-4 px-5 pt-5">
         <div className="flex w-full items-center justify-center gap-2">
           <Tag title="Free" />
           <Tag title="1 Min" />
@@ -20,7 +20,7 @@ const Intro = () => {
             <span className="text-h5 text-main-700">No Bank Integration</span> Required
           </h5>
         </div>
-      </div>
+      </header>
       <div className="flex w-full items-center justify-center">
         <LottiePlayer className="h-[158px] w-[165px] bg-grey-100" />
       </div>
