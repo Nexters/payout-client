@@ -214,5 +214,6 @@ const config: Config = {
     "cn",
     ".*Styles*", // Add ".*Styles*" (or whatever matches your naming scheme)
   ],
-};
+  plugins: [require("tailwindcss-animate")],
+} satisfies Config
 export default config;
