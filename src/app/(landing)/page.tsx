@@ -6,10 +6,12 @@ import SectorBalanced from "./_components/sector-balanced";
 import TargetUser from "./_components/target-user";
 import YearlyDividend from "./_components/yearly-dividend";
 import { Footer } from "./_components/footer";
+import Header from "./_components/header";
 
 export default function Home() {
   return (
     <>
+      <Header />
       <Intro />
       <div className="flex w-full flex-col items-center justify-center gap-20 pb-32 pt-10">
         <TargetUser />
