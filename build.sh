@@ -1,5 +1,5 @@
 #!/bin/sh
 cd ../
 mkdir output
-cp -R ./dividend-client/* ./output
-cp -R ./output ./dividend-client/
+cp -R ./payout-client/* ./output
+cp -R ./output ./payout-client/
