@@ -1,7 +1,7 @@
 import Logo from "@/components/logo/logo";
 import React from "react";
 
-export const Footer = () => {
+const Footer = () => {
   return (
     <div className="flex w-full flex-col items-start justify-center gap-5 bg-grey-50 px-5 py-8">
       <Logo />
@@ -14,3 +14,5 @@ export const Footer = () => {
     </div>
   );
 };
+
+export default Footer;
