@@ -3,7 +3,7 @@ import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import React from "react";
 import { GlobalProvider } from "./global-provider";
-import NavigationBar from "@/components/navigation-bar/navigation-bar";
+import NavigationBar from "@/components/common/navigation-bar/navigation-bar";
 import { Toaster } from "@/components/ui/sonner";
 
 const dm_sans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });

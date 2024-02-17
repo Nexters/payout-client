@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 
 interface TickerProps {
@@ -7,7 +5,7 @@ interface TickerProps {
   onClick: (index: string) => void;
 }
 
-const TickerList = React.memo(({ hasShares, onClick }: TickerProps) => {
+const TickerList = ({ hasShares, onClick }: TickerProps) => {
   return (
     <div className="flex h-full w-full flex-1 flex-col items-start">
       <div className="flex w-full flex-1 flex-col items-start gap-4 overflow-scroll px-4 py-6">
@@ -30,6 +28,6 @@ const TickerList = React.memo(({ hasShares, onClick }: TickerProps) => {
       </div>
     </div>
   );
-});
+};
 
 export default TickerList;

@@ -1,4 +1,4 @@
-import LottiePlayer from "@/components/lottie-player/lottie-player";
+import LottiePlayer from "@/components/common/lottie-player/lottie-player";
 import React from "react";
 
 const TargetUser = () => {
