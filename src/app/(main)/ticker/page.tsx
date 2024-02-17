@@ -1,7 +1,7 @@
-import { Drawer as DrawerPrimitive } from "@/components/ui/drawer";
-import { TickerDrawer } from "./_components/ticker-drawer";
 import Intro from "./_components/intro";
 import Content from "./_components/content";
+import { Drawer as DrawerPrimitive } from "@/components/ui/drawer";
+import { TickerDrawer } from "./_components/ticker-drawer";
 
 export default function TickerPage() {
   return (

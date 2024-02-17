@@ -6,7 +6,7 @@ import TargetUser from "./_components/target-user";
 import YearlyDividend from "./_components/yearly-dividend";
 import FAQ from "./_components/faq";
 import Footer from "./_components/footer";
-import { Button } from "@/components/button/button";
+import { Button } from "@/components/common/button/button";
 
 export default function Home() {
   return (
