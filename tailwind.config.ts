@@ -8,6 +8,20 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
@@ -38,7 +52,7 @@ const config: Config = {
           },
         ],
         "h3-semibold": [
-          "20px",
+          "21px",
           {
             lineHeight: "27.3px",
             letterSpacing: "-0.42px",
@@ -46,7 +60,7 @@ const config: Config = {
           },
         ],
         h3: [
-          "20px",
+          "21px",
           {
             lineHeight: "25.2px",
             letterSpacing: "-0.42px",
@@ -198,7 +212,7 @@ const config: Config = {
         "grey-800": "var(--color-grey-800)",
         "grey-900": "var(--color-grey-900)",
 
-        "error": "var(--color-error)"
+        error: "var(--color-error)",
       },
     },
   },
@@ -215,5 +229,5 @@ const config: Config = {
     ".*Styles*", // Add ".*Styles*" (or whatever matches your naming scheme)
   ],
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 export default config;
