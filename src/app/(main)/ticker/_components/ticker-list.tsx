@@ -1,13 +1,13 @@
 "use client";
 
+import { StockResponse } from "@/api/generated/endpoint.schemas";
 import React from "react";
-import { Stock } from "@/api/stocks/getStocks";
 
 interface TickerProps {
-  data: Stock[];
+  data: StockResponse[];
   tickerName?: string;
   hasShares?: boolean;
-  onClick: (stock: Stock) => void;
+  onClick: (stock: StockResponse) => void;
 }
 
 const TickerList = React.memo(({ data, hasShares, onClick }: TickerProps) => {

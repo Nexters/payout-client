@@ -5,9 +5,9 @@ import Input from "@/components/ui/input";
 import React from "react";
 import TickerList from "./ticker-list";
 import { useStocksStore } from "@/state/stores/stocks-store";
-import { Stock } from "@/api/stocks/getStocks";
 import useDebounce from "@/hooks/use-debounce";
 import { useStocks } from "@/state/queries/useStocks";
+import { StockResponse } from "@/api/generated/endpoint.schemas";
 
 type DrawerType = "name" | "count";
 
@@ -16,15 +16,16 @@ export const TickerDrawer = React.memo(() => {
   const [tickerName, setTickerName] = React.useState<string>("");
   const [tickerCount, setTickerCount] = React.useState<number>(0);
   const [drawerType, setDrawerType] = React.useState<DrawerType>("name");
-  const [selectedStock, setSelectedStock] = React.useState<Stock>();
-  const [searchStocks, setSearchStocks] = React.useState<Stock[]>([]);
+  const [selectedStock, setSelectedStock] = React.useState<StockResponse>();
+  const [searchStocks, setSearchStocks] = React.useState<StockResponse[]>([]);
 
   const debouncedTickerName = useDebounce(tickerName, 1000); // 디바운스 적용
   const { fetchStocks } = useStocks();
 
-  const handleTickerClick = React.useCallback((data: Stock) => {
+  const handleTickerClick = React.useCallback((data: StockResponse) => {
     setDrawerType("count");
-    setTickerName(data.ticker);
+
+    setTickerName(data.ticker ?? "");
     setSelectedStock(data);
   }, []);
 

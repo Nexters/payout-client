@@ -1,10 +1,10 @@
-import { Stock } from "@/api/stocks/getStocks";
+import { StockResponse } from "@/api/generated/endpoint.schemas";
 import { create } from "zustand";
 
 interface StocksStore {
-  stocks: Stock[];
-  addStocks: (newStocks: Stock) => void;
-  removeStocks: (stockToRemove: Stock) => void;
+  stocks: StockResponse[];
+  addStocks: (newStocks: StockResponse) => void;
+  removeStocks: (stockToRemove: StockResponse) => void;
   removeAllStocks: () => void;
 }
 
