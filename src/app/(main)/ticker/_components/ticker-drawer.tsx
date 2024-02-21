@@ -17,6 +17,12 @@ export const TickerDrawer = React.memo(() => {
     setTickerName(name);
   }, []);
 
+  const handleChangeKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    const brandName = !!value ? value : "";
+    setTickerName(brandName);
+  };
+
   const isSubmittable = useMemo(() => {
     return drawerType === "count" && tickerCount > 0;
   }, [drawerType, tickerCount]);
@@ -30,7 +36,7 @@ export const TickerDrawer = React.memo(() => {
           label="Ticker"
           type="string"
           placeholder="Search"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTickerName(e.target.value)}
+          onChange={handleChangeKeyword}
           onFocus={() => setDrawerType("name")}
           clearInput={() => setTickerName("")}
         />
@@ -53,7 +59,7 @@ export const TickerDrawer = React.memo(() => {
       </DrawerHeader>
 
       {drawerType === "name" ? (
-        <TickerList onClick={handleTickerClick} />
+        <TickerList tickerName={tickerName} onClick={handleTickerClick} />
       ) : (
         <DrawerFooter>
           <DrawerClose disabled={!isSubmittable}>

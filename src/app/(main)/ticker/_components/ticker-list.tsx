@@ -1,13 +1,30 @@
 "use client";
 
-import React from "react";
+import useDebounce from "@/hooks/use-debounce";
+import React, { useEffect, useState } from "react";
+import { Stock } from "@/api/stocks/getStocks";
+import { useStocks } from "@/state/queries/useStocks";
 
 interface TickerProps {
+  tickerName: string;
   hasShares?: boolean;
   onClick: (index: string) => void;
 }
 
-const TickerList = React.memo(({ hasShares, onClick }: TickerProps) => {
+const TickerList = React.memo(({ tickerName, hasShares, onClick }: TickerProps) => {
+  const debouncedTickerName = useDebounce(tickerName, 1000); // 디바운스 적용
+  const [stocks, setStocks] = useState<Stock[]>([]);
+  const { fetchStocks } = useStocks();
+
+  useEffect(() => {
+    if (debouncedTickerName) {
+      (async () => {
+        const { data } = await fetchStocks(debouncedTickerName);
+        setStocks(data);
+      })();
+    }
+  }, [debouncedTickerName, fetchStocks]);
+
   return (
     <div className="flex h-full w-full flex-1 flex-col items-start">
       <div className="flex w-full flex-1 flex-col items-start gap-4 overflow-scroll px-4 py-6">
