@@ -8,7 +8,8 @@
     "tailwindcss/no-custom-classname": "off",
     "tailwindcss/classnames-order": "error",
     "unused-imports/no-unused-imports": "error",
-    "react/display-name": "off"
+    "react/display-name": "off",
+    "no-undef": "off"
   },
   "plugins": ["unused-imports"],
   "settings": {
