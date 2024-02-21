@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <GlobalProvider>
           <div className="relative flex h-full w-full flex-col items-center justify-center">
             <NavigationBar />
-            <div className="h-full w-full flex-1">{children}</div>
+            <div className="h-full w-full flex-1 overflow-auto">{children}</div>
             <Toaster position="top-center" />
           </div>
         </GlobalProvider>
