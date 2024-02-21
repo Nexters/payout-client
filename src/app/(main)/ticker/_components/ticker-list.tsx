@@ -1,13 +1,13 @@
 "use client";
 
-import { StockResponse } from "@/api/generated/endpoint.schemas";
+import { Stock } from "@/state/stores/stocks-store";
 import React from "react";
 
 interface TickerProps {
-  data: StockResponse[];
+  data: Stock[];
   tickerName?: string;
   hasShares?: boolean;
-  onClick: (stock: StockResponse) => void;
+  onClick: (stock: Stock) => void;
 }
 
 const TickerList = React.memo(({ data, hasShares, onClick }: TickerProps) => {
@@ -19,13 +19,13 @@ const TickerList = React.memo(({ data, hasShares, onClick }: TickerProps) => {
             <div className="flex">
               <div className="mr-4 flex h-10 w-10 items-center justify-center rounded-full border border-gray-100 bg-gray-50" />
               <div>
-                <p className="text-h3 text-gray-900">{item.ticker}</p>
+                <p className="text-left text-h3 text-gray-900">{item.ticker}</p>
                 <p className="line-clamp-1 break-all text-body3 text-gray-600">{item.companyName}</p>
               </div>
             </div>
             {hasShares && (
               <div className="ml-2 text-nowrap">
-                <p className="text-body1 text-main-900">{`${20} Shares`}</p>
+                <p className="text-body1 text-main-900">{`${item.count} Shares`}</p>
               </div>
             )}
           </div>
