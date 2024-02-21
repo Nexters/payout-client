@@ -3,13 +3,15 @@
 import Intro from "@/app/(main)/ticker/_components/intro";
 import SelectedTickerList from "@/app/(main)/ticker/_components/selected-ticker-list";
 import { TickerDrawer } from "@/app/(main)/ticker/_components/ticker-drawer";
+import Toast from "@/components/common/toast/toast";
 import { Stock, useDrawerStore, useStocksStore } from "@/state/stores/stocks-store";
 import React from "react";
+import { toast } from "sonner";
 
 export type DrawerType = "name" | "count" | "edit";
 
 const TickerContent = React.memo(() => {
-  const { addStocks, removeStocks, editStocks } = useStocksStore();
+  const { stocks, addStocks, removeStocks, editStocks } = useStocksStore();
   const { isOpenChange } = useDrawerStore();
 
   const [tickerName, setTickerName] = React.useState<string>("");
@@ -42,13 +44,17 @@ const TickerContent = React.memo(() => {
   };
 
   const handleSubmitClick = React.useCallback(() => {
+    if (stocks.length > 14) {
+      return toast.custom((t) => <Toast t={t} title={`You can add up to 15 stocks.`} />);
+    }
+
     if (selectedStock) {
       resetData();
 
       addStocks({ ...selectedStock, count: tickerCount });
       isOpenChange(false);
     }
-  }, [addStocks, isOpenChange, resetData, selectedStock, tickerCount]);
+  }, [addStocks, isOpenChange, resetData, selectedStock, stocks.length, tickerCount]);
 
   const handleInputClear = React.useCallback((type: DrawerType) => {
     if (type === "name") {
@@ -76,12 +82,23 @@ const TickerContent = React.memo(() => {
   );
 
   const handleDeleteClick = React.useCallback(() => {
+    const prevStock = selectedStock;
     if (selectedStock) {
       removeStocks(selectedStock);
       resetData();
+      toast.custom((t) => (
+        <Toast
+          t={t}
+          title={`You deleted ${selectedStock.ticker}`}
+          isRevertable
+          handleUndo={() => {
+            prevStock && addStocks(prevStock);
+          }}
+        />
+      ));
       return isOpenChange(false);
     }
-  }, [isOpenChange, removeStocks, resetData, selectedStock]);
+  }, [addStocks, isOpenChange, removeStocks, resetData, selectedStock]);
 
   const handleConfirmClick = React.useCallback(() => {
     editStocks({ ...selectedStock, count: tickerCount });
