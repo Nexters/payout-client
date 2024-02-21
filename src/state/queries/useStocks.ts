@@ -1,12 +1,11 @@
 import { Stock, getStocks } from "@/api/stocks/getStocks";
-import { Response } from "@/api/http";
 import { queryClient } from "@/app/global-provider";
 import { createQueryKeys } from "@lukemorales/query-key-factory";
 
 export const testQueryKeys = createQueryKeys("test");
 
 export const useStocks = () => {
-  const requestClient = (keyword: string): Promise<Response<Stock[]>> => getStocks(keyword);
+  const requestClient = (keyword: string): Promise<Stock[]> => getStocks(keyword);
 
   return {
     fetchStocks: async (keyword: string) => {

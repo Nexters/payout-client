@@ -2,19 +2,30 @@
 
 import { DrawerClose, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle } from "@/components/ui/drawer";
 import Input from "@/components/ui/input";
-import React, { useMemo, useState } from "react";
+import React from "react";
 import TickerList from "./ticker-list";
+import { useStocksStore } from "@/state/stores/stocks-store";
+import { Stock } from "@/api/stocks/getStocks";
+import useDebounce from "@/hooks/use-debounce";
+import { useStocks } from "@/state/queries/useStocks";
 
 type DrawerType = "name" | "count";
 
 export const TickerDrawer = React.memo(() => {
-  const [tickerName, setTickerName] = useState<string>("");
-  const [drawerType, setDrawerType] = useState<DrawerType>("name");
-  const [tickerCount, setTickerCount] = useState<number>(0);
+  const { addStocks } = useStocksStore();
+  const [tickerName, setTickerName] = React.useState<string>("");
+  const [tickerCount, setTickerCount] = React.useState<number>(0);
+  const [drawerType, setDrawerType] = React.useState<DrawerType>("name");
+  const [selectedStock, setSelectedStock] = React.useState<Stock>();
+  const [searchStocks, setSearchStocks] = React.useState<Stock[]>([]);
 
-  const handleTickerClick = React.useCallback((name: string) => {
+  const debouncedTickerName = useDebounce(tickerName, 1000); // 디바운스 적용
+  const { fetchStocks } = useStocks();
+
+  const handleTickerClick = React.useCallback((data: Stock) => {
     setDrawerType("count");
-    setTickerName(name);
+    setTickerName(data.ticker);
+    setSelectedStock(data);
   }, []);
 
   const handleChangeKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,9 +34,29 @@ export const TickerDrawer = React.memo(() => {
     setTickerName(brandName);
   };
 
-  const isSubmittable = useMemo(() => {
+  const isSubmittable = React.useMemo(() => {
     return drawerType === "count" && tickerCount > 0;
   }, [drawerType, tickerCount]);
+
+  const handleSubmitClick = () => {
+    if (selectedStock) {
+      setTickerName("");
+      setTickerCount(0);
+      setDrawerType("name");
+
+      addStocks(selectedStock);
+    }
+  };
+
+  React.useEffect(() => {
+    if (debouncedTickerName) {
+      (async () => {
+        const response = await fetchStocks(debouncedTickerName);
+        setSearchStocks(response);
+      })();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedTickerName]);
 
   return (
     <DrawerContent className="mx-auto h-[calc(100%-100px)] max-w-[--max-width] ">
@@ -59,10 +90,10 @@ export const TickerDrawer = React.memo(() => {
       </DrawerHeader>
 
       {drawerType === "name" ? (
-        <TickerList tickerName={tickerName} onClick={handleTickerClick} />
+        <TickerList data={searchStocks} onClick={handleTickerClick} />
       ) : (
         <DrawerFooter>
-          <DrawerClose disabled={!isSubmittable}>
+          <DrawerClose onClick={handleSubmitClick} disabled={!isSubmittable}>
             <div
               className="flex h-14 w-full items-center justify-center rounded-lg bg-main-700 font-bold text-white"
               style={{

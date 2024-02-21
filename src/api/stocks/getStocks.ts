@@ -1,4 +1,4 @@
-import { Response, HTTP } from "@/api/http";
+import { HTTP } from "@/api/http";
 
 export interface Stock {
   stockId: string;
@@ -13,7 +13,7 @@ export interface Stock {
 }
 
 export const getStocks = async (keyword: string) => {
-  const res = await HTTP.get<Response<Stock[]>>(`/api/stocks/search?keyword=${keyword}&pageNumber=${1}&pageSize=${20}`);
+  const res = await HTTP.get<Stock[]>(`/api/stocks/search?keyword=${keyword}&pageNumber=${1}&pageSize=${20}`);
 
   return res.data;
 };

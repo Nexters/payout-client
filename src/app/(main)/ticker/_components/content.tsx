@@ -2,12 +2,15 @@
 
 import React from "react";
 import TickerList from "./ticker-list";
+import { useStocksStore } from "@/state/stores/stocks-store";
+import { Stock } from "@/api/stocks/getStocks";
 
 const Content = React.memo(() => {
-  const handleClickTicker = React.useCallback((name: string) => {
-    console.log("name:", name);
+  const { stocks } = useStocksStore();
+  const handleClickTicker = React.useCallback((stock: Stock) => {
+    console.log("stock:", stock);
   }, []);
-  return <TickerList onClick={handleClickTicker} />;
+  return <TickerList data={stocks} onClick={handleClickTicker} />;
 });
 
 export default Content;
