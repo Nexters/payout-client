@@ -6,7 +6,7 @@ import { TickerDrawer } from "./_components/ticker-drawer";
 export default function TickerPage() {
   return (
     <DrawerPrimitive>
-      <div className="flex h-full w-full flex-col pt-11">
+      <div className="flex h-full w-full flex-col">
         <Intro />
         <Content />
       </div>
