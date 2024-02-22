@@ -2,7 +2,7 @@ import { searchStock } from "@/api/generated/endpoint";
 import { createQueryKeys } from "@lukemorales/query-key-factory";
 import { useQuery } from "@tanstack/react-query";
 
-export const filteredStocksQueryKeys = createQueryKeys("use-stocks");
+export const filteredStocksQueryKeys = createQueryKeys("filtered-stocks");
 
 export const useStocksQuery = (keyword: string) => {
   const requestClient = async () => {

@@ -4,7 +4,7 @@ import { queryClient } from "@/app/global-provider";
 import { createQueryKeys } from "@lukemorales/query-key-factory";
 import { UseMutationResult, useMutation } from "@tanstack/react-query";
 
-export const enteredStocksQueryKeys = createQueryKeys("use-stocks-sector-ratio");
+export const enteredStocksQueryKeys = createQueryKeys("entered-stocks");
 
 export const useStocksSectorRatioMutation = (): UseMutationResult<SectorRatioResponse[], unknown, TickerShare[]> => {
   const requestClient = async (tickerShares: TickerShare[]): Promise<SectorRatioResponse[]> => {
