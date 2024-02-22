@@ -18,7 +18,7 @@ export type DrawerType = "name" | "count" | "edit";
 const MAX_TICKER_COUNT = 15;
 
 const TickerContent = React.memo(() => {
-  const { stocks, addStocks, removeStocks, editStocks } = useStocksStore();
+  const { stocks, addStock, removeStock, editStock } = useStocksStore();
   const { isDrawerOpen, isDrawerOpenChange } = useDrawerStore();
   const { isDialogOpen, isDialogOpenChange } = useDialogStore();
 
@@ -59,10 +59,10 @@ const TickerContent = React.memo(() => {
     if (selectedStock) {
       resetData();
 
-      addStocks({ ...selectedStock, count: tickerCount });
+      addStock({ ...selectedStock, count: tickerCount });
       isDrawerOpenChange(false);
     }
-  }, [addStocks, isDialogOpenChange, isDrawerOpenChange, resetData, selectedStock, stocks.length, tickerCount]);
+  }, [addStock, isDialogOpenChange, isDrawerOpenChange, resetData, selectedStock, stocks.length, tickerCount]);
 
   const handleInputClear = React.useCallback((type: DrawerType) => {
     if (type === "name") {
@@ -92,7 +92,7 @@ const TickerContent = React.memo(() => {
   const handleDeleteClick = React.useCallback(() => {
     const prevStock = selectedStock;
     if (selectedStock) {
-      removeStocks(selectedStock);
+      removeStock(selectedStock);
       resetData();
       toast.custom((t) => (
         <Toast
@@ -100,19 +100,19 @@ const TickerContent = React.memo(() => {
           title={`You deleted ${selectedStock.ticker}`}
           isRevertable
           handleUndo={() => {
-            prevStock && addStocks(prevStock);
+            prevStock && addStock(prevStock);
           }}
         />
       ));
       return isDrawerOpenChange(false);
     }
-  }, [addStocks, isDrawerOpenChange, removeStocks, resetData, selectedStock]);
+  }, [addStock, isDrawerOpenChange, removeStock, resetData, selectedStock]);
 
   const handleConfirmClick = React.useCallback(() => {
-    editStocks({ ...selectedStock, count: tickerCount });
+    editStock({ ...selectedStock, count: tickerCount });
     resetData();
     isDrawerOpenChange(false);
-  }, [editStocks, isDrawerOpenChange, resetData, selectedStock, tickerCount]);
+  }, [editStock, isDrawerOpenChange, resetData, selectedStock, tickerCount]);
 
   return (
     <DrawerPrimitive open={isDrawerOpen}>

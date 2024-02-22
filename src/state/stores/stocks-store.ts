@@ -7,19 +7,18 @@ export interface Stock extends StockResponse {
 
 interface StocksStore {
   stocks: Stock[];
-  addStocks: (newStocks: Stock) => void;
-  removeStocks: (stockToRemove: Stock) => void;
-  removeAllStock: () => void;
-  editStocks: (editedStock: Stock) => void;
+  addStock: (newStocks: Stock) => void;
+  removeStock: (stockToRemove: Stock) => void;
+  removeAllStocks: () => void;
+  editStock: (editedStock: Stock) => void;
 }
 
 export const useStocksStore = create<StocksStore>((set) => ({
   stocks: [],
-  addStocks: (newStocks) => set((state) => ({ stocks: [...state.stocks, newStocks] })),
-  removeStocks: (stockToRemove) =>
-    set((state) => ({ stocks: state.stocks.filter((stock) => stock !== stockToRemove) })),
-  removeAllStock: () => set({ stocks: [] }),
-  editStocks: (editedStock) =>
+  addStock: (newStocks) => set((state) => ({ stocks: [...state.stocks, newStocks] })),
+  removeStock: (stockToRemove) => set((state) => ({ stocks: state.stocks.filter((stock) => stock !== stockToRemove) })),
+  removeAllStocks: () => set({ stocks: [] }),
+  editStock: (editedStock) =>
     set((state) => ({
       stocks: state.stocks.map((stock) =>
         stock.stockId === editedStock.stockId ? { ...stock, count: editedStock.count } : stock
