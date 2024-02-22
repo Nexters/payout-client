@@ -1,6 +1,5 @@
 import { findSectorRatios } from "@/api/generated/endpoint";
 import { SectorRatioResponse, TickerShare } from "@/api/generated/endpoint.schemas";
-import { queryClient } from "@/app/global-provider";
 import { createQueryKeys } from "@lukemorales/query-key-factory";
 import { UseMutationResult, useMutation } from "@tanstack/react-query";
 
@@ -15,8 +14,5 @@ export const useStocksSectorRatioMutation = (): UseMutationResult<SectorRatioRes
   return useMutation({
     mutationKey: [enteredStocksQueryKeys._def],
     mutationFn: requestClient,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [enteredStocksQueryKeys] });
-    },
   });
 };
