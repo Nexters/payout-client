@@ -8,6 +8,7 @@ import useDebounce from "@/hooks/use-debounce";
 import { useStocksQuery } from "@/state/queries/use-stocks";
 import { DrawerType } from "./ticker-content";
 import { Stock } from "@/state/stores/stocks-store";
+import { exhaustiveCheck } from "@/utils/exhaustive-check";
 
 interface TickerDrawerProps {
   tickerName: string;
@@ -22,10 +23,6 @@ interface TickerDrawerProps {
   handleDeleteClick: () => void;
   handleConfirmClick: () => void;
 }
-
-const exhaustiveCheck = (param: never) => {
-  throw new Error(`Invalid type. ${param}`);
-};
 
 export const TickerDrawer = React.memo(
   ({
