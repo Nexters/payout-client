@@ -3,10 +3,10 @@ import { create } from "zustand";
 
 interface StocksSectorRatioStore {
   stockSectorRatio: SectorRatioResponse[];
-  update: (newData: SectorRatioResponse[]) => void;
+  setStockSectorRatio: (newData: SectorRatioResponse[]) => void;
 }
 
 export const useStocksSectorRatioStore = create<StocksSectorRatioStore>((set) => ({
   stockSectorRatio: [],
-  update: (newData: SectorRatioResponse[]) => set(() => ({ stockSectorRatio: newData })),
+  setStockSectorRatio: (newData: SectorRatioResponse[]) => set(() => ({ stockSectorRatio: newData })),
 }));

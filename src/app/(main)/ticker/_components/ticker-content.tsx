@@ -1,15 +1,17 @@
 "use client";
 
 import Intro from "@/app/(main)/ticker/_components/intro";
-import SelectedTickerList from "@/app/(main)/ticker/_components/selected-ticker-list";
 import { TickerDrawer } from "@/app/(main)/ticker/_components/ticker-drawer";
 import { Dialog } from "@/components/common/dialog/dialog";
 import Toast from "@/components/common/toast/toast";
-import { Stock, useDialogStore, useDrawerStore, useStocksStore } from "@/state/stores/stocks-store";
+import { Stock, useStocksStore } from "@/state/stores/stocks-store";
 import React from "react";
 import { toast } from "sonner";
-import { Drawer as DrawerPrimitive } from "@/components/ui/drawer";
+import { DrawerOverlay, Drawer as DrawerPrimitive } from "@/components/ui/drawer";
 import { Dialog as DialogPrimitive } from "@/components/ui/dialog";
+import { useDrawerStore } from "@/state/stores/drawer-store";
+import { useDialogStore } from "@/state/stores/dialog-store";
+import TickerList from "./ticker-list";
 
 export type DrawerType = "name" | "count" | "edit";
 
@@ -17,8 +19,8 @@ const MAX_TICKER_COUNT = 15;
 
 const TickerContent = React.memo(() => {
   const { stocks, addStocks, removeStocks, editStocks } = useStocksStore();
-  const { isOpen: drawerIsOpen, isOpenChange: isDrawerOpenChange } = useDrawerStore();
-  const { isOpen: dialogIsOpen, isOpenChange: isDialogOpenChange } = useDialogStore();
+  const { isDrawerOpen, isDrawerOpenChange } = useDrawerStore();
+  const { isDialogOpen, isDialogOpenChange } = useDialogStore();
 
   const [tickerName, setTickerName] = React.useState<string>("");
   const [tickerCount, setTickerCount] = React.useState<number>(0);
@@ -109,15 +111,16 @@ const TickerContent = React.memo(() => {
   const handleConfirmClick = React.useCallback(() => {
     editStocks({ ...selectedStock, count: tickerCount });
     resetData();
-    return isDrawerOpenChange(false);
+    isDrawerOpenChange(false);
   }, [editStocks, isDrawerOpenChange, resetData, selectedStock, tickerCount]);
 
   return (
-    <DrawerPrimitive open={drawerIsOpen}>
+    <DrawerPrimitive open={isDrawerOpen}>
       <div className="flex h-full w-full flex-col pt-11">
         <Intro />
-        <SelectedTickerList handleTickerClick={handleSelectedTickerClick} />
+        <TickerList data={stocks} hasShares onClick={handleSelectedTickerClick} />
       </div>
+      <DrawerOverlay onClick={() => isDrawerOpenChange(false)} />
       <TickerDrawer
         drawerType={drawerType}
         tickerCount={tickerCount}
@@ -132,7 +135,7 @@ const TickerContent = React.memo(() => {
         handleConfirmClick={handleConfirmClick}
       />
 
-      <DialogPrimitive open={dialogIsOpen}>
+      <DialogPrimitive open={isDialogOpen}>
         <Dialog title={`You can add up to ${MAX_TICKER_COUNT} stocks.`} />
       </DialogPrimitive>
     </DrawerPrimitive>

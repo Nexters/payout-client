@@ -1,18 +1,17 @@
 "use client";
 import { TickerShare } from "@/api/generated/endpoint.schemas";
-import { useStocksSectorRatio } from "@/state/queries/use-stocks-sector-ratio";
+import { Button } from "@/components/ui/button";
+import { useStocksSectorRatioMutation } from "@/state/queries/use-stocks-sector-ratio";
 import { useStocksSectorRatioStore } from "@/state/stores/stocks-sector-ratio";
 import { useStocksStore } from "@/state/stores/stocks-store";
 import React from "react";
 
 export default function TickerFooter() {
   const { stocks } = useStocksStore();
-  const { update } = useStocksSectorRatioStore();
-  const { fetchStocksSectorRatio } = useStocksSectorRatio();
+  const { setStockSectorRatio } = useStocksSectorRatioStore();
+  const { mutate } = useStocksSectorRatioMutation();
 
-  const isSubmittable = React.useMemo(() => {
-    return stocks.length > 0;
-  }, [stocks.length]);
+  const isSubmittable = stocks.length > 0;
 
   const handleTickerSubmit = React.useCallback(async () => {
     const tickerShares: TickerShare[] = stocks
@@ -26,17 +25,18 @@ export default function TickerFooter() {
       });
 
     try {
-      const { data } = await fetchStocksSectorRatio(tickerShares);
+      await mutate(tickerShares, {
+        onSuccess: (data) => {
+          data && setStockSectorRatio(data);
+        },
+      });
 
-      update(data);
-
-      console.log("result data:", data);
       // @TODO Router 추가 작업
       // router.push(`/report`);
     } catch (error) {
       throw Error("제출 실패");
     }
-  }, [fetchStocksSectorRatio, stocks, update]);
+  }, [mutate, setStockSectorRatio, stocks]);
 
   return (
     <div
@@ -46,9 +46,10 @@ export default function TickerFooter() {
         maxWidth: 768,
       }}
     >
-      <button
+      <Button
         disabled={!isSubmittable}
-        className="mx-5 w-full rounded-lg bg-main-700 p-4"
+        variant={"default"}
+        className="mx-5 h-14 w-full rounded-lg bg-main-700 p-4"
         style={{
           backgroundColor: isSubmittable ? "#4F6AFC" : "#7692DA",
           color: isSubmittable ? "#fff" : "rgba(255, 255, 255, 0.40)",
@@ -56,7 +57,7 @@ export default function TickerFooter() {
         onClick={handleTickerSubmit}
       >
         <p className="text-h5 text-white">Analyze My Portfolio</p>
-      </button>
+      </Button>
     </div>
   );
 }

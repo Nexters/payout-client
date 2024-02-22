@@ -5,7 +5,7 @@ import Input from "@/components/ui/input";
 import React from "react";
 import TickerList from "./ticker-list";
 import useDebounce from "@/hooks/use-debounce";
-import { useStocks } from "@/state/queries/use-stocks";
+import { useStocksQuery } from "@/state/queries/use-stocks";
 import { DrawerType } from "./ticker-content";
 import { Stock } from "@/state/stores/stocks-store";
 
@@ -23,6 +23,10 @@ interface TickerDrawerProps {
   handleConfirmClick: () => void;
 }
 
+const exhaustiveCheck = (param: never) => {
+  throw new Error(`Invalid type. ${param}`);
+};
+
 export const TickerDrawer = React.memo(
   ({
     drawerType,
@@ -37,10 +41,8 @@ export const TickerDrawer = React.memo(
     handleDeleteClick,
     handleConfirmClick,
   }: TickerDrawerProps) => {
-    const [searchStocks, setSearchStocks] = React.useState<Stock[]>([]);
     const debouncedTickerName = useDebounce(tickerName, 1000); // 디바운스 적용
-    const { fetchStocks } = useStocks();
-
+    const { data } = useStocksQuery(debouncedTickerName);
     const isSubmittable = React.useMemo(() => {
       return drawerType === "count" && tickerCount > 0;
     }, [drawerType, tickerCount]);
@@ -55,30 +57,9 @@ export const TickerDrawer = React.memo(
           return "Edit or Delete the stock info.";
 
         default:
-          return "";
+          exhaustiveCheck(drawerType); // ERROR!!
       }
     }, [drawerType]);
-
-    /**
-     * 검색 API
-     */
-    React.useEffect(() => {
-      if (debouncedTickerName) {
-        (async () => {
-          const { data } = await fetchStocks(debouncedTickerName);
-
-          setSearchStocks(() =>
-            data.map((item) => {
-              return {
-                ...item,
-                count: 0,
-              };
-            })
-          );
-        })();
-      }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [debouncedTickerName]);
 
     return (
       <DrawerContent className="mx-auto h-[calc(100%-100px)] max-w-[--max-width] ">
@@ -108,7 +89,7 @@ export const TickerDrawer = React.memo(
           )}
         </DrawerHeader>
 
-        {drawerType === "name" && <TickerList data={searchStocks} onClick={handleTickerClick} />}
+        {drawerType === "name" && !!data && <TickerList data={data} onClick={handleTickerClick} />}
 
         {drawerType === "count" && (
           <DrawerFooter>
