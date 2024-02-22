@@ -36,3 +36,13 @@ export const useDrawerStore = create<DrawerStore>((set) => ({
   isOpen: false,
   isOpenChange: (isOpen) => set({ isOpen: isOpen }),
 }));
+
+interface DialogStore {
+  isOpen: boolean;
+  isOpenChange: (isOpen: boolean) => void;
+}
+
+export const useDialogStore = create<DialogStore>((set) => ({
+  isOpen: false,
+  isOpenChange: (isOpen) => set({ isOpen: isOpen }),
+}));

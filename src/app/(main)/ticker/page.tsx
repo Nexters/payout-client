@@ -1,15 +1,9 @@
-"use client";
-
-import { Drawer as DrawerPrimitive } from "@/components/ui/drawer";
 import TickerContent from "./_components/ticker-content";
 import React from "react";
-import { useDrawerStore } from "@/state/stores/stocks-store";
 
 export default function TickerPage() {
-  const { isOpen } = useDrawerStore();
-
   return (
-    <DrawerPrimitive open={isOpen}>
+    <div className="mt-10">
       <TickerContent />
       <div
         className="fixed bottom-4 flex w-full justify-center pt-12"
@@ -22,6 +16,6 @@ export default function TickerPage() {
           <p className="text-h5 text-white">Finish</p>
         </button>
       </div>
-    </DrawerPrimitive>
+    </div>
   );
 }

@@ -3,16 +3,22 @@
 import Intro from "@/app/(main)/ticker/_components/intro";
 import SelectedTickerList from "@/app/(main)/ticker/_components/selected-ticker-list";
 import { TickerDrawer } from "@/app/(main)/ticker/_components/ticker-drawer";
+import { Dialog } from "@/components/common/dialog/dialog";
 import Toast from "@/components/common/toast/toast";
-import { Stock, useDrawerStore, useStocksStore } from "@/state/stores/stocks-store";
+import { Stock, useDialogStore, useDrawerStore, useStocksStore } from "@/state/stores/stocks-store";
 import React from "react";
 import { toast } from "sonner";
+import { Drawer as DrawerPrimitive } from "@/components/ui/drawer";
+import { Dialog as DialogPrimitive } from "@/components/ui/dialog";
 
 export type DrawerType = "name" | "count" | "edit";
 
+const MAX_TICKER_COUNT = 15;
+
 const TickerContent = React.memo(() => {
   const { stocks, addStocks, removeStocks, editStocks } = useStocksStore();
-  const { isOpenChange } = useDrawerStore();
+  const { isOpen: drawerIsOpen, isOpenChange: isDrawerOpenChange } = useDrawerStore();
+  const { isOpen: dialogIsOpen, isOpenChange: isDialogOpenChange } = useDialogStore();
 
   const [tickerName, setTickerName] = React.useState<string>("");
   const [tickerCount, setTickerCount] = React.useState<number>(0);
@@ -44,17 +50,17 @@ const TickerContent = React.memo(() => {
   };
 
   const handleSubmitClick = React.useCallback(() => {
-    if (stocks.length > 14) {
-      return toast.custom((t) => <Toast t={t} title={`You can add up to 15 stocks.`} />);
+    if (stocks.length > MAX_TICKER_COUNT - 1) {
+      return isDialogOpenChange(true);
     }
 
     if (selectedStock) {
       resetData();
 
       addStocks({ ...selectedStock, count: tickerCount });
-      isOpenChange(false);
+      isDrawerOpenChange(false);
     }
-  }, [addStocks, isOpenChange, resetData, selectedStock, stocks.length, tickerCount]);
+  }, [addStocks, isDialogOpenChange, isDrawerOpenChange, resetData, selectedStock, stocks.length, tickerCount]);
 
   const handleInputClear = React.useCallback((type: DrawerType) => {
     if (type === "name") {
@@ -71,14 +77,14 @@ const TickerContent = React.memo(() => {
   const handleSelectedTickerClick = React.useCallback(
     (data: Stock) => {
       if (data.ticker && data.count) {
-        isOpenChange(true);
+        isDrawerOpenChange(true);
         setTickerName(data.ticker);
         setTickerCount(data.count);
         setDrawerType("edit");
         setSelectedStock(data);
       }
     },
-    [isOpenChange]
+    [isDrawerOpenChange]
   );
 
   const handleDeleteClick = React.useCallback(() => {
@@ -96,18 +102,18 @@ const TickerContent = React.memo(() => {
           }}
         />
       ));
-      return isOpenChange(false);
+      return isDrawerOpenChange(false);
     }
-  }, [addStocks, isOpenChange, removeStocks, resetData, selectedStock]);
+  }, [addStocks, isDrawerOpenChange, removeStocks, resetData, selectedStock]);
 
   const handleConfirmClick = React.useCallback(() => {
     editStocks({ ...selectedStock, count: tickerCount });
     resetData();
-    return isOpenChange(false);
-  }, [editStocks, isOpenChange, resetData, selectedStock, tickerCount]);
+    return isDrawerOpenChange(false);
+  }, [editStocks, isDrawerOpenChange, resetData, selectedStock, tickerCount]);
 
   return (
-    <>
+    <DrawerPrimitive open={drawerIsOpen}>
       <div className="flex h-full w-full flex-col pt-11">
         <Intro />
         <SelectedTickerList handleTickerClick={handleSelectedTickerClick} />
@@ -125,7 +131,11 @@ const TickerContent = React.memo(() => {
         handleDeleteClick={handleDeleteClick}
         handleConfirmClick={handleConfirmClick}
       />
-    </>
+
+      <DialogPrimitive open={dialogIsOpen}>
+        <Dialog title={`You can add up to ${MAX_TICKER_COUNT} stocks.`} />
+      </DialogPrimitive>
+    </DrawerPrimitive>
   );
 });
 
