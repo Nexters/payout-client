@@ -5,9 +5,9 @@ import Input from "@/components/ui/input";
 import React from "react";
 import TickerList from "./ticker-list";
 import useDebounce from "@/hooks/use-debounce";
-import { useStocks } from "@/state/queries/useStocks";
+import { useStocks } from "@/state/queries/use-stocks";
 import { DrawerType } from "./ticker-content";
-import { Stock, useStocksStore } from "@/state/stores/stocks-store";
+import { Stock } from "@/state/stores/stocks-store";
 
 interface TickerDrawerProps {
   tickerName: string;
@@ -38,8 +38,6 @@ export const TickerDrawer = React.memo(
     handleConfirmClick,
   }: TickerDrawerProps) => {
     const [searchStocks, setSearchStocks] = React.useState<Stock[]>([]);
-    const { removeStocks } = useStocksStore();
-
     const debouncedTickerName = useDebounce(tickerName, 1000); // 디바운스 적용
     const { fetchStocks } = useStocks();
 

@@ -2,7 +2,7 @@ import { searchStock } from "@/api/generated/endpoint";
 import { queryClient } from "@/app/global-provider";
 import { createQueryKeys } from "@lukemorales/query-key-factory";
 
-export const testQueryKeys = createQueryKeys("test");
+export const testQueryKeys = createQueryKeys("use-stocks");
 
 export const useStocks = () => {
   const requestClient = (keyword: string) => searchStock({ keyword, pageNumber: 1, pageSize: 20 });
