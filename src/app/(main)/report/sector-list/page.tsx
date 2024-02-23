@@ -1,6 +1,6 @@
 import React from "react";
 import { SectorList } from "./_components/sector-list";
-import { SectorRatio } from "../_components/sector-row";
+import { SectorRatio } from "./_components/sector-row";
 
 const dummySectorList: SectorRatio[] = [
   {

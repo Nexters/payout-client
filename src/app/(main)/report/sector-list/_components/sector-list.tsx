@@ -1,5 +1,5 @@
 import React from "react";
-import { SectorRatio, SectorRow } from "../../_components/sector-row";
+import { SectorRatio, SectorRow } from "./sector-row";
 
 export const SectorList = React.memo(({ sectorList }: { sectorList: SectorRatio[] }) => {
   return (
