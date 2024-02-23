@@ -1,6 +1,5 @@
 "use client";
 
-import { useDrawerStore } from "@/state/stores/stocks-store";
 import { cn } from "@/utils/cn";
 import * as React from "react";
 import { Drawer as DrawerPrimitive } from "vaul";
@@ -28,10 +27,8 @@ const DrawerContent = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content>
 >(({ className, children, ...props }, ref) => {
-  const { isOpenChange } = useDrawerStore();
   return (
     <DrawerPortal>
-      <DrawerOverlay onClick={() => isOpenChange(false)} />
       <DrawerPrimitive.Content
         ref={ref}
         className={cn(

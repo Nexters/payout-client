@@ -1,21 +1,27 @@
 import { searchStock } from "@/api/generated/endpoint";
-import { queryClient } from "@/app/global-provider";
 import { createQueryKeys } from "@lukemorales/query-key-factory";
+import { useQuery } from "@tanstack/react-query";
 
-export const testQueryKeys = createQueryKeys("use-stocks");
+export const filteredStocksQueryKeys = createQueryKeys("filtered-stocks");
 
-export const useStocks = () => {
-  const requestClient = (keyword: string) => searchStock({ keyword, pageNumber: 1, pageSize: 20 });
+export const useStocksQuery = (keyword: string) => {
+  const requestClient = async () => {
+    if (keyword) {
+      const { data } = await searchStock({ keyword, pageNumber: 1, pageSize: 20 });
+      return data.map((item) => ({
+        ...item,
+        count: 0,
+      }));
+    }
 
-  return {
-    fetchStocks: async (keyword: string) => {
-      return queryClient.fetchQuery({
-        queryKey: [testQueryKeys._def, keyword],
-        queryFn: () => requestClient(keyword),
-        staleTime: Infinity,
-        gcTime: Infinity,
-        retry: 1,
-      });
-    },
+    return [];
   };
+
+  return useQuery({
+    queryKey: [filteredStocksQueryKeys._def, keyword],
+    queryFn: () => requestClient(),
+    staleTime: Infinity,
+    gcTime: Infinity,
+    retry: 1,
+  });
 };

@@ -1,22 +1,18 @@
 import { findSectorRatios } from "@/api/generated/endpoint";
-import { TickerShare } from "@/api/generated/endpoint.schemas";
-import { queryClient } from "@/app/global-provider";
+import { SectorRatioResponse, TickerShare } from "@/api/generated/endpoint.schemas";
 import { createQueryKeys } from "@lukemorales/query-key-factory";
+import { UseMutationResult, useMutation } from "@tanstack/react-query";
 
-export const testQueryKeys = createQueryKeys("use-stocks-sector-ratio");
+export const enteredStocksQueryKeys = createQueryKeys("entered-stocks");
 
-export const useStocksSectorRatio = () => {
-  const requestClient = (tickerShares: TickerShare[]) => findSectorRatios({ tickerShares });
-
-  return {
-    fetchStocksSectorRatio: async (tickerShares: TickerShare[]) => {
-      return queryClient.fetchQuery({
-        queryKey: [testQueryKeys._def, tickerShares],
-        queryFn: () => requestClient(tickerShares),
-        staleTime: Infinity,
-        gcTime: Infinity,
-        retry: 1,
-      });
-    },
+export const useStocksSectorRatioMutation = (): UseMutationResult<SectorRatioResponse[], unknown, TickerShare[]> => {
+  const requestClient = async (tickerShares: TickerShare[]): Promise<SectorRatioResponse[]> => {
+    const response = await findSectorRatios({ tickerShares });
+    return response.data;
   };
+
+  return useMutation({
+    mutationKey: [enteredStocksQueryKeys._def],
+    mutationFn: requestClient,
+  });
 };
