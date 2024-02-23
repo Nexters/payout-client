@@ -1,42 +1,18 @@
 "use client";
-import { TickerShare } from "@/api/generated/endpoint.schemas";
-import { useStocksSectorRatio } from "@/state/queries/use-stocks-sector-ratio";
-import { useStocksSectorRatioStore } from "@/state/stores/stocks-sector-ratio";
 import { useStocksStore } from "@/state/stores/stocks-store";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 export default function TickerFooter() {
   const { stocks } = useStocksStore();
-  const { update } = useStocksSectorRatioStore();
-  const { fetchStocksSectorRatio } = useStocksSectorRatio();
-
+  const router = useRouter();
   const isSubmittable = React.useMemo(() => {
     return stocks.length > 0;
   }, [stocks.length]);
 
-  const handleTickerSubmit = React.useCallback(async () => {
-    const tickerShares: TickerShare[] = stocks
-      .filter((stock) => !!stock.ticker) // ticker가 있는 경우만 필터링
-      .map((stock) => {
-        const { ticker, count } = stock;
-        return {
-          ticker: ticker as string,
-          share: count,
-        };
-      });
-
-    try {
-      const { data } = await fetchStocksSectorRatio(tickerShares);
-
-      update(data);
-
-      console.log("result data:", data);
-      // @TODO Router 추가 작업
-      // router.push(`/report`);
-    } catch (error) {
-      throw Error("제출 실패");
-    }
-  }, [fetchStocksSectorRatio, stocks, update]);
+  const handleTickerSubmit = () => {
+    router.push(`/report`);
+  };
 
   return (
     <div
