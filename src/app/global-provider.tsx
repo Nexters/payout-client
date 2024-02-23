@@ -5,6 +5,15 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import axios from "axios";
 import React from "react";
 
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      staleTime: 60 * 1_000,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_HOST;
 console.log(process.env.NEXT_PUBLIC_API_HOST);
 

@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="relative flex h-full w-full flex-col items-center justify-center">
             <NavigationBar />
             <div className="h-full w-full flex-1 overflow-auto">{children}</div>
-            <Toaster position="top-center" />
+            <Toaster position="bottom-center" />
           </div>
         </GlobalProvider>
       </body>
