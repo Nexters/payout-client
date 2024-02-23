@@ -8,9 +8,9 @@ const ChevronDownIcon = React.memo(({ ...props }: ChevronDownIconProps) => {
       <path
         d="M4 6L8 10L12 6"
         stroke="currentColor"
-        stroke-width="0.866667"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="0.866667"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
