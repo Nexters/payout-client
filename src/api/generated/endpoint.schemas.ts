@@ -5,6 +5,28 @@
  * Payout Server API 명세서입니다.
  * OpenAPI spec version: 1.0.0
  */
+export type GetBiggestDividendYieldStocksParams = {
+  /**
+   * page number(start with 1) for pagination
+   */
+  pageNumber: number;
+  /**
+   * page size for pagination
+   */
+  pageSize: number;
+};
+
+export type GetUpComingDividendStocksParams = {
+  /**
+   * page number(start with 1) for pagination
+   */
+  pageNumber: number;
+  /**
+   * page size for pagination
+   */
+  pageSize: number;
+};
+
 export type SearchStockParams = {
   /**
    * tickerName or companyName of stock ex) APPL, APPLE
@@ -19,6 +41,20 @@ export type SearchStockParams = {
    */
   pageSize: number;
 };
+
+export interface StockDividendYieldResponse {
+  dividendYield?: number;
+  logoUrl?: string;
+  stockId?: string;
+  ticker?: string;
+}
+
+export interface UpcomingDividendResponse {
+  exDividendDate?: string;
+  logoUrl?: string;
+  stockId?: string;
+  ticker?: string;
+}
 
 export type StockDetailResponseDividendMonthsItem =
   (typeof StockDetailResponseDividendMonthsItem)[keyof typeof StockDetailResponseDividendMonthsItem];
@@ -83,7 +119,7 @@ export interface YearlyDividendResponse {
 }
 
 export interface DividendRequest {
-  tickerShares?: TickerShare[];
+  tickerShares: TickerShare[];
 }
 
 export interface StockResponse {
@@ -110,10 +146,10 @@ export interface ErrorResponse {
 }
 
 export interface TickerShare {
-  share?: number;
+  share: number;
   ticker: string;
 }
 
 export interface SectorRatioRequest {
-  tickerShares?: TickerShare[];
+  tickerShares: TickerShare[];
 }
