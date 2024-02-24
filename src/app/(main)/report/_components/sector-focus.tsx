@@ -3,23 +3,28 @@
 import React from "react";
 import { DonutChart } from "@tremor/react";
 import { SectorRow } from "./sector-row";
+import { SectorRatioResponse } from "@/api/generated/endpoint.schemas";
 
-const data = [
+const data: SectorRatioResponse[] = [
   {
-    name: "Financial Services",
-    value: 64,
+    sectorName: "Financial Services",
+    sectorRatio: 64,
+    stocks: [],
   },
   {
-    name: "Communication Services",
-    value: 20,
+    sectorName: "Communication Services",
+    sectorRatio: 20,
+    stocks: [],
   },
   {
-    name: "Consumer Cyclical",
-    value: 10,
+    sectorName: "Consumer Cyclical",
+    sectorRatio: 10,
+    stocks: [],
   },
   {
-    name: "Others",
-    value: 6,
+    sectorName: "Others",
+    sectorRatio: 6,
+    stocks: [],
   },
 ];
 
@@ -35,7 +40,13 @@ export const SectorFocus = React.memo(() => {
         <p className=" text-h1 text-grey-900">Financial Services</p>
       </div>
       <DonutChart
-        data={data}
+        data={data.map((sector) => {
+          return {
+            name: sector.sectorName,
+            value: sector.sectorRatio,
+          };
+        })}
+        className="h-[180px]"
         variant="donut"
         showLabel={false}
         showAnimation={true}
@@ -44,8 +55,15 @@ export const SectorFocus = React.memo(() => {
         onValueChange={(v) => console.log(v)}
       />
       <div className="flex w-full flex-col items-center justify-center">
-        {data.map((sector) => {
-          return <SectorRow key={sector.name} />;
+        {data.map((sector, idx) => {
+          return (
+            <SectorRow
+              color={COLORS[idx]}
+              key={sector.sectorName}
+              sectorName={sector.sectorName}
+              sectorRatio={sector.sectorRatio}
+            />
+          );
         })}
       </div>
     </div>
