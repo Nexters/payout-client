@@ -61,7 +61,7 @@ export const TickerDrawer = React.memo(
     return (
       <DrawerContent className="mx-auto h-[calc(100%-100px)] max-w-[--max-width] ">
         <DrawerHeader>
-          <DrawerTitle className="mb-10">{title}</DrawerTitle>
+          <DrawerTitle className="mb-10 text-h3">{title}</DrawerTitle>
           <Input
             value={tickerName}
             label="Ticker"

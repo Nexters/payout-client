@@ -16,7 +16,7 @@ export const Header = React.memo(({ tickerCount }: HeaderProps) => {
         <Image src={"/next.svg"} alt={"section-logo"} width={56} height={56} />
       </div>
 
-      <div className="inline-block rounded-2xl bg-gray-200 px-2.5 py-1.5">{`${tickerCount} Tickers`}</div>
+      <div className="inline-block rounded-2xl bg-gray-100 px-2.5 py-1.5 text-h6">{`${tickerCount} Stocks`}</div>
     </div>
   );
 });
