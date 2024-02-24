@@ -28,7 +28,13 @@ export const SectorInsightsItem = React.memo(({ title, stocks, type }: SectorIns
           return (
             <div key={idx} className="rounded-lg border border-gray-200 p-4" style={{ minWidth: 119, maxWidth: 119 }}>
               <div className="flex flex-col gap-4">
-                <Image src={"/next.svg"} alt={stock.ticker} width={32} height={32} />
+                <Image
+                  src={"/next.svg"}
+                  alt={stock.ticker}
+                  className="h-8 w-8 rounded-full border border-gray-100"
+                  width={32}
+                  height={32}
+                />
 
                 <div>
                   <h5 className="text-h5 text-gray-900">{stock.ticker}</h5>
