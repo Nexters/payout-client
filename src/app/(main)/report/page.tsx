@@ -7,8 +7,8 @@ const ReportPage = () => {
     <div className="size-full">
       <div className="flex size-full flex-col">
         <SectorFocus />
-        <MonthlyDividend />
         <Divider />
+        <MonthlyDividend />
         <>div</>
         <Divider />
       </div>
@@ -17,7 +17,7 @@ const ReportPage = () => {
 };
 
 const Divider = React.memo(() => {
-  return <div className="h-4 w-full bg-grey-100" />;
+  return <div className="h-4 w-full shrink-0 bg-grey-100" />;
 });
 
 export default ReportPage;
