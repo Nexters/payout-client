@@ -8,10 +8,10 @@ export const viewport: Viewport = {
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div>
+    <>
       <NavigationBar />
       {children}
-    </div>
+    </>
   );
 };
 
