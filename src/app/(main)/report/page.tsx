@@ -15,7 +15,7 @@ const ReportPage = () => {
       stocks.map((stock) => ({
         share: stock.count,
         ticker: stock.ticker ?? "",
-      }))
+      })) ?? []
     );
   }, [mutate, stocks]);
 
