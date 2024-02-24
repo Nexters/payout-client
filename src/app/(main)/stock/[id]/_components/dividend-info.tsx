@@ -1,4 +1,5 @@
 import React from "react";
+import { Months } from "../_data";
 
 interface DividendInfoProps {
   dividendYield?: number;
@@ -9,7 +10,7 @@ interface DividendInfoProps {
 export const DividendInfo = React.memo(({ dividendYield, dividendPerShare, dividendMonths }: DividendInfoProps) => {
   return (
     <div className="flex w-full flex-col px-5 py-8">
-      <h4 className="mb-7 text-h4 text-grey-800">Dividend Info</h4>
+      <h4 className="mb-6 text-h4 text-grey-800">Dividend Info</h4>
 
       <div className="mb-2 flex w-full justify-between gap-2">
         <div className="flex flex-1 flex-col items-center justify-between gap-2 bg-gray-50 p-4">
@@ -27,7 +28,9 @@ export const DividendInfo = React.memo(({ dividendYield, dividendPerShare, divid
           <p className="text-body3 text-gray-500">Dividend Frequency</p>
           <span className="text-center text-h5 text-gray-800">
             {`${dividendMonths.length} Times`}
-            <span className=" text-body3 text-main-900">{` (${dividendMonths?.join(", ")})`}</span>
+            <span className=" text-body3 text-main-900">{` (${dividendMonths
+              .map((month) => Months[month as keyof typeof Months])
+              ?.join(", ")})`}</span>
           </span>
         </div>
       )}
