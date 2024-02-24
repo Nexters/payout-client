@@ -10,7 +10,7 @@ interface InvestmentTipProps {
 
 export const InvestmentTip = React.memo(({ exDividendDate, earliestPaymentDate }: InvestmentTipProps) => {
   return (
-    <div className="flex w-full flex-col border border-gray-200 px-5 py-8">
+    <div className="flex w-full flex-col border-b border-grey-200 px-5 py-8">
       <h4 className="mb-7 text-h4 text-grey-800">Investment Tip</h4>
 
       <div className="flex w-full flex-col gap-5">
@@ -21,7 +21,7 @@ export const InvestmentTip = React.memo(({ exDividendDate, earliestPaymentDate }
                 <InfoCalendar />
                 <h6 className="text-h6 text-grey-500">{"Ex-Dividend Date"}</h6>
               </div>
-              <p>{formatDateStringToMonthDay(exDividendDate)}</p>
+              <p className="text-h5 text-grey-800">{formatDateStringToMonthDay(exDividendDate)}</p>
             </>
           )}
         </div>
@@ -32,7 +32,7 @@ export const InvestmentTip = React.memo(({ exDividendDate, earliestPaymentDate }
                 <InfoDate />
                 <h6 className="text-h6 text-grey-500">{"Approaching Payment Date"}</h6>
               </div>
-              <p>{formatDateStringToMonthDay(earliestPaymentDate)}</p>
+              <p className="text-h5 text-grey-800">{formatDateStringToMonthDay(earliestPaymentDate)}</p>
             </>
           )}
         </div>

@@ -17,10 +17,10 @@ const TickerList = React.memo(({ data, hasShares, onClick }: TickerProps) => {
         {data.map((item, index) => (
           <div key={index} className="flex w-full justify-between" onClick={() => onClick(item)}>
             <div className="flex">
-              <div className="mr-4 flex h-10 w-10 items-center justify-center rounded-full border border-gray-100 bg-gray-50" />
+              <div className="mr-4 flex h-10 w-10 items-center justify-center rounded-full border border-grey-100 bg-grey-50" />
               <div>
-                <p className="text-left text-h3 text-gray-900">{item.ticker}</p>
-                <p className="line-clamp-1 break-all text-body3 text-gray-600">{item.companyName}</p>
+                <p className="text-left text-h3 text-grey-900">{item.ticker}</p>
+                <p className="line-clamp-1 break-all text-body3 text-grey-600">{item.companyName}</p>
               </div>
             </div>
             {hasShares && (

@@ -20,10 +20,10 @@ const Intro = () => {
           }}
           className="flex w-full items-center justify-start gap-4 pl-0"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-500">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-grey-100 text-grey-500">
             <Plus />
           </div>
-          <p className="text-h5 text-gray-700">Add Stock</p>
+          <p className="text-h5 text-grey-700">Add Stock</p>
         </Button>
       </div>
     </div>
