@@ -119,7 +119,7 @@ export interface YearlyDividendResponse {
 }
 
 export interface DividendRequest {
-  tickerShares: TickerShare[];
+  tickerShares?: TickerShare[];
 }
 
 export interface StockResponse {
@@ -146,10 +146,10 @@ export interface ErrorResponse {
 }
 
 export interface TickerShare {
-  share: number;
+  share?: number;
   ticker: string;
 }
 
 export interface SectorRatioRequest {
-  tickerShares: TickerShare[];
+  tickerShares?: TickerShare[];
 }

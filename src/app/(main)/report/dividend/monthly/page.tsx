@@ -343,32 +343,7 @@ const dummyMonthlyDividendList: MonthlyDividendIncome[] = [
   {
     date: new Date(),
     totalIncome: 20,
-    dividendList: [
-      {
-        logo: "/next.svg",
-        income: 12,
-        shares: 18,
-        ticker: "AAPL",
-      },
-      {
-        logo: "/next.svg",
-        income: 12,
-        shares: 18,
-        ticker: "AAPL",
-      },
-      {
-        logo: "/next.svg",
-        income: 12,
-        shares: 18,
-        ticker: "AAPL",
-      },
-      {
-        logo: "/next.svg",
-        income: 12,
-        shares: 18,
-        ticker: "AAPL",
-      },
-    ],
+    dividendList: [],
   },
 ];
 
