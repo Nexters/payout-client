@@ -12,7 +12,7 @@ export default function TickerFooter() {
     router.push(`/report`);
   };
 
-  // if (stocks.length === 0) return null;
+  if (stocks.length === 0) return null;
 
   return (
     <div
