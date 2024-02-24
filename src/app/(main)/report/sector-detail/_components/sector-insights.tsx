@@ -60,8 +60,8 @@ const dummyTopDividendList: InsightsStock[] = [
 
 export const SectorInsights = React.memo(() => {
   return (
-    <div>
-      <div className="flex w-full flex-col gap-2 border-b border-b-grey-200 px-5 py-8">
+    <>
+      <div className="flex w-full flex-col gap-2 border-b border-b-gray-200 px-5 py-8">
         <h2 className="text-h2 text-grey-900">Sector Insights</h2>
         <p className="text-body3 text-grey-600">
           {`Last updated `}
@@ -73,6 +73,6 @@ export const SectorInsights = React.memo(() => {
         <SectorInsightsItem title={"Approaching Ex-Dividend dates"} stocks={dummyExDividendList} type="Date" />
         <SectorInsightsItem title={"Top Recent Dividend Yields"} stocks={dummyTopDividendList} type="Rate" />
       </div>
-    </div>
+    </>
   );
 });

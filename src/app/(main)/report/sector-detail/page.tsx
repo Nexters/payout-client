@@ -32,7 +32,7 @@ const dummyDividendList: Dividend[] = [
 ];
 const SectorDetailPage = React.memo(() => {
   return (
-    <div>
+    <div className="size-full">
       <Header tickerCount={4} />
       <DividendList dividendList={dummyDividendList} />
       <div className="h-4 bg-grey-100" />

@@ -9,6 +9,8 @@ const ReportPage = () => {
         <SectorFocus />
         <MonthlyDividend />
         <Divider />
+        <>div</>
+        <Divider />
       </div>
     </div>
   );

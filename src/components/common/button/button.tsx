@@ -14,8 +14,9 @@ const buttonVariants = cva(
         tertiary: "bg-grey-100 text-grey-800 active:bg-grey-200 ",
       },
       size: {
-        large: "p-5 h-[58px] w-[335px]",
-        medium: "p-5 h-12 w-[335px]",
+        large: "p-4 h-[58px] w-[335px]",
+        medium: "p-4 h-12 w-[335px]",
+        fit: "p-4 h-12 w-fit",
       },
     },
     defaultVariants: {
