@@ -9,25 +9,25 @@ import { useStocksSectorRatioMutation } from "@/state/queries/use-stocks-sector-
 
 const dummyDividendList: Dividend[] = [
   {
-    logo: "/next.svg",
+    logoUrl: "/next.svg",
     income: 12,
     shares: 18,
     ticker: "JPM",
   },
   {
-    logo: "/next.svg",
+    logoUrl: "/next.svg",
     income: 12,
     shares: 12,
     ticker: "V",
   },
   {
-    logo: "/next.svg",
+    logoUrl: "/next.svg",
     income: 12,
     shares: 8,
     ticker: "WFC",
   },
   {
-    logo: "/next.svg",
+    logoUrl: "/next.svg",
     income: 12,
     shares: 4,
     ticker: "BAC",

@@ -16,27 +16,27 @@ const data: Sector[] = [
   {
     sectorName: "Financial Services",
     sectorRatio: 64,
-    stocks: [],
+    stockShares: [],
   },
   {
     sectorName: "Communication Services",
     sectorRatio: 20,
-    stocks: [],
+    stockShares: [],
   },
   {
     sectorName: "Consumer Cyclical",
     sectorRatio: 10,
-    stocks: [],
+    stockShares: [],
   },
   {
     sectorName: "Energy",
     sectorRatio: 4,
-    stocks: [],
+    stockShares: [],
   },
   {
     sectorName: "Financial Services",
     sectorRatio: 2,
-    stocks: [],
+    stockShares: [],
   },
 ];
 

@@ -8,7 +8,7 @@ import { useStocksSectorRatioMutation } from "@/state/queries/use-stocks-sector-
 
 const ReportPage = () => {
   const { stocks } = useStocksStore();
-  const { mutate } = useStocksSectorRatioMutation();
+  const { mutate, data } = useStocksSectorRatioMutation();
 
   React.useEffect(() => {
     mutate(
@@ -18,6 +18,10 @@ const ReportPage = () => {
       })) ?? []
     );
   }, [mutate, stocks]);
+
+  React.useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   return (
     <div className="size-full">

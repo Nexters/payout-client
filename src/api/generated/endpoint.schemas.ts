@@ -59,7 +59,6 @@ export interface UpcomingDividendResponse {
 export type StockDetailResponseDividendMonthsItem =
   (typeof StockDetailResponseDividendMonthsItem)[keyof typeof StockDetailResponseDividendMonthsItem];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
 export const StockDetailResponseDividendMonthsItem = {
   JANUARY: "JANUARY",
   FEBRUARY: "FEBRUARY",
