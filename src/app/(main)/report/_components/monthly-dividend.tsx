@@ -1,8 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { MonthlyDividendResponse } from "@/api/generated/endpoint.schemas";
 import { BarChart } from "@tremor/react";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 const data: MonthlyDividendResponse[] = [
   {
@@ -128,12 +130,27 @@ const COLORS = ["navy-700"];
 
 const dataFormatter = (number: number) => `$ ${Intl.NumberFormat("us").format(number).toString()}`;
 
-export const MonthlyDividend = React.memo(() => {
-  const [isActive, setIsActive] = useState<boolean>(true);
+type halfToggleType = "first" | "second";
 
-  const handleToggle = () => {
-    setIsActive((prev) => !prev);
+export const MonthlyDividend = React.memo(() => {
+  const [halfToggleState, setHalfToggleState] = useState<halfToggleType>("first");
+  const router = useRouter();
+
+  const handleToggle = (type: halfToggleType) => {
+    setHalfToggleState(type);
   };
+
+  const handleCheckMonthlyClick = () => {
+    router.push(`/report/dividend/monthly`);
+  };
+
+  const shownChartData = useMemo(() => {
+    if (halfToggleState === "first") {
+      return dummyData.slice(0, 6);
+    }
+
+    return dummyData.slice(6, 12);
+  }, [halfToggleState]);
 
   return (
     <div className="flex flex-col gap-6 p-5 pb-20">
@@ -144,7 +161,7 @@ export const MonthlyDividend = React.memo(() => {
       <BarChart
         index="date"
         categories={["totalDividend"]}
-        data={dummyData.slice(0, 6)}
+        data={shownChartData}
         className="h-[165px]"
         showAnimation={true}
         colors={COLORS}
@@ -154,6 +171,33 @@ export const MonthlyDividend = React.memo(() => {
         showYAxis={false}
         showLegend={false}
       />
+
+      <div className="mb-2 flex justify-between rounded-3xl border border-gray-100 p-1.5">
+        <Button
+          className={`flex flex-1 items-center justify-center rounded-3xl ${
+            halfToggleState === "first" ? "bg-white" : "bg-gray-100"
+          } text-h5 text-gray-700`}
+          style={{ boxShadow: halfToggleState === "first" ? "0px 2px 10px 0px rgba(0, 0, 0, 0.08)" : undefined }}
+          onClick={() => handleToggle("first")}
+        >
+          First Half
+        </Button>
+        <Button
+          className={`flex flex-1 items-center justify-center rounded-3xl ${
+            halfToggleState === "second" ? "bg-white" : "bg-gray-100"
+          } text-h5 text-gray-700`}
+          style={{ boxShadow: halfToggleState === "second" ? "0px 2px 10px 0px rgba(0, 0, 0, 0.08)" : undefined }}
+          onClick={() => handleToggle("second")}
+        >
+          Second Half
+        </Button>
+      </div>
+
+      <Button className="p-0" onClick={handleCheckMonthlyClick}>
+        <div className="text-5 flex w-full items-center justify-center rounded-lg bg-main-50 p-4 text-main-900">
+          Check Your Monthly Dividend
+        </div>
+      </Button>
     </div>
   );
 });
