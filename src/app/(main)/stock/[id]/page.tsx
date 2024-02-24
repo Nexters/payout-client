@@ -36,21 +36,12 @@ export default function StockPage({ params }: { params: { id: string } }) {
       <StockInfoDrawer handleInfoClick={handleInfoClick} />
       <Header stock={dummyStock} handleInfoClick={handleInfoClick} />
       <div className="h-4 bg-gray-100" />
-      {dummyStock.exDividendDate && dummyStock.earliestPaymentDate && (
-        <InvestmentTip
-          exDividendDate={dummyStock.exDividendDate}
-          earliestPaymentDate={dummyStock.earliestPaymentDate}
-        />
-      )}
-      {dummyStock.dividendPerShare !== undefined &&
-        dummyStock.dividendYield !== undefined &&
-        dummyStock.dividendMonths !== undefined && (
-          <DividendInfo
-            dividendPerShare={dummyStock.dividendPerShare}
-            dividendYield={dummyStock.dividendYield}
-            dividendMonths={dummyStock.dividendMonths}
-          ></DividendInfo>
-        )}
+      <InvestmentTip exDividendDate={dummyStock.exDividendDate} earliestPaymentDate={dummyStock.earliestPaymentDate} />
+      <DividendInfo
+        dividendPerShare={dummyStock.dividendPerShare}
+        dividendYield={dummyStock.dividendYield}
+        dividendMonths={dummyStock.dividendMonths}
+      />
     </DrawerPrimitive>
   );
 }
