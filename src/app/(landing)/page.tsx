@@ -22,7 +22,7 @@ export default function Home() {
         <Footer />
       </div>
       <div className="fixed bottom-0 left-1/2 w-full max-w-[768px] -translate-x-1/2 bg-[linear-gradient(0deg,_#FFF_52.78%,_rgba(255,_255,_255,_0.00)_100%);] p-5 pt-[50px]">
-        <Button variant={"primary"} size={"large"} className="w-full ">
+        <Button variant={"primary"} size={"large"} className="w-full rounded-lg text-h5" style={{ color: "white" }}>
           Check My Dividend Portfolio
         </Button>
       </div>

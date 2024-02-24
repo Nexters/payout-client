@@ -13,7 +13,7 @@ const FAQ = () => {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-2" className="rounded border border-grey-100 p-4">
-          <AccordionTrigger>Is the dividend information up to date?</AccordionTrigger>
+          <AccordionTrigger>Are Stock Data Real-Time?</AccordionTrigger>
           <AccordionContent>
             Stock Data are updated daily at midnight UTC, and Dividend Data are estimated based on the data of the
             preceding year.
