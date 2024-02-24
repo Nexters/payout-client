@@ -22,7 +22,7 @@ const dummyStock: StockDetailResponse = {
   exDividendDate: "2024-02-24",
   earliestPaymentDate: "2024-02-24",
   dividendYield: 0,
-  dividendMonths: ["FEBRUARY", "MAY", "AUGUST", "NOVEMBER"],
+  dividendMonths: ["FEBRUARY", "MAY"],
 };
 
 export default function StockPage({ params }: { params: { id: string } }) {

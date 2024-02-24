@@ -24,9 +24,9 @@ export const DividendInfo = React.memo(({ dividendYield, dividendPerShare, divid
 
       <div className="flex w-full flex-col items-center justify-between gap-2 bg-gray-50 p-4">
         <p className="text-body3 text-gray-500">Dividend Frequency</p>
-        <span className="text-h5 text-gray-800">
+        <span className="text-center text-h5 text-gray-800">
           {`${dividendMonths.length} Times`}
-          <span className="text-body3 text-main-900">{` (${dividendMonths.join(", ")})`}</span>
+          <span className=" text-body3 text-main-900">{` (${dividendMonths.join(", ")})`}</span>
         </span>
       </div>
     </div>
