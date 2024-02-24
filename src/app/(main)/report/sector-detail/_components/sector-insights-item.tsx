@@ -26,18 +26,18 @@ export const SectorInsightsItem = React.memo(({ title, stocks, type }: SectorIns
       <div className="scrollbar-none flex gap-2.5 overflow-x-auto overflow-y-hidden px-5 ">
         {stocks.map((stock, idx) => {
           return (
-            <div key={idx} className="rounded-lg border border-gray-200 p-4" style={{ minWidth: 119, maxWidth: 119 }}>
+            <div key={idx} className="rounded-lg border border-grey-200 p-4" style={{ minWidth: 119, maxWidth: 119 }}>
               <div className="flex flex-col gap-4">
                 <Image
                   src={"/next.svg"}
                   alt={stock.ticker}
-                  className="h-8 w-8 rounded-full border border-gray-100"
+                  className="h-8 w-8 rounded-full border border-grey-100"
                   width={32}
                   height={32}
                 />
 
                 <div>
-                  <h5 className="text-h5 text-gray-900">{stock.ticker}</h5>
+                  <h5 className="text-h5 text-grey-900">{stock.ticker}</h5>
                   <p className="mt-0.5 truncate text-body2 text-main-900">
                     {type === "Date" && formatDateStringToMonthDay(stock.exDividendDate)}
                     {type === "Rate" &&

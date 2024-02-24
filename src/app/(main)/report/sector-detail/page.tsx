@@ -35,7 +35,7 @@ const SectorDetailPage = React.memo(() => {
     <div>
       <Header tickerCount={4} />
       <DividendList dividendList={dummyDividendList} />
-      <div className="h-4 bg-gray-100" />
+      <div className="h-4 bg-grey-100" />
       <SectorInsights />
     </div>
   );

@@ -19,7 +19,7 @@ const Toast = React.memo(({ t, title, isRevertable, handleUndo, ...props }: Toas
   return (
     <div
       className={cn(
-        "flex items-center justify-between rounded bg-gray-900 px-4 py-3 text-white shadow",
+        "flex items-center justify-between rounded bg-grey-900 px-4 py-3 text-white shadow",
         props.className
       )}
       {...props}

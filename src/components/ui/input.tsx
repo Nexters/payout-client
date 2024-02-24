@@ -18,7 +18,7 @@ interface InputProps extends HTMLProps<HTMLInputElement> {
 const containerVariants = cva("", {
   variants: {
     variant: {
-      default: "border-gray-300",
+      default: "border-grey-300",
       focused: "border-2 border-blue-700",
       error: "border-error",
     },
@@ -31,7 +31,7 @@ const containerVariants = cva("", {
 const inputVariants = cva("outline-none w-full h-9", {
   variants: {
     variant: {
-      default: "border-gray-300",
+      default: "border-grey-300",
       focused: "border-2 border-blue-700",
       error: "border-error",
     },
@@ -43,7 +43,7 @@ const inputVariants = cva("outline-none w-full h-9", {
 const labelVariants = cva("block text-h6 mb-1.5", {
   variants: {
     variant: {
-      default: "text-gray-700",
+      default: "text-grey-700",
       focused: "text-main-700",
       error: "text-error",
     },
@@ -90,7 +90,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           {!props.disabled && props.value && (
             <div className="flex items-center pl-4 ">
               <button
-                className="flex h-5 w-5 items-center justify-center rounded-full bg-gray-300"
+                className="flex h-5 w-5 items-center justify-center rounded-full bg-grey-300"
                 onClick={clearInput}
               >
                 <IcXCircle color={"#f9fafb"} />

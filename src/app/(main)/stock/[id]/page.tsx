@@ -35,7 +35,7 @@ export default function StockPage({ params }: { params: { id: string } }) {
       <DrawerOverlay onClick={() => setShowStockInfo(false)} />
       <StockInfoDrawer handleInfoClick={handleInfoClick} />
       <Header stock={dummyStock} handleInfoClick={handleInfoClick} />
-      <div className="h-4 bg-gray-100" />
+      <div className="h-4 bg-grey-100" />
       <InvestmentTip exDividendDate={dummyStock.exDividendDate} earliestPaymentDate={dummyStock.earliestPaymentDate} />
       <DividendInfo
         dividendPerShare={dummyStock.dividendPerShare}
