@@ -1,10 +1,11 @@
 import React from "react";
 import { Months } from "../_data";
+import { StockDetailResponseDividendMonthsItem } from "@/api/generated/endpoint.schemas";
 
 interface DividendInfoProps {
   dividendYield?: number;
   dividendPerShare?: number;
-  dividendMonths?: string[];
+  dividendMonths?: StockDetailResponseDividendMonthsItem[];
 }
 
 export const DividendInfo = React.memo(({ dividendYield, dividendPerShare, dividendMonths }: DividendInfoProps) => {
@@ -29,7 +30,7 @@ export const DividendInfo = React.memo(({ dividendYield, dividendPerShare, divid
           <span className="text-center text-h5 text-grey-800">
             {`${dividendMonths.length} Times`}
             <span className=" text-body3 text-main-900">{` (${dividendMonths
-              .map((month) => Months[month as keyof typeof Months])
+              .map((month) => Months[month])
               ?.join(", ")})`}</span>
           </span>
         </div>

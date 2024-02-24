@@ -1,4 +1,6 @@
-export const Months = {
+import { StockDetailResponseDividendMonthsItem } from "@/api/generated/endpoint.schemas";
+
+export const Months: Record<StockDetailResponseDividendMonthsItem, string> = {
   JANUARY: "Jan",
   FEBRUARY: "Feb",
   MARCH: "Mar",
