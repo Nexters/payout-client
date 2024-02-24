@@ -115,8 +115,13 @@ const TickerContent = React.memo(() => {
   }, [editStock, isDrawerOpenChange, resetData, selectedStock, tickerCount]);
 
   return (
-    <DrawerPrimitive open={isDrawerOpen}>
-      <div className="flex h-full w-full flex-col pt-11">
+    <DrawerPrimitive
+      open={isDrawerOpen}
+      onClose={() => {
+        isDrawerOpenChange(false);
+      }}
+    >
+      <div className="flex h-full w-full flex-col pt-2.5">
         <Intro />
         <TickerList data={stocks} hasShares onClick={handleSelectedTickerClick} />
       </div>

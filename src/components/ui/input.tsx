@@ -15,7 +15,7 @@ interface InputProps extends HTMLProps<HTMLInputElement> {
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
 }
 
-const inputVariants = cva("outline-none w-full", {
+const containerVariants = cva("", {
   variants: {
     variant: {
       default: "border-gray-300",
@@ -27,7 +27,20 @@ const inputVariants = cva("outline-none w-full", {
     variant: "default",
   },
 });
-const labelVariants = cva("block text-h6 font-medium mb-1", {
+
+const inputVariants = cva("outline-none w-full h-9", {
+  variants: {
+    variant: {
+      default: "border-gray-300",
+      focused: "border-2 border-blue-700",
+      error: "border-error",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+});
+const labelVariants = cva("block text-h6 mb-1.5", {
   variants: {
     variant: {
       default: "text-gray-700",
@@ -60,16 +73,21 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className={`input-container${type}`}>
         {label && <label className={cn(labelVariants({ variant: inputState }))}>{label}</label>}
-        <div className="relative flex w-full justify-center rounded-lg border px-4 py-2 outline-none">
+        <div
+          className={
+            cn(containerVariants({ variant: inputState })) +
+            " outline-none relative flex w-full justify-center rounded-lg border px-4 py-2"
+          }
+        >
           <input
             ref={ref}
-            className={cn(inputVariants({ variant: inputState }))}
+            className={"h-9 w-full outline-none"}
             type={type}
             onFocus={handleFocus} // 수정된 handleFocus 함수로 변경
             onBlur={handleBlur}
             {...props}
           />
-          {!props.disabled && (
+          {!props.disabled && props.value && (
             <div className="flex items-center pl-4 ">
               <button
                 className="flex h-5 w-5 items-center justify-center rounded-full bg-gray-300"
