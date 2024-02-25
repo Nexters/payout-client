@@ -135,14 +135,14 @@ export interface StockResponse {
 }
 
 export interface StockShareResponse {
-  share?: number;
-  stockResponse?: StockResponse;
+  share: number;
+  stockResponse: StockResponse;
 }
 
 export interface SectorRatioResponse {
-  sectorName?: string;
-  sectorRatio?: number;
-  stockShares?: StockShareResponse[];
+  sectorName: string;
+  sectorRatio: number;
+  stockShares: StockShareResponse[];
 }
 
 export interface ErrorResponse {
