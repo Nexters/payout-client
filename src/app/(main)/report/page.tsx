@@ -5,10 +5,11 @@ import { SectorFocus } from "./_components/sector-focus";
 import { MonthlyDividend } from "./_components/monthly-dividend";
 import { useStocksStore } from "@/state/stores/stocks-store";
 import { useStocksSectorRatioMutation } from "@/state/queries/use-stocks-sector-ratio";
+import { AnnualDividend } from "./_components/annual-dividend";
 
 const ReportPage = () => {
   const { stocks } = useStocksStore();
-  const { mutate, data } = useStocksSectorRatioMutation();
+  const { mutate } = useStocksSectorRatioMutation();
 
   React.useEffect(() => {
     mutate(
@@ -19,10 +20,6 @@ const ReportPage = () => {
     );
   }, [mutate, stocks]);
 
-  React.useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   return (
     <div className="size-full">
       <div className="flex size-full flex-col">
@@ -30,6 +27,7 @@ const ReportPage = () => {
         <Divider />
         <MonthlyDividend />
         <Divider />
+        <AnnualDividend />
       </div>
     </div>
   );
