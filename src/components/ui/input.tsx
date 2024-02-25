@@ -19,7 +19,7 @@ const containerVariants = cva("", {
   variants: {
     variant: {
       default: "border-grey-300",
-      focused: "border-2 border-blue-700",
+      focused: "border-2 border-main-700",
       error: "border-error",
     },
   },
@@ -28,19 +28,7 @@ const containerVariants = cva("", {
   },
 });
 
-const inputVariants = cva("outline-none w-full h-9", {
-  variants: {
-    variant: {
-      default: "border-grey-300",
-      focused: "border-2 border-blue-700",
-      error: "border-error",
-    },
-  },
-  defaultVariants: {
-    variant: "default",
-  },
-});
-const labelVariants = cva("block text-h6 mb-1.5", {
+const labelVariants = cva("block mb-1.5 text-sm font-semibold", {
   variants: {
     variant: {
       default: "text-grey-700",
@@ -76,7 +64,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         <div
           className={
             cn(containerVariants({ variant: inputState })) +
-            " outline-none relative flex w-full justify-center rounded-lg border px-4 py-2"
+            " outline-none relative flex w-full justify-center rounded-lg border px-5 py-2"
           }
         >
           <input

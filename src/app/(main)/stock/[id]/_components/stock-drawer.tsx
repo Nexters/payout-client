@@ -19,7 +19,7 @@ export const StockInfoDrawer = React.memo(({ handleInfoClick }: StockInfoDrawerP
     <DrawerContent className="mx-auto  max-w-[--max-width] ">
       <DrawerHeader>
         <DrawerTitle className="mb-6 flex flex-col">
-          <p className=" text-h3 text-grey-900">{"Latest Price"}</p>
+          <p className=" text-h3 font-semibold text-grey-900">{"Latest Price"}</p>
           <p className="mt-1 ">
             <span className="text-body3 text-grey-600">{`Last updated `}</span>
             <span className="text-body3 text-main-700">2024/01/27 21:38</span>

@@ -11,7 +11,7 @@ interface InvestmentTipProps {
 export const InvestmentTip = React.memo(({ exDividendDate, earliestPaymentDate }: InvestmentTipProps) => {
   return (
     <div className="flex w-full flex-col border-b border-grey-200 px-5 py-8">
-      <h4 className="mb-7 text-h4 text-grey-800">Investment Tip</h4>
+      <h4 className="mb-6 text-h4 text-grey-800">Investment Tip</h4>
 
       <div className="flex w-full flex-col gap-5">
         <div className="flex items-center justify-between">
