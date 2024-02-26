@@ -69,7 +69,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         >
           <input
             ref={ref}
-            className={"h-9 w-full outline-none"}
+            className={"h-9 w-full text-lg outline-none"}
             type={type}
             onFocus={handleFocus} // 수정된 handleFocus 함수로 변경
             onBlur={handleBlur}
