@@ -114,6 +114,26 @@ const TickerContent = React.memo(() => {
     isDrawerOpenChange(false);
   }, [editStock, isDrawerOpenChange, resetData, selectedStock, tickerCount]);
 
+  const handleOverlayClick = React.useCallback(() => {
+    isDrawerOpenChange(false);
+
+    if (drawerType === "edit") {
+      resetData();
+    }
+  }, [drawerType, isDrawerOpenChange, resetData]);
+
+  React.useEffect(() => {
+    // 컴포넌트가 마운트될 때 body 스타일 변경
+    document.body.style.setProperty("margin", "auto", "important");
+    document.body.style.setProperty("padding", "0");
+
+    // 컴포넌트가 언마운트될 때 body 스타일 복원
+    return () => {
+      document.body.style.removeProperty("margin");
+      document.body.style.removeProperty("padding");
+    };
+  }, []);
+
   return (
     <DrawerPrimitive
       open={isDrawerOpen}
@@ -125,7 +145,7 @@ const TickerContent = React.memo(() => {
         <Intro />
         <TickerList data={stocks} hasShares onClick={handleSelectedTickerClick} />
       </div>
-      <DrawerOverlay onClick={() => isDrawerOpenChange(false)} />
+      <DrawerOverlay onClick={handleOverlayClick} />
       <TickerDrawer
         drawerType={drawerType}
         tickerCount={tickerCount}

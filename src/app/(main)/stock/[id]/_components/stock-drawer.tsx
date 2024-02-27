@@ -16,7 +16,7 @@ interface StockInfoDrawerProps {
 
 export const StockInfoDrawer = React.memo(({ handleInfoClick }: StockInfoDrawerProps) => {
   return (
-    <DrawerContent className="mx-auto  max-w-[--max-width] ">
+    <DrawerContent className="mx-auto max-w-screen-md">
       <DrawerHeader>
         <DrawerTitle className="mb-6 flex flex-col">
           <p className=" text-h3 font-semibold text-grey-900">{"Latest Price"}</p>

@@ -75,7 +75,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             onBlur={handleBlur}
             {...props}
           />
-          {!props.disabled && props.value && (
+          {inputState === "focused" && !props.disabled && props.value ? (
             <div className="flex items-center pl-4 ">
               <button
                 className="flex h-5 w-5 items-center justify-center rounded-full bg-grey-300"
@@ -84,7 +84,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
                 <IcXCircle color={"#f9fafb"} />
               </button>
             </div>
-          )}
+          ) : null}
         </div>
         {inputState === "error" && errorDescription && <p className="mt-1 text-body4 text-error">{errorDescription}</p>}
       </div>

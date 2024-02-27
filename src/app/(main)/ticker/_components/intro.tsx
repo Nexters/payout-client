@@ -9,7 +9,7 @@ const Intro = () => {
   const { stocks } = useStocksStore();
   const hasStock = stocks.length > 0;
   return (
-    <div className={`${hasStock && "border-b border-b-grey-100"} px-4`}>
+    <div className={`${hasStock && "border-b border-b-grey-100"} sticky top-0 w-full bg-white px-4`}>
       <h2 className="pt-4 text-h2">
         You added <span className="text-main-700">{stocks.length}</span> {`${hasStock ? "stocks" : "stock"}`}.
       </h2>

@@ -59,7 +59,7 @@ export const TickerDrawer = React.memo(
     }, [drawerType]);
 
     return (
-      <DrawerContent className="mx-auto h-[calc(100%-100px)] max-w-[--max-width] ">
+      <DrawerContent className="mx-auto h-[calc(100%-100px)] max-w-screen-md">
         <DrawerHeader>
           <DrawerTitle className="mb-10 text-h3 font-semibold text-grey-900">{title}</DrawerTitle>
           <Input
@@ -73,9 +73,11 @@ export const TickerDrawer = React.memo(
             clearInput={() => handleInputClear("name")}
           />
 
+          <div className="mb-5" />
+
           {drawerType !== "name" && (
             <Input
-              value={String(tickerCount)}
+              value={tickerCount === 0 ? "" : String(tickerCount)}
               label="Shares"
               type="number"
               errorDescription="You can enter 1 or more."
@@ -86,7 +88,9 @@ export const TickerDrawer = React.memo(
           )}
         </DrawerHeader>
 
-        {drawerType === "name" && !!data && <TickerList data={data} onClick={handleTickerClick} />}
+        {drawerType === "name" && !!data && (
+          <TickerList data={data} tickerName={tickerName} onClick={handleTickerClick} />
+        )}
 
         {drawerType === "count" && (
           <DrawerFooter>
