@@ -39,6 +39,7 @@ export default function StockPage({ params }: { params: { id: string } }) {
     // 컴포넌트가 언마운트될 때 body 스타일 복원
     return () => {
       document.body.style.removeProperty("margin");
+      document.body.style.removeProperty("padding");
     };
   }, []);
 
