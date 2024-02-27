@@ -33,7 +33,7 @@ const YearlyDividendPage = React.memo(() => {
   }
 
   return (
-    <div className="flex size-full flex-col items-center justify-start gap-5">
+    <div className="flex size-full flex-col items-center justify-start">
       <Header />
       <DividendList dividendList={yearlyDividends.dividends} />
     </div>
