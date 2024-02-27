@@ -19,7 +19,7 @@ const containerVariants = cva("", {
   variants: {
     variant: {
       default: "border-grey-300",
-      focused: "border-2 border-main-700",
+      focused: "border border-main-700",
       error: "border-error",
     },
   },
