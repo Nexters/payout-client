@@ -6,7 +6,7 @@ import EnergyIcon from "@/components/icons/sector/energy";
 import ETCIcon from "@/components/icons/sector/etc";
 import FinancialServicesIcon from "@/components/icons/sector/financial-services";
 import HealthcareIcon from "@/components/icons/sector/healthcare";
-import IndustriesIcon from "@/components/icons/sector/industries";
+import IndustrialsIcon from "@/components/icons/sector/industries";
 import RealEstateIcon from "@/components/icons/sector/real-estate";
 import TechnologyIcon from "@/components/icons/sector/technology";
 import UtilitiesIcon from "@/components/icons/sector/utilities";
@@ -21,10 +21,10 @@ export const ICONS = {
   Energy: <EnergyIcon />,
   "Financial Services": <FinancialServicesIcon />,
   Healthcare: <HealthcareIcon />,
-  Industries: <IndustriesIcon />,
+  Industrials: <IndustrialsIcon />,
   "Real Estate": <RealEstateIcon />,
   Technology: <TechnologyIcon />,
-  Utilites: <UtilitiesIcon />,
+  Utilities: <UtilitiesIcon />,
   ETF: <ETCIcon />,
   ETC: <ETCIcon />,
 } as const;

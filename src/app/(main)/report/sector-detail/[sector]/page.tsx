@@ -1,40 +1,24 @@
 "use client";
 
 import React from "react";
-import { Header } from "../_components/header";
-import { DividendList } from "../_components/dividend-list";
-import { Dividend } from "../../dividend/_components/dividend-row";
 import { SectorInsights } from "../_components/sector-insights";
-import { useStocksSectorRatioMutation } from "@/state/queries/use-stocks-sector-ratio";
+import { Header } from "../_components/header";
+import { Loader2Icon } from "lucide-react";
+import { useQueryClient } from "@tanstack/react-query";
+import { enteredStocksQueryKeys } from "@/state/queries/use-stocks-sector-ratio";
+import { SectorRatioResponse } from "@/api/generated/endpoint.schemas";
+import { DividendList } from "../_components/dividend-list";
 
-const dummyDividendList: Dividend[] = [
-  {
-    logoUrl: "/next.svg",
-    income: 12,
-    shares: 18,
-    ticker: "JPM",
-  },
-  {
-    logoUrl: "/next.svg",
-    income: 12,
-    shares: 12,
-    ticker: "V",
-  },
-  {
-    logoUrl: "/next.svg",
-    income: 12,
-    shares: 8,
-    ticker: "WFC",
-  },
-  {
-    logoUrl: "/next.svg",
-    income: 12,
-    shares: 4,
-    ticker: "BAC",
-  },
-];
 const SectorDetailPage = React.memo(({ params }: { params: { sector: string } }) => {
-  const { data } = useStocksSectorRatioMutation();
+  const queryClient = useQueryClient();
+
+  const data = React.useMemo(
+    () =>
+      queryClient
+        .getQueriesData({})
+        .find(([queryKey]) => enteredStocksQueryKeys._def === queryKey)?.[1] as SectorRatioResponse[],
+    [queryClient]
+  );
 
   const sectorName = React.useMemo(() => {
     return params.sector.split("%20").join(" ");
@@ -43,12 +27,23 @@ const SectorDetailPage = React.memo(({ params }: { params: { sector: string } })
   const sectorData = React.useMemo(() => {
     return data?.find((each) => each.sectorName === sectorName);
   }, [data, sectorName]);
+
+  if (!sectorData) {
+    return (
+      <div className="flex size-full items-center justify-center">
+        <Loader2Icon className="animate-spin" />
+      </div>
+    );
+  }
+
   return (
     <div className="size-full">
-      {sectorName}
-      {JSON.stringify(sectorData)}
-      <Header tickerCount={sectorData?.stocks?.length ?? 0} />
-      <DividendList dividendList={dummyDividendList} />
+      <Header
+        tickerCount={sectorData?.stockShares?.length ?? 0}
+        sectorRatio={Number((sectorData?.sectorRatio * 100).toFixed(2))}
+        sectorName={sectorData?.sectorName}
+      />
+      <DividendList dividendList={sectorData.stockShares} />
       <div className="h-4 bg-gray-100" />
       <SectorInsights />
     </div>

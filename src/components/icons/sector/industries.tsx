@@ -1,8 +1,8 @@
 import React from "react";
 
-export interface IndustriesIconProps extends React.SVGProps<SVGSVGElement> {}
+export interface IndustrialsIconProps extends React.SVGProps<SVGSVGElement> {}
 
-const IndustriesIcon = React.memo(({ ...props }: IndustriesIconProps) => {
+const IndustrialsIcon = React.memo(({ ...props }: IndustrialsIconProps) => {
   return (
     <svg {...props} width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -15,4 +15,4 @@ const IndustriesIcon = React.memo(({ ...props }: IndustriesIconProps) => {
   );
 });
 
-export default IndustriesIcon;
+export default IndustrialsIcon;
