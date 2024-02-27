@@ -95,5 +95,21 @@ body,
   }
   ::-webkit-scrollbar {
       width: 0;
-    }
+  }
+  input {
+    outline: none; /* Remove default focus outline */
+    border: none; /* Remove default border */
+    padding: 0 !important; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+  }
+  
+  /* Styling focus state for input elements */
+  input:focus {
+    /* Add your focus styles here */
+    outline: none !important; /* Remove default focus outline */
+    border: none !important; /* Remove default border */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+    box-shadow: none !important;
+  }
 }

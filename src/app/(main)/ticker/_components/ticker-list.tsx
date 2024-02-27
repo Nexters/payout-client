@@ -2,6 +2,7 @@
 
 import { Stock } from "@/state/stores/stocks-store";
 import React from "react";
+import Image from "next/image";
 
 interface TickerProps {
   data: Stock[];
@@ -41,7 +42,13 @@ const TickerList = React.memo(({ data, tickerName, hasShares, onClick }: TickerP
         {data.map((item, index) => (
           <div key={index} className="flex w-full justify-between" onClick={() => onClick(item)}>
             <div className="flex items-center">
-              <div className="mr-4 flex h-10 min-w-10 max-w-10 items-center justify-center rounded-full border border-grey-100 bg-grey-50" />
+              <Image
+                src={item.logoUrl ?? "/next.svg"}
+                alt={"stock logo"}
+                width={40}
+                height={40}
+                className="mr-4 flex h-10 min-w-10 max-w-10 items-center justify-center rounded-full border border-grey-100 bg-grey-50"
+              />
               <div className="flex flex-col justify-between gap-1">
                 <span className="mb-1 line-clamp-1 break-all text-left text-h5 text-grey-900">
                   {getHighlightText(item.ticker)}

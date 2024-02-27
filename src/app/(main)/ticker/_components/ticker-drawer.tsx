@@ -74,15 +74,17 @@ export const TickerDrawer = React.memo(
           />
 
           {drawerType !== "name" && (
-            <Input
-              value={tickerCount === 0 ? "" : String(tickerCount)}
-              label="Shares"
-              type="number"
-              errorDescription="You can enter 1 or more."
-              placeholder="0"
-              onChange={handleCountChange}
-              clearInput={() => handleInputClear("count")}
-            />
+            <div className="mt-5">
+              <Input
+                value={tickerCount === 0 ? "" : String(tickerCount)}
+                label="Shares"
+                type="number"
+                errorDescription="You can enter 1 or more."
+                placeholder="0"
+                onChange={handleCountChange}
+                clearInput={() => handleInputClear("count")}
+              />
+            </div>
           )}
         </DrawerHeader>
 
