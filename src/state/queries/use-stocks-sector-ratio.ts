@@ -1,12 +1,21 @@
 import { findSectorRatios } from "@/api/generated/endpoint";
-import { SectorRatioResponse, TickerShare } from "@/api/generated/endpoint.schemas";
+import { SectorRatioResponse } from "@/api/generated/endpoint.schemas";
 import { createQueryKeys } from "@lukemorales/query-key-factory";
-import { UseMutationResult, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useStocksStore } from "../stores/stocks-store";
+import React from "react";
 
 export const enteredStocksQueryKeys = createQueryKeys("entered-stocks");
 
-export const useStocksSectorRatioMutation = (): UseMutationResult<SectorRatioResponse[], unknown, TickerShare[]> => {
-  const requestClient = async (tickerShares: TickerShare[]): Promise<SectorRatioResponse[]> => {
+export const useStocksSectorRatioMutation = ()=> {
+  const { stocks } = useStocksStore();
+
+  const tickerShares = React.useMemo(() => stocks.map((stock) => ({
+    share: stock.count,
+    ticker: stock.ticker ?? "",
+  })), [stocks])
+
+  const requestClient = async (): Promise<SectorRatioResponse[]> => {
     const response = await findSectorRatios({ tickerShares });
     return response.data;
   };
