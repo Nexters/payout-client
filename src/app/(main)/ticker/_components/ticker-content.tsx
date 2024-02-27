@@ -114,6 +114,14 @@ const TickerContent = React.memo(() => {
     isDrawerOpenChange(false);
   }, [editStock, isDrawerOpenChange, resetData, selectedStock, tickerCount]);
 
+  const handleOverlayClick = React.useCallback(() => {
+    isDrawerOpenChange(false);
+
+    if (drawerType === "edit") {
+      resetData();
+    }
+  }, [drawerType, isDrawerOpenChange, resetData]);
+
   return (
     <DrawerPrimitive
       open={isDrawerOpen}
@@ -125,7 +133,7 @@ const TickerContent = React.memo(() => {
         <Intro />
         <TickerList data={stocks} hasShares onClick={handleSelectedTickerClick} />
       </div>
-      <DrawerOverlay onClick={() => isDrawerOpenChange(false)} />
+      <DrawerOverlay onClick={handleOverlayClick} />
       <TickerDrawer
         drawerType={drawerType}
         tickerCount={tickerCount}
