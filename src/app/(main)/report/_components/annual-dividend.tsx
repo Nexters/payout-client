@@ -5,12 +5,12 @@ import { useRouter } from "next/navigation";
 import React from "react";
 
 interface AnnualDividendProps {
-  data: YearlyDividendResponse
+  data: YearlyDividendResponse;
 }
 
 const bubbleStyles = ["absolute bottom-3 left-0", "absolute right-0 top-0", "absolute bottom-0 right-3"];
 
-export const AnnualDividend = ({data}: AnnualDividendProps) => {
+export const AnnualDividend = ({ data }: AnnualDividendProps) => {
   const router = useRouter();
 
   const handleButtonClick = React.useCallback(() => {
@@ -25,7 +25,7 @@ export const AnnualDividend = ({data}: AnnualDividendProps) => {
           <p className=" text-h1 text-grey-900">{`$${2000}`}</p>
         </div>
         <BubbleChart dividend={data.dividends[0]} rank={0} />
-        <Button variant={"secondary"} size={"max"} onClick={() => {}}>
+        <Button variant={"secondary"} size={"max"} onClick={handleButtonClick}>
           Check Overall Rankings
         </Button>
       </div>
