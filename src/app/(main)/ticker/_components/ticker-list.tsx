@@ -10,7 +10,31 @@ interface TickerProps {
   onClick: (stock: Stock) => void;
 }
 
-const TickerList = React.memo(({ data, hasShares, onClick }: TickerProps) => {
+const TickerList = React.memo(({ data, tickerName, hasShares, onClick }: TickerProps) => {
+  const getHighlightText = React.useCallback(
+    (text?: string) => {
+      if (!tickerName || !text) return text;
+      const regex = new RegExp(tickerName, "gi");
+
+      return text.split(regex).reduce((acc: (string | React.ReactElement)[], cur = "", idx, arr) => {
+        acc.push(cur);
+        // 마지막 배열 순번이 아닐 경우에만 하이라이트 워딩 추가
+        if (arr.length - 1 > idx) {
+          const match = text.match(regex);
+          const ticker = match ? match[idx] : tickerName;
+
+          acc.push(
+            <span className="text-main-700" key={idx}>
+              {ticker}
+            </span>
+          );
+        }
+        return acc;
+      }, []);
+    },
+    [tickerName]
+  );
+
   return (
     <div className="flex h-full w-full flex-1 flex-col items-start">
       <div className="flex w-full flex-1 flex-col items-start gap-4 overflow-scroll px-4 py-6">
@@ -19,8 +43,10 @@ const TickerList = React.memo(({ data, hasShares, onClick }: TickerProps) => {
             <div className="flex">
               <div className="mr-4 flex h-10 w-10 items-center justify-center rounded-full border border-grey-100 bg-grey-50" />
               <div>
-                <p className="text-left text-h3 text-grey-900">{item.ticker}</p>
-                <p className="line-clamp-1 break-all text-body3 text-grey-600">{item.companyName}</p>
+                <span className="text-left text-h3 text-grey-900">{getHighlightText(item.ticker)}</span>
+                <span className="line-clamp-1 break-all text-body3 text-grey-600">
+                  {getHighlightText(item.companyName)}
+                </span>
               </div>
             </div>
             {hasShares && (

@@ -86,7 +86,9 @@ export const TickerDrawer = React.memo(
           )}
         </DrawerHeader>
 
-        {drawerType === "name" && !!data && <TickerList data={data} onClick={handleTickerClick} />}
+        {drawerType === "name" && !!data && (
+          <TickerList data={data} tickerName={tickerName} onClick={handleTickerClick} />
+        )}
 
         {drawerType === "count" && (
           <DrawerFooter>
