@@ -5,7 +5,7 @@ import { Header } from "./_components/header";
 import { InvestmentTip } from "./_components/investment-tip";
 import { StockDetailResponse } from "@/api/generated/endpoint.schemas";
 import { DividendInfo } from "./_components/dividend-info";
-import { DrawerOverlay, Drawer as DrawerPrimitive } from "@/components/ui/drawer";
+import { DrawerOverlay, DrawerPortal, Drawer as DrawerPrimitive } from "@/components/ui/drawer";
 import { StockInfoDrawer } from "./_components/stock-drawer";
 
 const dummyStock: StockDetailResponse = {
@@ -30,18 +30,38 @@ export default function StockPage({ params }: { params: { id: string } }) {
   const handleInfoClick = () => {
     setShowStockInfo((prevState) => !prevState);
   };
+
+  React.useEffect(() => {
+    // 컴포넌트가 마운트될 때 body 스타일 변경
+    document.body.style.setProperty("margin", "auto", "important");
+    document.body.style.setProperty("padding", "0");
+
+    // 컴포넌트가 언마운트될 때 body 스타일 복원
+    return () => {
+      document.body.style.removeProperty("margin");
+      document.body.style.removeProperty("padding");
+    };
+  }, []);
+
   return (
     <DrawerPrimitive open={showStockInfo}>
-      <DrawerOverlay onClick={() => setShowStockInfo(false)} />
-      <StockInfoDrawer handleInfoClick={handleInfoClick} />
-      <Header stock={dummyStock} handleInfoClick={handleInfoClick} />
-      <div className="h-4 bg-grey-100" />
-      <InvestmentTip exDividendDate={dummyStock.exDividendDate} earliestPaymentDate={dummyStock.earliestPaymentDate} />
-      <DividendInfo
-        dividendPerShare={dummyStock.dividendPerShare}
-        dividendYield={dummyStock.dividendYield}
-        dividendMonths={dummyStock.dividendMonths}
-      />
+      <DrawerPortal>
+        <DrawerOverlay onClick={() => setShowStockInfo(false)} />
+        <StockInfoDrawer handleInfoClick={handleInfoClick} />
+      </DrawerPortal>
+      <div className="flex h-full w-full flex-col pt-2.5">
+        <Header stock={dummyStock} handleInfoClick={handleInfoClick} />
+        <div className="h-4 bg-grey-100" />
+        <InvestmentTip
+          exDividendDate={dummyStock.exDividendDate}
+          earliestPaymentDate={dummyStock.earliestPaymentDate}
+        />
+        <DividendInfo
+          dividendPerShare={dummyStock.dividendPerShare}
+          dividendYield={dummyStock.dividendYield}
+          dividendMonths={dummyStock.dividendMonths}
+        />
+      </div>
     </DrawerPrimitive>
   );
 }
