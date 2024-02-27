@@ -91,6 +91,7 @@ const TickerContent = React.memo(() => {
 
   const handleDeleteClick = React.useCallback(() => {
     const prevStock = selectedStock;
+    const stockLength = stocks.length;
     if (selectedStock) {
       removeStock(selectedStock);
       resetData();
@@ -102,11 +103,14 @@ const TickerContent = React.memo(() => {
           handleUndo={() => {
             prevStock && addStock(prevStock);
           }}
+          style={{
+            marginBottom: stockLength === 1 ? "0" : "4.5rem",
+          }}
         />
       ));
       return isDrawerOpenChange(false);
     }
-  }, [addStock, isDrawerOpenChange, removeStock, resetData, selectedStock]);
+  }, [addStock, isDrawerOpenChange, removeStock, resetData, selectedStock, stocks.length]);
 
   const handleConfirmClick = React.useCallback(() => {
     if (selectedStock) {
