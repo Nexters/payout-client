@@ -112,4 +112,7 @@ body,
     margin: 0; /* Remove default margin */
     box-shadow: none !important;
   }
+  input:disabled {
+    background-color: white;
+  }
 }
