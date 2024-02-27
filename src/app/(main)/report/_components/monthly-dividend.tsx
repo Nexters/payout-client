@@ -3,8 +3,9 @@
 import React, { useMemo, useState } from "react";
 import { MonthlyDividendResponse } from "@/api/generated/endpoint.schemas";
 import { BarChart } from "@tremor/react";
-import { Button } from "@/components/ui/button";
+import { Button as ShadcnButton } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/common/button/button";
 
 const data: MonthlyDividendResponse[] = [
   {
@@ -173,7 +174,7 @@ export const MonthlyDividend = React.memo(() => {
       />
 
       <div className="mb-2 flex justify-between rounded-3xl border border-gray-100 p-1.5">
-        <Button
+        <ShadcnButton
           className={`flex flex-1 items-center justify-center rounded-3xl ${
             halfToggleState === "first" ? "bg-white" : "bg-gray-100"
           } text-h5 text-gray-700`}
@@ -181,8 +182,8 @@ export const MonthlyDividend = React.memo(() => {
           onClick={() => handleToggle("first")}
         >
           First Half
-        </Button>
-        <Button
+        </ShadcnButton>
+        <ShadcnButton
           className={`flex flex-1 items-center justify-center rounded-3xl ${
             halfToggleState === "second" ? "bg-white" : "bg-gray-100"
           } text-h5 text-gray-700`}
@@ -190,13 +191,11 @@ export const MonthlyDividend = React.memo(() => {
           onClick={() => handleToggle("second")}
         >
           Second Half
-        </Button>
+        </ShadcnButton>
       </div>
 
-      <Button className="p-0" onClick={handleCheckMonthlyClick}>
-        <div className="text-5 flex w-full items-center justify-center rounded-lg bg-main-50 p-4 text-main-900">
-          Check Your Monthly Dividend
-        </div>
+      <Button onClick={handleCheckMonthlyClick} className="shrink-0" variant={"secondary"} size={"max"}>
+        Check Your Monthly Dividend
       </Button>
     </div>
   );

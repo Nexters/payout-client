@@ -37,7 +37,7 @@ export const AnnualDividend = ({}: AnnualDividendProps) => {
           <BubbleChart key={idx} rank={idx} className={bubbleStyles[idx]} />
         ))}
       </div>
-      <Button className=" shrink-0" variant={"secondary"} size={"max"} onClick={() => {}}>
+      <Button className="shrink-0" variant={"secondary"} size={"max"} onClick={() => {}}>
         Check Overall Rankings
       </Button>
     </div>
