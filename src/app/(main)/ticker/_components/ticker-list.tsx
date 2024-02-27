@@ -36,24 +36,28 @@ const TickerList = React.memo(({ data, tickerName, hasShares, onClick }: TickerP
   );
 
   return (
-    <div className="flex h-full w-full flex-1 flex-col items-start">
+    <div className="flex h-full w-full flex-1 flex-col items-start" style={{}}>
       <div
-        className={`flex w-full flex-1 flex-col items-start ${hasShares ? "gap-6" : "gap-5"} overflow-scroll px-4 py-6`}
+        className={`flex w-full flex-1 flex-col items-start ${
+          hasShares ? "gap-6" : "gap-5"
+        } overflow-scroll px-4 pb-1 pt-6`}
       >
         {data.map((item, index) => (
           <div key={index} className="flex w-full justify-between" onClick={() => onClick(item)}>
             <div className="flex items-center">
-              <div className="mr-4 flex h-10 w-10 items-center justify-center rounded-full border border-grey-100 bg-grey-50" />
+              <div className="mr-4 flex h-10 min-w-10 max-w-10 items-center justify-center rounded-full border border-grey-100 bg-grey-50" />
               <div className="flex flex-col justify-between gap-1">
-                <span className="mb-1 text-left text-h5 text-grey-900">{getHighlightText(item.ticker)}</span>
+                <span className="mb-1 line-clamp-1 break-all text-left text-h5 text-grey-900">
+                  {getHighlightText(item.ticker)}
+                </span>
                 <span className="line-clamp-1 break-all text-body3 text-grey-600">
                   {getHighlightText(item.companyName)}
                 </span>
               </div>
             </div>
             {hasShares && (
-              <div className="ml-2 text-nowrap">
-                <p className="text-body1 text-main-900">{`${item.count} Shares`}</p>
+              <div className="ml-2 max-w-20">
+                <p className="truncate text-body1 text-main-900">{`${item.count} Shares`}</p>
               </div>
             )}
           </div>

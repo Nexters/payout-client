@@ -77,7 +77,7 @@ export const TickerDrawer = React.memo(
 
           {drawerType !== "name" && (
             <Input
-              value={String(tickerCount)}
+              value={tickerCount === 0 ? "" : String(tickerCount)}
               label="Shares"
               type="number"
               errorDescription="You can enter 1 or more."
