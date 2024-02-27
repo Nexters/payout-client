@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export const filteredStocksQueryKeys = createQueryKeys("filtered-stocks");
 
-export const useStocksQuery = (keyword: string) => {
+export const useFilteredStocksQuery = (keyword: string) => {
   const requestClient = async () => {
     if (keyword) {
       const { data } = await searchStock({ keyword, pageNumber: 1, pageSize: 20 });

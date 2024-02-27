@@ -9,12 +9,16 @@ import axios from "axios";
 import type { AxiosRequestConfig, AxiosResponse } from "axios";
 import type {
   DividendRequest,
+  GetBiggestDividendYieldStocksParams,
+  GetUpComingDividendStocksParams,
   MonthlyDividendResponse,
   SearchStockParams,
   SectorRatioRequest,
   SectorRatioResponse,
   StockDetailResponse,
+  StockDividendYieldResponse,
   StockResponse,
+  UpcomingDividendResponse,
   YearlyDividendResponse,
 } from "./endpoint.schemas";
 
@@ -71,8 +75,36 @@ export const searchStock = <TData = AxiosResponse<StockResponse[]>>(
   });
 };
 
+/**
+ * @summary 배당락일이 다가오는 주식 리스트
+ */
+export const getUpComingDividendStocks = <TData = AxiosResponse<UpcomingDividendResponse[]>>(
+  params: GetUpComingDividendStocksParams,
+  options?: AxiosRequestConfig
+): Promise<TData> => {
+  return axios.get(`/api/stocks/ex-dividend-dates/upcoming`, {
+    ...options,
+    params: { ...params, ...options?.params },
+  });
+};
+
+/**
+ * @summary 배당수익률이 큰 주식 리스트
+ */
+export const getBiggestDividendYieldStocks = <TData = AxiosResponse<StockDividendYieldResponse[]>>(
+  params: GetBiggestDividendYieldStocksParams,
+  options?: AxiosRequestConfig
+): Promise<TData> => {
+  return axios.get(`/api/stocks/dividend-yields/highest`, {
+    ...options,
+    params: { ...params, ...options?.params },
+  });
+};
+
 export type FindSectorRatiosResult = AxiosResponse<SectorRatioResponse[]>;
 export type GetYearlyDividendsResult = AxiosResponse<YearlyDividendResponse>;
 export type GetMonthlyDividendsResult = AxiosResponse<MonthlyDividendResponse[]>;
 export type GetStockByTickerResult = AxiosResponse<StockDetailResponse>;
 export type SearchStockResult = AxiosResponse<StockResponse[]>;
+export type GetUpComingDividendStocksResult = AxiosResponse<UpcomingDividendResponse[]>;
+export type GetBiggestDividendYieldStocksResult = AxiosResponse<StockDividendYieldResponse[]>;

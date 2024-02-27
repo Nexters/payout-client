@@ -5,6 +5,28 @@
  * Payout Server API 명세서입니다.
  * OpenAPI spec version: 1.0.0
  */
+export type GetBiggestDividendYieldStocksParams = {
+  /**
+   * page number(start with 1) for pagination
+   */
+  pageNumber: number;
+  /**
+   * page size for pagination
+   */
+  pageSize: number;
+};
+
+export type GetUpComingDividendStocksParams = {
+  /**
+   * page number(start with 1) for pagination
+   */
+  pageNumber: number;
+  /**
+   * page size for pagination
+   */
+  pageSize: number;
+};
+
 export type SearchStockParams = {
   /**
    * tickerName or companyName of stock ex) APPL, APPLE
@@ -19,6 +41,20 @@ export type SearchStockParams = {
    */
   pageSize: number;
 };
+
+export interface StockDividendYieldResponse {
+  dividendYield: number;
+  logoUrl: string;
+  stockId: string;
+  ticker: string;
+}
+
+export interface UpcomingDividendResponse {
+  exDividendDate: string;
+  logoUrl: string;
+  stockId: string;
+  ticker: string;
+}
 
 export type StockDetailResponseDividendMonthsItem =
   (typeof StockDetailResponseDividendMonthsItem)[keyof typeof StockDetailResponseDividendMonthsItem];
@@ -39,69 +75,74 @@ export const StockDetailResponseDividendMonthsItem = {
 } as const;
 
 export interface StockDetailResponse {
-  companyName?: string;
-  dividendMonths?: StockDetailResponseDividendMonthsItem[];
-  dividendPerShare?: number;
-  dividendYield?: number;
-  earliestPaymentDate?: string;
-  exchange?: string;
-  exDividendDate?: string;
-  industry?: string;
-  logoUrl?: string;
-  price?: number;
-  sectorName?: string;
-  stockId?: string;
-  ticker?: string;
-  volume?: number;
+  companyName: string;
+  dividendMonths: StockDetailResponseDividendMonthsItem[];
+  dividendPerShare: number;
+  dividendYield: number;
+  earliestPaymentDate: string;
+  exchange: string;
+  exDividendDate: string;
+  industry: string;
+  logoUrl: string;
+  price: number;
+  sectorName: string;
+  stockId: string;
+  ticker: string;
+  volume: number;
 }
 
 export interface SingleMonthlyDividendResponse {
-  dividend?: number;
-  logoUrl?: string;
-  share?: number;
-  ticker?: string;
-  totalDividend?: number;
+  dividend: number;
+  logoUrl: string;
+  share: number;
+  ticker: string;
+  totalDividend: number;
 }
 
 export interface MonthlyDividendResponse {
-  dividends?: SingleMonthlyDividendResponse[];
-  month?: number;
-  totalDividend?: number;
-  year?: number;
+  dividends: SingleMonthlyDividendResponse[];
+  month: number;
+  totalDividend: number;
+  year: number;
 }
 
 export interface SingleYearlyDividendResponse {
-  logoUrl?: string;
-  share?: number;
-  ticker?: string;
-  totalDividend?: number;
+  logoUrl: string;
+  share: number;
+  ticker: string;
+  totalDividend: number;
 }
 
 export interface YearlyDividendResponse {
-  dividends?: SingleYearlyDividendResponse[];
-  totalDividend?: number;
+  dividends: SingleYearlyDividendResponse[];
+  totalDividend: number;
 }
 
 export interface DividendRequest {
-  tickerShares?: TickerShare[];
+  tickerShares: TickerShare[];
 }
 
 export interface StockResponse {
-  companyName?: string;
-  exchange?: string;
-  industry?: string;
-  logoUrl?: string;
-  price?: number;
-  sectorName?: string;
-  stockId?: string;
-  ticker?: string;
-  volume?: number;
+  companyName: string;
+  exchange: string;
+  industry: string;
+  logoUrl: string;
+  price: number;
+  sectorName: string;
+  stockId: string;
+  ticker: string;
+  volume: number;
+}
+
+export interface StockShareResponse {
+  share: number;
+  stockResponse: StockResponse;
 }
 
 export interface SectorRatioResponse {
-  sectorName?: string;
-  sectorRatio?: number;
-  stocks?: StockResponse[];
+  sectorName: string;
+  sectorRatio: number;
+  stockShares: StockShareResponse[];
 }
 
 export interface ErrorResponse {
@@ -110,10 +151,10 @@ export interface ErrorResponse {
 }
 
 export interface TickerShare {
-  share?: number;
+  share: number;
   ticker: string;
 }
 
 export interface SectorRatioRequest {
-  tickerShares?: TickerShare[];
+  tickerShares: TickerShare[];
 }

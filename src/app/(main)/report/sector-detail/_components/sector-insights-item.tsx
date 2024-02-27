@@ -1,4 +1,4 @@
-import { formatDateStringToMonthDay } from "@/utils/data";
+import { formatDateStringToMonthDay } from "@/utils/date";
 import Image from "next/image";
 import React from "react";
 

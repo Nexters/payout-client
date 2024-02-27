@@ -5,7 +5,7 @@ import Input from "@/components/ui/input";
 import React from "react";
 import TickerList from "./ticker-list";
 import useDebounce from "@/hooks/use-debounce";
-import { useStocksQuery } from "@/state/queries/use-stocks";
+import { useFilteredStocksQuery } from "@/state/queries/use-filtered-stocks";
 import { DrawerType } from "./ticker-content";
 import { Stock } from "@/state/stores/stocks-store";
 import { exhaustiveCheck } from "@/utils/exhaustive-check";
@@ -39,7 +39,7 @@ export const TickerDrawer = React.memo(
     handleConfirmClick,
   }: TickerDrawerProps) => {
     const debouncedTickerName = useDebounce(tickerName, 1000); // 디바운스 적용
-    const { data } = useStocksQuery(debouncedTickerName);
+    const { data } = useFilteredStocksQuery(debouncedTickerName);
     const isSubmittable = React.useMemo(() => {
       return drawerType === "count" && tickerCount > 0;
     }, [drawerType, tickerCount]);
