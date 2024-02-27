@@ -109,9 +109,11 @@ const TickerContent = React.memo(() => {
   }, [addStock, isDrawerOpenChange, removeStock, resetData, selectedStock]);
 
   const handleConfirmClick = React.useCallback(() => {
-    editStock({ ...selectedStock, count: tickerCount });
-    resetData();
-    isDrawerOpenChange(false);
+    if (selectedStock) {
+      editStock({ ...selectedStock, count: tickerCount });
+      resetData();
+      isDrawerOpenChange(false);
+    }
   }, [editStock, isDrawerOpenChange, resetData, selectedStock, tickerCount]);
 
   const handleOverlayClick = React.useCallback(() => {
