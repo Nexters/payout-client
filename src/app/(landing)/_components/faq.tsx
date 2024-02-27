@@ -21,7 +21,7 @@ const FAQ = () => {
         </AccordionItem>
         <AccordionItem value="item-3" className="rounded border border-grey-100 p-4">
           <AccordionTrigger>How can I suggest ideas for Payout?</AccordionTrigger>
-          <AccordionContent>Idea Suggestions are always appreciated! Please contact us at</AccordionContent>
+          <AccordionContent>Idea suggestions are always appreciated! Please contact us at payout.developer@gmail.com</AccordionContent>
         </AccordionItem>
       </Accordion>
     </div>
