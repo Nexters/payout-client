@@ -1,4 +1,5 @@
-import LottiePlayer from "@/components/common/lottie-player/lottie-player";
+import FifthImage from "@/app/(landing)/_assets/5.png"
+import Image from "next/image";
 import React from "react";
 
 const YearlyDividend = () => {
@@ -8,7 +9,7 @@ const YearlyDividend = () => {
         <p className="whitespace-pre-wrap text-h3-semibold">{`How Much is Your\nDividend Payout This Year?`}</p>
         <p className=" whitespace-pre-wrap text-h5 font-normal text-grey-600">{`Calculate Your Annual Dividend Payout\nalong with the Ranking of your Dividend.`}</p>
       </div>
-      <LottiePlayer className="h-[180px] w-full rounded-lg bg-[#F2F4F6]" />
+      <Image src={FifthImage} alt="A stack of cash" width={335}/>
     </div>
   );
 };
