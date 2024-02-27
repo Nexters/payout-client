@@ -3,7 +3,7 @@ import React from "react";
 import { Sector } from "./sector-focus";
 import { Button } from "@/components/common/button/button";
 
-export interface SectorRowProps extends Sector {
+export interface SectorRowProps extends Omit<Sector, "stockShares"> {
   onClick?: () => void;
   color: string;
   icon: React.ReactNode;

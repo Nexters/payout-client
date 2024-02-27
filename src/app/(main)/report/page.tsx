@@ -6,10 +6,11 @@ import { MonthlyDividend } from "./_components/monthly-dividend";
 import { useStocksStore } from "@/state/stores/stocks-store";
 import { useStocksSectorRatioMutation } from "@/state/queries/use-stocks-sector-ratio";
 import { AnnualDividend } from "./_components/annual-dividend";
+import { Loader2Icon } from "lucide-react";
 
 const ReportPage = () => {
   const { stocks } = useStocksStore();
-  const { mutate } = useStocksSectorRatioMutation();
+  const { mutate, data } = useStocksSectorRatioMutation();
 
   React.useEffect(() => {
     mutate(
@@ -20,10 +21,24 @@ const ReportPage = () => {
     );
   }, [mutate, stocks]);
 
+  const sectors = React.useMemo(() => {
+    return data?.sort((a, b) => {
+      return b.sectorRatio - a.sectorRatio;
+    }) ?? []
+  }, [data])
+
+  if (!data) {
+    return (
+      <div className="flex size-full items-center justify-center">
+        <Loader2Icon className="animate-spin" />
+      </div>
+    );
+  }
+
   return (
     <div className="size-full">
       <div className="flex size-full flex-col">
-        <SectorFocus />
+        <SectorFocus data={sectors} />
         <Divider />
         <MonthlyDividend />
         <Divider />

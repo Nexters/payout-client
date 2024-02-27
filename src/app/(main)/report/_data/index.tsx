@@ -25,5 +25,6 @@ export const ICONS = {
   "Real Estate": <RealEstateIcon />,
   Technology: <TechnologyIcon />,
   Utilites: <UtilitiesIcon />,
+  ETF: <ETCIcon />,
   ETC: <ETCIcon />,
 } as const;

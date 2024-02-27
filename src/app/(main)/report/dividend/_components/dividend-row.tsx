@@ -11,7 +11,7 @@ export const DividendRow = React.memo(({ dividend }: { dividend: Dividend }) => 
       <div className="items-between flex w-full flex-col justify-center  gap-1">
         <div className="flex items-center justify-between">
           <p className="text-h5 text-grey-900">{dividend.companyName}</p>
-          <p className="text-body1 text-main-900">${(dividend.price ?? 0) * 1}</p>
+          <p className="text-body1 text-main-900">${dividend.price}</p>
         </div>
         <p className=" text-body3 text-grey-600">{1} Shares</p>
       </div>

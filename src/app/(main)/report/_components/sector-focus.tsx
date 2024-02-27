@@ -12,38 +12,10 @@ export interface Sector extends SectorRatioResponse {
   onClick?: () => void;
 }
 
-const data: Sector[] = [
-  {
-    sectorName: "Financial Services",
-    sectorRatio: 64,
-    stockShares: [],
-  },
-  {
-    sectorName: "Communication Services",
-    sectorRatio: 20,
-    stockShares: [],
-  },
-  {
-    sectorName: "Consumer Cyclical",
-    sectorRatio: 10,
-    stockShares: [],
-  },
-  {
-    sectorName: "Energy",
-    sectorRatio: 4,
-    stockShares: [],
-  },
-  {
-    sectorName: "Financial Services",
-    sectorRatio: 2,
-    stockShares: [],
-  },
-];
-
-export const SectorFocus = React.memo(() => {
+export const SectorFocus = React.memo(({ data }: { data: Sector[] }) => {
   const router = useRouter();
 
-  const sectors = React.useMemo(() => {
+  const sectors: Sector[] = React.useMemo(() => {
     if (data.length > 4)
       return [
         ...data.slice(0, 3),
@@ -53,7 +25,7 @@ export const SectorFocus = React.memo(() => {
             return prev + (cur.sectorRatio ?? 0);
           }, 0),
           isShowingMore: true,
-        },
+        } as Sector,
       ];
     return data;
   }, [data]);
@@ -73,13 +45,13 @@ export const SectorFocus = React.memo(() => {
     <div className="flex flex-col gap-6 p-5">
       <div className="flex w-full flex-col items-start">
         <p className="text-h5 text-grey-600">Your portfolio focuses on</p>
-        <p className="text-h1 text-grey-900">Financial Services</p>
+        <p className="text-h1 text-grey-900">{sectors[0].sectorName}</p>
       </div>
       <DonutChart
         data={sectors.map((sector) => {
           return {
             name: sector.sectorName,
-            value: sector.sectorRatio,
+            value: sector.sectorRatio * 100,
           };
         })}
         className="h-[180px]"
@@ -98,7 +70,7 @@ export const SectorFocus = React.memo(() => {
               color={DONUT_CHART_COLORS[idx]}
               key={sector.sectorName}
               sectorName={sector.sectorName}
-              sectorRatio={sector.sectorRatio}
+              sectorRatio={Number((sector.sectorRatio * 100).toFixed(2))}
               isShowingMore={sector.isShowingMore}
               onClick={sector.isShowingMore ? onExtraSectorClick : () => onSectorClick(sector)}
             />

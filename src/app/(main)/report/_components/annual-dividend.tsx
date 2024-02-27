@@ -2,7 +2,7 @@ import BubbleChart from "@/components/common/bubble-chart/bubble-chart";
 import { Button } from "@/components/common/button/button";
 import React from "react";
 
-type AnnualDividendProps = {};
+interface AnnualDividendProps {}
 
 const bubbleStyles = ["absolute bottom-3 left-0", "absolute right-0 top-0", "absolute bottom-0 right-3"];
 
