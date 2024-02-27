@@ -59,7 +59,7 @@ export const TickerDrawer = React.memo(
     }, [drawerType]);
 
     return (
-      <DrawerContent className="mx-auto h-[calc(100%-100px)] max-w-[--max-width] ">
+      <DrawerContent className="mx-auto h-[calc(100%-100px)] max-w-screen-md">
         <DrawerHeader>
           <DrawerTitle className="mb-10 text-h3 font-semibold text-grey-900">{title}</DrawerTitle>
           <Input

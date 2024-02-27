@@ -122,6 +122,18 @@ const TickerContent = React.memo(() => {
     }
   }, [drawerType, isDrawerOpenChange, resetData]);
 
+  React.useEffect(() => {
+    // 컴포넌트가 마운트될 때 body 스타일 변경
+    document.body.style.setProperty("margin", "auto", "important");
+    document.body.style.setProperty("padding", "0");
+
+    // 컴포넌트가 언마운트될 때 body 스타일 복원
+    return () => {
+      document.body.style.removeProperty("margin");
+      document.body.style.removeProperty("padding");
+    };
+  }, []);
+
   return (
     <DrawerPrimitive
       open={isDrawerOpen}
