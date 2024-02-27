@@ -16,7 +16,7 @@ export const Dialog = React.memo(({ title }: DialogProps) => {
         <DialogTitle className="my-4 text-h5">{title}</DialogTitle>
       </DialogHeader>
       <DialogFooter>
-        <Button className="mt-5 rounded-lg bg-main-700" onClick={() => isDialogOpenChange(false)}>
+        <Button className="mt-5 h-12 rounded-lg bg-main-700 py-4" onClick={() => isDialogOpenChange(false)}>
           <DialogDescription className="text-h6 text-white">Ok</DialogDescription>
         </Button>
       </DialogFooter>
