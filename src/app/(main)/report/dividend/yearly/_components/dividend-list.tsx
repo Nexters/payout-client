@@ -1,7 +1,8 @@
 import React from "react";
-import { Dividend, DividendRow } from "../../_components/dividend-row";
+import { DividendRow } from "../../_components/dividend-row";
+import { SingleYearlyDividendResponse } from "@/api/generated/endpoint.schemas";
 
-export const DividendList = React.memo(({ dividendList }: { dividendList: Dividend[] }) => {
+export const DividendList = React.memo(({ dividendList }: { dividendList: SingleYearlyDividendResponse[] }) => {
   return (
     <div className="flex w-full flex-col items-center justify-start gap-6 overflow-y-auto px-5 pb-8">
       {dividendList.map((dividend, idx) => (
