@@ -40,10 +40,10 @@ const TickerList = React.memo(({ data, tickerName, hasShares, onClick }: TickerP
       <div className="flex w-full flex-1 flex-col items-start gap-4 overflow-scroll px-4 py-6">
         {data.map((item, index) => (
           <div key={index} className="flex w-full justify-between" onClick={() => onClick(item)}>
-            <div className="flex">
+            <div className="flex items-center">
               <div className="mr-4 flex h-10 w-10 items-center justify-center rounded-full border border-grey-100 bg-grey-50" />
-              <div>
-                <span className="text-left text-h3 text-grey-900">{getHighlightText(item.ticker)}</span>
+              <div className="flex flex-col justify-between gap-1">
+                <span className="mb-1 text-left text-h5 text-grey-900">{getHighlightText(item.ticker)}</span>
                 <span className="line-clamp-1 break-all text-body3 text-grey-600">
                   {getHighlightText(item.companyName)}
                 </span>
