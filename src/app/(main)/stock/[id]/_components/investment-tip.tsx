@@ -1,5 +1,5 @@
 import React from "react";
-import { formatDateStringToMonthDay } from "@/utils/data";
+import { formatDateStringToMonthDay } from "@/utils/date";
 import InfoCalendar from "@/components/icons/info-calendar";
 import InfoDate from "@/components/icons/info-date";
 
