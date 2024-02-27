@@ -73,6 +73,8 @@ export const TickerDrawer = React.memo(
             clearInput={() => handleInputClear("name")}
           />
 
+          <div className="mb-5" />
+
           {drawerType !== "name" && (
             <Input
               value={String(tickerCount)}

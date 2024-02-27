@@ -16,7 +16,7 @@ export default function TickerFooter() {
 
   return (
     <div
-      className="fixed bottom-4 flex w-full justify-center p-5 pt-12"
+      className="fixed bottom-4 flex w-full justify-center p-5 pb-4 pt-12"
       style={{
         backgroundImage: "linear-gradient(0deg, var(--color-white) 52.78%, rgba(255, 255, 255, 0.00) 100%)",
         maxWidth: 768,
