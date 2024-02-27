@@ -37,7 +37,9 @@ const TickerList = React.memo(({ data, tickerName, hasShares, onClick }: TickerP
 
   return (
     <div className="flex h-full w-full flex-1 flex-col items-start">
-      <div className="flex w-full flex-1 flex-col items-start gap-4 overflow-scroll px-4 py-6">
+      <div
+        className={`flex w-full flex-1 flex-col items-start ${hasShares ? "gap-6" : "gap-5"} overflow-scroll px-4 py-6`}
+      >
         {data.map((item, index) => (
           <div key={index} className="flex w-full justify-between" onClick={() => onClick(item)}>
             <div className="flex items-center">
