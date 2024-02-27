@@ -1,20 +1,5 @@
+import { getYearRange } from "@/utils/date";
 import React from "react";
-
-const getYearRange = (date: Date): string => {
-  const startDate = new Date(date);
-  const endDate = new Date(startDate.getFullYear() + 1, startDate.getMonth(), startDate.getDate());
-
-  const startYear = startDate.getFullYear();
-  const startMonth = startDate.getMonth() + 1;
-  const endYear = endDate.getFullYear();
-  const endMonth = endDate.getMonth() + 1;
-
-  const formattedStartMonth = startMonth < 10 ? `0${startMonth}` : startMonth.toString();
-  const formattedEndMonth = endMonth < 10 ? `0${endMonth}` : endMonth.toString();
-
-  const dateRange = `${startYear}.${formattedStartMonth} ~ ${endYear}.${formattedEndMonth}`;
-  return dateRange;
-};
 
 export const Header = React.memo(() => {
   return (
