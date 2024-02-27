@@ -18,13 +18,14 @@ const Toast = React.memo(({ t, title, isRevertable, handleUndo, ...props }: Toas
 
   return (
     <div
-      className={cn(
-        "flex items-center justify-between rounded bg-grey-900 px-4 py-3 text-white shadow",
-        props.className
-      )}
+      className={cn("flex items-center justify-between rounded bg-grey-900 py-3.5 text-white shadow", props.className)}
+      style={{
+        paddingLeft: "1.125rem",
+        paddingRight: "1.125rem",
+      }}
       {...props}
     >
-      <p>{title}</p>
+      <p className="text-body3">{title}</p>
       {isRevertable && <UndoButton onClick={onUndo} />}
     </div>
   );
