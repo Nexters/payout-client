@@ -60,7 +60,7 @@ export const TickerDrawer = React.memo(
 
     return (
       <DrawerContent className="mx-auto h-[calc(100%-100px)] max-w-screen-md">
-        <DrawerHeader>
+        <DrawerHeader className="pb-0">
           <DrawerTitle className="mb-10 text-h3 font-semibold text-grey-900">{title}</DrawerTitle>
           <Input
             value={tickerName}
@@ -72,8 +72,6 @@ export const TickerDrawer = React.memo(
             disabled={drawerType === "edit"}
             clearInput={() => handleInputClear("name")}
           />
-
-          <div className="mb-5" />
 
           {drawerType !== "name" && (
             <Input
