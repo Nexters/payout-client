@@ -11,9 +11,11 @@ export const DividendList = React.memo(({ dividendList }: { dividendList: StockS
           dividend={{
             ...dividend.stockResponse,
             share: dividend.share,
+            totalDividend: dividend.share * dividend.stockResponse.price,
           }}
         />
       ))}
     </div>
   );
 });
+
