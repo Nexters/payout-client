@@ -54,7 +54,6 @@ export default function StockPage({ params }: { params: { id: string } }) {
     );
   }
 
-  console.log("data:", data);
   return (
     <DrawerPrimitive open={showStockInfo}>
       <DrawerPortal>

@@ -12,7 +12,7 @@ export const useStockByTickerQuery = (tickerName: string) => {
   };
 
   return useQuery({
-    queryKey: [stockByTickerQueryKeys._def],
+    queryKey: [stockByTickerQueryKeys._def, tickerName],
     queryFn: () => requestClient(),
     staleTime: Infinity,
     gcTime: Infinity,
