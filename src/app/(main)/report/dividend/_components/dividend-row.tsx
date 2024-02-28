@@ -9,7 +9,7 @@ export interface Dividend extends StockResponse {
 export const DividendRow = React.memo(({ dividend }: { dividend: Dividend }) => {
   return (
     <div className="flex h-full w-full flex-1 items-center gap-4">
-      <Image src={dividend.logoUrl} alt={dividend.companyName} width={40} height={40} />
+      <Image src={dividend.logoUrl ?? "/next.svg"} alt={dividend.companyName} width={40} height={40} />
       <div className="items-between flex w-full flex-col justify-center  gap-1">
         <div className="flex items-center justify-between">
           <p className="text-h5 text-grey-900">{dividend.companyName}</p>
