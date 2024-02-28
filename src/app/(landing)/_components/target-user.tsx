@@ -1,4 +1,5 @@
-import LottiePlayer from "@/components/common/lottie-player/lottie-player";
+import SecondImage from "@/app/(landing)/_assets/2.png"
+import Image from "next/image";
 import React from "react";
 
 const TargetUser = () => {
@@ -11,7 +12,7 @@ const TargetUser = () => {
           <span className=" text-h5 text-main-700">{`without exposing any sensitive info.`}</span>
         </p>
       </div>
-      <LottiePlayer className="h-[180px] w-full rounded-lg bg-[#F2F4F6]" />
+      <Image src={SecondImage} alt="A lock surrounded by paper walls" width={335}/>
     </div>
   );
 };

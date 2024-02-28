@@ -1,14 +1,17 @@
-import LottiePlayer from "@/components/common/lottie-player/lottie-player";
+import FirstImage from "@/app/(landing)/_assets/1.png"
+import Image from "next/image";
 import React from "react";
+import Header from "./header";
 
 const Intro = () => {
   return (
     <div
       style={{
-        backgroundImage: "linear-gradient(180deg, var(--color-purple-100) 0%, var(--color-white) 61.58%)",
+        background: "linear-gradient(0deg, #EFF1FC 21.47%, rgba(239, 241, 252, 0.00) 53.7%)"
       }}
-      className="flex h-[478px] w-full flex-col items-center gap-[60px] pt-11"
+      className="flex w-full flex-col items-center gap-[60px]"
     >
+      <Header />
       <header className="flex w-full max-w-[375px] flex-col items-center justify-center gap-4 px-5 pt-5">
         <div className="flex w-full items-center justify-center gap-2">
           <Tag title="Free" />
@@ -21,8 +24,8 @@ const Intro = () => {
           </h5>
         </div>
       </header>
-      <div className="flex w-full items-center justify-center">
-        <LottiePlayer className="h-[158px] w-[165px] bg-grey-100" />
+      <div className="flex w-full items-center justify-center pb-10">
+        <Image src={FirstImage} alt="A chart on a phone" width={335}/>
       </div>
     </div>
   );

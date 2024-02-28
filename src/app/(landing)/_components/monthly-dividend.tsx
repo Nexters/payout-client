@@ -1,4 +1,5 @@
-import LottiePlayer from "@/components/common/lottie-player/lottie-player";
+import FourthImage from "@/app/(landing)/_assets/4.png"
+import Image from "next/image";
 import React from "react";
 
 const MonthlyDividend = () => {
@@ -10,7 +11,7 @@ const MonthlyDividend = () => {
           {`Check your dividend schedule\nwith the estimated monthly Dividend Payout.`}
         </p>
       </div>
-      <LottiePlayer className="h-[180px] w-full rounded-lg bg-[#F2F4F6]" />
+      <Image src={FourthImage} alt="A calendar with a stack of coins in front of it" width={335}/>
     </div>
   );
 };
