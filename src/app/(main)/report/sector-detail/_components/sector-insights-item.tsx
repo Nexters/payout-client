@@ -23,8 +23,8 @@ export const SectorInsightsItem = React.memo(({ title, stocks, type }: SectorIns
   const router = useRouter();
 
   const handleItemClick = useCallback(
-    (id: string) => {
-      router.push(`/stock/${id}`);
+    (ticker: string) => {
+      router.push(`/stock/${ticker}`);
     },
     [router]
   );
@@ -41,7 +41,7 @@ export const SectorInsightsItem = React.memo(({ title, stocks, type }: SectorIns
               className="rounded-lg border border-grey-200 p-4"
               style={{ minWidth: 119, maxWidth: 119 }}
               onClick={() => {
-                handleItemClick(stock.stockId);
+                handleItemClick(stock.ticker);
               }}
             >
               <div className="flex flex-col gap-4">

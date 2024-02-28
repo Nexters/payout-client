@@ -9,13 +9,15 @@ interface InvestmentTipProps {
 }
 
 export const InvestmentTip = React.memo(({ exDividendDate, earliestPaymentDate }: InvestmentTipProps) => {
+  if (exDividendDate === null && earliestPaymentDate === null) return null;
+
   return (
     <div className="flex w-full flex-col border-b border-grey-200 px-5 py-8">
       <h4 className="mb-6 text-h4 text-grey-800">Investment Tip</h4>
 
       <div className="flex w-full flex-col gap-5">
-        <div className="flex items-center justify-between">
-          {exDividendDate && (
+        {exDividendDate && (
+          <div className="flex items-center justify-between">
             <>
               <div className="flex items-center gap-3">
                 <InfoCalendar />
@@ -23,10 +25,10 @@ export const InvestmentTip = React.memo(({ exDividendDate, earliestPaymentDate }
               </div>
               <p className="text-h5 text-grey-800">{formatDateStringToMonthDay(exDividendDate)}</p>
             </>
-          )}
-        </div>
-        <div className="flex items-center justify-between">
-          {earliestPaymentDate && (
+          </div>
+        )}
+        {earliestPaymentDate && (
+          <div className="flex items-center justify-between">
             <>
               <div className="flex items-center gap-3">
                 <InfoDate />
@@ -34,8 +36,8 @@ export const InvestmentTip = React.memo(({ exDividendDate, earliestPaymentDate }
               </div>
               <p className="text-h5 text-grey-800">{formatDateStringToMonthDay(earliestPaymentDate)}</p>
             </>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
