@@ -10,12 +10,18 @@ export const DividendRow = React.memo(({ dividend }: { dividend: SingleYearlyDiv
   return (
     <div className="flex h-full w-full flex-1 items-center gap-4">
       <div className="flex size-10 shrink-0 items-center justify-center rounded-full border border-grey-100">
-        <Image src={dividend.logoUrl} alt={dividend.ticker} width={40} height={40} />
+        <Image
+          className="flex size-10 object-contain p-1"
+          width={40}
+          height={40}
+          src={dividend.logoUrl}
+          alt={dividend.ticker}
+        />
       </div>
       <div className="items-between flex w-full flex-col justify-center  gap-1">
         <div className="flex items-center justify-between">
           <p className="text-h5 text-grey-900">{dividend.ticker}</p>
-          <p className="text-body1 text-main-900">${dividend.totalDividend}</p>
+          <p className="text-body1 text-main-900">${dividend.totalDividend.toFixed(2)}</p>
         </div>
         <p className=" text-body3 text-grey-600">{dividend.share} Shares</p>
       </div>
