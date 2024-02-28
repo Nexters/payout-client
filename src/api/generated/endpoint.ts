@@ -78,7 +78,7 @@ export const searchStock = <TData = AxiosResponse<StockResponse[]>>(
 /**
  * @summary 배당락일이 다가오는 주식 리스트
  */
-export const getUpComingDividendStocks = <TData = AxiosResponse<UpcomingDividendResponse[]>>(
+export const getUpComingDividendStocks = <TData = AxiosResponse<UpcomingDividendResponse>>(
   params: GetUpComingDividendStocksParams,
   options?: AxiosRequestConfig
 ): Promise<TData> => {
@@ -91,7 +91,7 @@ export const getUpComingDividendStocks = <TData = AxiosResponse<UpcomingDividend
 /**
  * @summary 배당수익률이 큰 주식 리스트
  */
-export const getBiggestDividendYieldStocks = <TData = AxiosResponse<StockDividendYieldResponse[]>>(
+export const getBiggestDividendYieldStocks = <TData = AxiosResponse<StockDividendYieldResponse>>(
   params: GetBiggestDividendYieldStocksParams,
   options?: AxiosRequestConfig
 ): Promise<TData> => {
@@ -106,5 +106,5 @@ export type GetYearlyDividendsResult = AxiosResponse<YearlyDividendResponse>;
 export type GetMonthlyDividendsResult = AxiosResponse<MonthlyDividendResponse[]>;
 export type GetStockByTickerResult = AxiosResponse<StockDetailResponse>;
 export type SearchStockResult = AxiosResponse<StockResponse[]>;
-export type GetUpComingDividendStocksResult = AxiosResponse<UpcomingDividendResponse[]>;
-export type GetBiggestDividendYieldStocksResult = AxiosResponse<StockDividendYieldResponse[]>;
+export type GetUpComingDividendStocksResult = AxiosResponse<UpcomingDividendResponse>;
+export type GetBiggestDividendYieldStocksResult = AxiosResponse<StockDividendYieldResponse>;
