@@ -7,6 +7,8 @@ import { StockDetailResponse } from "@/api/generated/endpoint.schemas";
 import { DividendInfo } from "./_components/dividend-info";
 import { DrawerOverlay, DrawerPortal, Drawer as DrawerPrimitive } from "@/components/ui/drawer";
 import { StockInfoDrawer } from "./_components/stock-drawer";
+import { useStockByTickerQuery } from "../../../../state/queries/get-stock-by-ticker.ts";
+import { Loader2Icon } from "lucide-react";
 
 const dummyStock: StockDetailResponse = {
   stockId: "41b8b18f-6f4f-460c-a978-ff300c1a08f1",
@@ -27,6 +29,7 @@ const dummyStock: StockDetailResponse = {
 
 export default function StockPage({ params }: { params: { id: string } }) {
   const [showStockInfo, setShowStockInfo] = React.useState<boolean>(false);
+  const { data } = useStockByTickerQuery(params.id);
   const handleInfoClick = () => {
     setShowStockInfo((prevState) => !prevState);
   };
@@ -43,6 +46,14 @@ export default function StockPage({ params }: { params: { id: string } }) {
     };
   }, []);
 
+  if (!data) {
+    return (
+      <div className="flex size-full items-center justify-center">
+        <Loader2Icon className="animate-spin" />
+      </div>
+    );
+  }
+
   return (
     <DrawerPrimitive open={showStockInfo}>
       <DrawerPortal>
@@ -50,16 +61,13 @@ export default function StockPage({ params }: { params: { id: string } }) {
         <StockInfoDrawer handleInfoClick={handleInfoClick} />
       </DrawerPortal>
       <div className="flex h-full w-full flex-col pt-2.5">
-        <Header stock={dummyStock} handleInfoClick={handleInfoClick} />
+        <Header stock={data} handleInfoClick={handleInfoClick} />
         <div className="h-4 bg-grey-100" />
-        <InvestmentTip
-          exDividendDate={dummyStock.exDividendDate}
-          earliestPaymentDate={dummyStock.earliestPaymentDate}
-        />
+        <InvestmentTip exDividendDate={data.exDividendDate} earliestPaymentDate={data.earliestPaymentDate} />
         <DividendInfo
-          dividendPerShare={dummyStock.dividendPerShare}
-          dividendYield={dummyStock.dividendYield}
-          dividendMonths={dummyStock.dividendMonths}
+          dividendPerShare={data.dividendPerShare}
+          dividendYield={data.dividendYield}
+          dividendMonths={data.dividendMonths}
         />
       </div>
     </DrawerPrimitive>
