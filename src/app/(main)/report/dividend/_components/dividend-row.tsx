@@ -14,7 +14,7 @@ export const DividendRow = React.memo(({ dividend }: { dividend: SingleYearlyDiv
           className="flex size-10 object-contain p-1"
           width={40}
           height={40}
-          src={dividend.logoUrl}
+          src={dividend.logoUrl ?? "/next.svg"}
           alt={dividend.ticker}
         />
       </div>
