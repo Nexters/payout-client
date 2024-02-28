@@ -22,7 +22,7 @@ export const AnnualDividend = ({ data }: AnnualDividendProps) => {
       <div className="flex size-full flex-col items-center justify-start gap-14 px-5 py-8">
         <div className="flex w-full flex-col items-start">
           <p className=" text-h5 text-grey-600">Annual Dividend Income</p>
-          <p className=" text-h1 text-grey-900">{`$${2000}`}</p>
+          <p className=" text-h1 text-grey-900">{`$${data.totalDividend.toFixed(2)}`}</p>
         </div>
         <BubbleChart dividend={data.dividends[0]} rank={0} />
         <Button variant={"secondary"} size={"max"} onClick={handleButtonClick}>
