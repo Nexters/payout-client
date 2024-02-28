@@ -35,7 +35,7 @@ export const DividendAccordion = ({ monthlyDividendList }: { monthlyDividendList
               )}
             >
               <p className=" text-h4 text-grey-900">{`${month}${year}`}</p>
-              <p className=" text-h4 text-grey-900">${monthDividend.totalDividend}</p>
+              <p className=" text-h4 text-grey-900">${monthDividend.totalDividend.toFixed(2)}</p>
             </div>
           );
         }
@@ -48,7 +48,7 @@ export const DividendAccordion = ({ monthlyDividendList }: { monthlyDividendList
             <AccordionTrigger>
               <div className={cn("flex w-full items-center justify-between", isOpenable && "pr-5")}>
                 <p className=" text-h4 text-grey-900">{`${month}${year}`}</p>
-                <p className=" text-h4 text-grey-900">${monthDividend.totalDividend}</p>
+                <p className=" text-h4 text-grey-900">${monthDividend.totalDividend.toFixed(2)}</p>
               </div>
             </AccordionTrigger>
 
