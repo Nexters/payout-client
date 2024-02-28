@@ -29,7 +29,7 @@ export type GetUpComingDividendStocksParams = {
 
 export type SearchStockParams = {
   /**
-   * tickerName or companyName of stock ex) APPL, APPLE
+   * ticker name or company name of stock ex) APPL, APPLE
    */
   keyword: string;
   /**
@@ -42,18 +42,30 @@ export type SearchStockParams = {
   pageSize: number;
 };
 
-export interface StockDividendYieldResponse {
+export interface SingleStockDividendYieldResponse {
   dividendYield: number;
+  lastModifiedAt?: string;
+  logoUrl: string;
+  stockId: string;
+  ticker: string;
+}
+
+export interface StockDividendYieldResponse {
+  dividends: SingleStockDividendYieldResponse[];
+  lastModifiedAt: string;
+}
+
+export interface SingleUpcomingDividendResponse {
+  exDividendDate: string;
+  lastModifiedAt?: string;
   logoUrl: string;
   stockId: string;
   ticker: string;
 }
 
 export interface UpcomingDividendResponse {
-  exDividendDate: string;
-  logoUrl: string;
-  stockId: string;
-  ticker: string;
+  dividends: SingleUpcomingDividendResponse[];
+  lastModifiedAt: string;
 }
 
 export type StockDetailResponseDividendMonthsItem =

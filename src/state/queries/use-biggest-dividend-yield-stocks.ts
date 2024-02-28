@@ -6,7 +6,7 @@ import { StockDividendYieldResponse } from "../../api/generated/endpoint.schemas
 export const biggestDividendYieldStocksQueryKeys = createQueryKeys("biggest-dividend-yield-stocks");
 
 export const useBiggestDividendYieldStocksQuery = () => {
-  const requestClient = async (): Promise<StockDividendYieldResponse[]> => {
+  const requestClient = async (): Promise<StockDividendYieldResponse> => {
     const { data } = await getBiggestDividendYieldStocks({ pageNumber: 1, pageSize: 5 });
     return data;
   };

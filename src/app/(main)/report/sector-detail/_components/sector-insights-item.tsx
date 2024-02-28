@@ -4,22 +4,26 @@ import { useRouter } from "next/navigation";
 import React, { useCallback } from "react";
 
 interface InsightsStock {
+  dividendYield?: number;
+  exDividendDate?: string;
+  lastModifiedAt?: string;
+  logoUrl: string;
   stockId: string;
   ticker: string;
-  logoUrl: string;
-  exDividendDate?: string;
-  dividendYield?: number;
 }
 
 interface SectorInsightsItemProps {
   title: string;
-  stocks: InsightsStock[];
+  data: {
+    dividends: InsightsStock[];
+    lastModifiedAt: string;
+  };
   type: InsightsType;
 }
 
 type InsightsType = "Date" | "Rate";
 
-export const SectorInsightsItem = React.memo(({ title, stocks, type }: SectorInsightsItemProps) => {
+export const SectorInsightsItem = React.memo(({ title, data, type }: SectorInsightsItemProps) => {
   const router = useRouter();
 
   const handleItemClick = useCallback(
@@ -34,7 +38,7 @@ export const SectorInsightsItem = React.memo(({ title, stocks, type }: SectorIns
       <h4 className="mb-4 px-5 text-h4 text-grey-900 ">{title}</h4>
 
       <div className="scrollbar-none flex gap-2.5 overflow-x-auto overflow-y-hidden px-5 ">
-        {stocks.map((stock, idx) => {
+        {data.dividends.map((stock, idx) => {
           return (
             <div
               key={idx}
