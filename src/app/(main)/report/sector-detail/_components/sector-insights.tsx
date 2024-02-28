@@ -1,78 +1,35 @@
 import React from "react";
-import { InsightsStock, SectorInsightsItem } from "./sector-insights-item";
+import { SectorInsightsItem } from "./sector-insights-item";
+import { StockDividendYieldResponse, UpcomingDividendResponse } from "../../../../../api/generated/endpoint.schemas";
 
-const dummyExDividendList: InsightsStock[] = [
-  {
-    stockId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    ticker: "string",
-    logoUrl: "string",
-    exDividendDate: "2024-02-23T07:21:48.256Z",
-  },
-  {
-    stockId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    ticker: "string",
-    logoUrl: "string",
-    exDividendDate: "2024-02-23T07:21:48.256Z",
-  },
-  {
-    stockId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    ticker: "string",
-    logoUrl: "string",
-    exDividendDate: "2024-02-23T07:21:48.256Z",
-  },
-  {
-    stockId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    ticker: "string",
-    logoUrl: "string",
-    exDividendDate: "2024-02-23T07:21:48.256Z",
-  },
-];
-const dummyTopDividendList: InsightsStock[] = [
-  {
-    stockId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    ticker: "string",
-    logoUrl: "string",
-    exDividendDate: "2024-02-23T07:21:48.256Z",
-    sectorRatio: 0.49,
-  },
-  {
-    stockId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    ticker: "string",
-    logoUrl: "string",
-    exDividendDate: "2024-02-23T07:21:48.256Z",
-    sectorRatio: 0.49,
-  },
-  {
-    stockId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    ticker: "string",
-    logoUrl: "string",
-    exDividendDate: "2024-02-23T07:21:48.256Z",
-    sectorRatio: 0.49,
-  },
-  {
-    stockId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    ticker: "string",
-    logoUrl: "string",
-    exDividendDate: "2024-02-23T07:21:48.256Z",
-    sectorRatio: 0.49,
-  },
-];
+interface SectorInsightsProps {
+  comingDividendStocks?: UpcomingDividendResponse[];
+  biggestDividendYieldStocks?: StockDividendYieldResponse[];
+}
 
-export const SectorInsights = React.memo(() => {
-  return (
-    <>
-      <div className="flex w-full flex-col gap-2 border-b border-b-gray-200 px-5 py-8">
-        <h2 className="text-h2 text-grey-900">Sector Insights</h2>
-        <p className="text-body3 text-grey-600">
-          {`Last updated `}
-          <span className="text-main-700">{`${"2024/01/27 21:38"}`}</span>{" "}
-        </p>
-      </div>
+export const SectorInsights = React.memo(
+  ({ comingDividendStocks, biggestDividendYieldStocks }: SectorInsightsProps) => {
+    if (!comingDividendStocks && !biggestDividendYieldStocks) return null;
 
-      <div className="flex w-full flex-col gap-10 py-8">
-        <SectorInsightsItem title={"Approaching Ex-Dividend dates"} stocks={dummyExDividendList} type="Date" />
-        <SectorInsightsItem title={"Top Recent Dividend Yields"} stocks={dummyTopDividendList} type="Rate" />
-      </div>
-    </>
-  );
-});
+    return (
+      <>
+        <div className="flex w-full flex-col gap-2 border-b border-b-gray-200 px-5 py-8">
+          <h2 className="text-h2 text-grey-900">Sector Insights</h2>
+          <p className="text-body3 text-grey-600">
+            {`Last updated `}
+            <span className="text-main-700">{`${"2024/01/27 21:38"}`}</span>{" "}
+          </p>
+        </div>
+
+        <div className="flex w-full flex-col gap-10 py-8">
+          {comingDividendStocks && (
+            <SectorInsightsItem title={"Approaching Ex-Dividend dates"} stocks={comingDividendStocks} type="Date" />
+          )}
+          {biggestDividendYieldStocks && (
+            <SectorInsightsItem title={"Top Recent Dividend Yields"} stocks={biggestDividendYieldStocks} type="Rate" />
+          )}
+        </div>
+      </>
+    );
+  }
+);
