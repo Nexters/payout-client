@@ -2,7 +2,9 @@ import { StockResponse } from "@/api/generated/endpoint.schemas";
 import Image from "next/image";
 import React from "react";
 
-export interface Dividend extends StockResponse {}
+export interface Dividend extends StockResponse {
+  share?: number;
+}
 
 export const DividendRow = React.memo(({ dividend }: { dividend: Dividend }) => {
   return (
