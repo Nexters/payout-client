@@ -3,31 +3,43 @@
 import React from "react";
 import { SectorFocus } from "./_components/sector-focus";
 import { MonthlyDividend } from "./_components/monthly-dividend";
-import { useStocksStore } from "@/state/stores/stocks-store";
 import { useStocksSectorRatioMutation } from "@/state/queries/use-stocks-sector-ratio";
 import { AnnualDividend } from "./_components/annual-dividend";
 import { Loader2Icon } from "lucide-react";
+import { useYearlyDividendMutation } from "@/state/queries/use-yearly-dividend-mutation";
+import { YearlyDividendResponse } from "@/api/generated/endpoint.schemas";
+import { useMonthlyDividendMutation } from "../../../state/queries/use-monthly-dividend-mutation";
 
 const ReportPage = () => {
-  const { stocks } = useStocksStore();
-  const { mutate, data } = useStocksSectorRatioMutation();
+  const { mutate: mutateStocksSectorRatio, data: stocksSectorRatioData } = useStocksSectorRatioMutation();
+  const { mutate: mutateYearlyDividend, data: yearlyDividendData } = useYearlyDividendMutation();
+  const { mutate: mutateMonthlyDividend, data: monthlyDividendData } = useMonthlyDividendMutation();
 
   React.useEffect(() => {
-    mutate(
-      stocks.map((stock) => ({
-        share: stock.count,
-        ticker: stock.ticker ?? "",
-      })) ?? []
+    mutateStocksSectorRatio();
+    mutateYearlyDividend();
+    mutateMonthlyDividend();
+  }, [mutateMonthlyDividend, mutateStocksSectorRatio, mutateYearlyDividend]);
+
+  const stocksSectorRatio = React.useMemo(() => {
+    return (
+      stocksSectorRatioData?.sort((a, b) => {
+        return b.sectorRatio - a.sectorRatio;
+      }) ?? []
     );
-  }, [mutate, stocks]);
+  }, [stocksSectorRatioData]);
 
-  const sectors = React.useMemo(() => {
-    return data?.sort((a, b) => {
-      return b.sectorRatio - a.sectorRatio;
-    }) ?? []
-  }, [data])
+  const yearlyDividends: YearlyDividendResponse = React.useMemo(() => {
+    return {
+      totalDividend: yearlyDividendData?.totalDividend ?? 0,
+      dividends:
+        yearlyDividendData?.dividends.sort((a, b) => {
+          return b.totalDividend - a.totalDividend;
+        }) ?? [],
+    };
+  }, [yearlyDividendData]);
 
-  if (!data) {
+  if (!stocksSectorRatioData || !yearlyDividendData || !monthlyDividendData) {
     return (
       <div className="flex size-full items-center justify-center">
         <Loader2Icon className="animate-spin" />
@@ -38,11 +50,11 @@ const ReportPage = () => {
   return (
     <div className="size-full">
       <div className="flex size-full flex-col">
-        <SectorFocus data={sectors} />
+        <SectorFocus data={stocksSectorRatio} />
         <Divider />
-        <MonthlyDividend />
+        <MonthlyDividend data={monthlyDividendData} />
         <Divider />
-        <AnnualDividend />
+        <AnnualDividend data={yearlyDividends} />
       </div>
     </div>
   );

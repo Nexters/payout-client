@@ -14,3 +14,25 @@ export function formatDateStringToMonthDay(dateString: string): string {
 
   return formattedDate + suffix;
 }
+
+
+/**
+ * This function calculates the start year and end year based on the given date and returns a date range.
+ * @param date Date object of the starting date
+ * @returns YYYY.MM ~ YYYY.MM
+ */
+export const getYearRange = (date: Date): string => {
+  const startDate = new Date(date);
+  const endDate = new Date(startDate.getFullYear() + 1, startDate.getMonth(), startDate.getDate());
+
+  const startYear = startDate.getFullYear();
+  const startMonth = startDate.getMonth() + 1;
+  const endYear = endDate.getFullYear();
+  const endMonth = endDate.getMonth() + 1;
+
+  const formattedStartMonth = startMonth < 10 ? `0${startMonth}` : startMonth.toString();
+  const formattedEndMonth = endMonth < 10 ? `0${endMonth}` : endMonth.toString();
+
+  const dateRange = `${startYear}.${formattedStartMonth} ~ ${endYear}.${formattedEndMonth}`;
+  return dateRange;
+};

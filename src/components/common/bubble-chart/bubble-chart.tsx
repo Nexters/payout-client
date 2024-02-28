@@ -1,8 +1,10 @@
+import { SingleYearlyDividendResponse } from "@/api/generated/endpoint.schemas";
 import { cn } from "@/utils/cn";
 import React from "react";
 
 export interface BubbleChartProps extends React.HTMLAttributes<HTMLDivElement> {
   rank: number;
+  dividend: SingleYearlyDividendResponse;
 }
 
 const STYLE_BY_RANK = [
@@ -11,7 +13,7 @@ const STYLE_BY_RANK = [
   { backgroundColor: "#D8F3F6", textColor: "#0B5B60", size: 100 },
 ];
 
-const BubbleChart = React.memo(({ rank, ...props }: BubbleChartProps) => {
+const BubbleChart = React.memo(({ rank, dividend, ...props }: BubbleChartProps) => {
   return (
     <div
       style={{
@@ -31,10 +33,10 @@ const BubbleChart = React.memo(({ rank, ...props }: BubbleChartProps) => {
           style={{ color: STYLE_BY_RANK[rank].textColor }}
           className={cn("flex text-[32px]", rank !== 0 && "text-[28px]")}
         >
-          480<span className=" opacity-40">$</span>
+          {dividend.totalDividend.toFixed(2)}<span className=" opacity-40">$</span>
         </p>
         <p style={{ color: STYLE_BY_RANK[rank].textColor }} className="text-body3 opacity-70">
-          AAPL
+          {dividend.ticker}
         </p>
       </div>
     </div>

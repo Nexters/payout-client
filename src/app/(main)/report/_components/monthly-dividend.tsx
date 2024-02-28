@@ -7,135 +7,28 @@ import { Button as ShadcnButton } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/common/button/button";
 
-const data: MonthlyDividendResponse[] = [
-  {
-    year: 2025,
-    month: 1,
-    dividends: [],
-    totalDividend: 0.1,
-  },
-  {
-    year: 2025,
-    month: 2,
-    dividends: [
-      {
-        ticker: "AAPL",
-        logoUrl:
-          "https://api-ninjas-data.s3.us-west-2.amazonaws.com/logos/l476432a3e85a0aa21c23f5abd2975a89b6820d63.png",
-        share: 3,
-        dividend: 0.23,
-        totalDividend: 0.6900000000000001,
-      },
-    ],
-    totalDividend: 0.6900000000000001,
-  },
-  {
-    year: 2025,
-    month: 3,
-    dividends: [],
-    totalDividend: 0.2,
-  },
-  {
-    year: 2025,
-    month: 4,
-    dividends: [],
-    totalDividend: 0.3,
-  },
-  {
-    year: 2025,
-    month: 5,
-    dividends: [
-      {
-        ticker: "AAPL",
-        logoUrl:
-          "https://api-ninjas-data.s3.us-west-2.amazonaws.com/logos/l476432a3e85a0aa21c23f5abd2975a89b6820d63.png",
-        share: 3,
-        dividend: 0.24,
-        totalDividend: 0.72,
-      },
-    ],
-    totalDividend: 0.72,
-  },
-  {
-    year: 2025,
-    month: 6,
-    dividends: [],
-    totalDividend: 0.4,
-  },
-  {
-    year: 2025,
-    month: 7,
-    dividends: [],
-    totalDividend: 0.0,
-  },
-  {
-    year: 2025,
-    month: 8,
-    dividends: [
-      {
-        ticker: "AAPL",
-        logoUrl:
-          "https://api-ninjas-data.s3.us-west-2.amazonaws.com/logos/l476432a3e85a0aa21c23f5abd2975a89b6820d63.png",
-        share: 3,
-        dividend: 0.24,
-        totalDividend: 0.72,
-      },
-    ],
-    totalDividend: 0.72,
-  },
-  {
-    year: 2025,
-    month: 9,
-    dividends: [],
-    totalDividend: 0.0,
-  },
-  {
-    year: 2025,
-    month: 10,
-    dividends: [],
-    totalDividend: 0.0,
-  },
-  {
-    year: 2025,
-    month: 11,
-    dividends: [
-      {
-        ticker: "AAPL",
-        logoUrl:
-          "https://api-ninjas-data.s3.us-west-2.amazonaws.com/logos/l476432a3e85a0aa21c23f5abd2975a89b6820d63.png",
-        share: 3,
-        dividend: 0.24,
-        totalDividend: 0.72,
-      },
-    ],
-    totalDividend: 0.72,
-  },
-  {
-    year: 2025,
-    month: 12,
-    dividends: [],
-    totalDividend: 0.0,
-  },
-];
-
-const dummyData = data.map((item) => {
-  return {
-    date:
-      parseInt((item.year ?? 0).toString().slice(-2)) +
-      "." +
-      ((item.month ?? 0) < 10 ? `0${item.month}` : (item.month ?? 0).toString()),
-    totalDividend: item.totalDividend,
-  };
-});
 const COLORS = ["navy-700"];
 
 const dataFormatter = (number: number) => `$ ${Intl.NumberFormat("us").format(number).toString()}`;
 
 type halfToggleType = "first" | "second";
 
-export const MonthlyDividend = React.memo(() => {
+interface MonthlyDividendProps {
+  data: MonthlyDividendResponse[];
+}
+export const MonthlyDividend = React.memo(({ data }: MonthlyDividendProps) => {
   const [halfToggleState, setHalfToggleState] = useState<halfToggleType>("first");
   const router = useRouter();
+
+  const monthlyDividends = data.map((item) => {
+    return {
+      date:
+        parseInt((item.year ?? 0).toString().slice(-2)) +
+        "." +
+        ((item.month ?? 0) < 10 ? `0${item.month}` : (item.month ?? 0).toString()),
+      totalDividend: item.totalDividend,
+    };
+  });
 
   const handleToggle = (type: halfToggleType) => {
     setHalfToggleState(type);
@@ -147,11 +40,11 @@ export const MonthlyDividend = React.memo(() => {
 
   const shownChartData = useMemo(() => {
     if (halfToggleState === "first") {
-      return dummyData.slice(0, 6);
+      return monthlyDividends.slice(0, 6);
     }
 
-    return dummyData.slice(6, 12);
-  }, [halfToggleState]);
+    return monthlyDividends.slice(6, 12);
+  }, [halfToggleState, monthlyDividends]);
 
   return (
     <div className="flex flex-col gap-6 p-5 pb-8">

@@ -1,13 +1,13 @@
-import { findSectorRatios } from "@/api/generated/endpoint";
-import { SectorRatioResponse } from "@/api/generated/endpoint.schemas";
+import { getYearlyDividends } from "@/api/generated/endpoint";
+import { YearlyDividendResponse } from "@/api/generated/endpoint.schemas";
 import { createQueryKeys } from "@lukemorales/query-key-factory";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useStocksStore } from "../stores/stocks-store";
 import React from "react";
 
-export const enteredStocksQueryKeys = createQueryKeys("entered-stocks");
+export const yearlyDividendQueryKeys = createQueryKeys("yearly-dividend");
 
-export const useStocksSectorRatioMutation = ()=> {
+export const useYearlyDividendMutation = ()=> {
   const { stocks } = useStocksStore();
 
   const tickerShares = React.useMemo(() => stocks.map((stock) => ({
@@ -15,17 +15,19 @@ export const useStocksSectorRatioMutation = ()=> {
     ticker: stock.ticker ?? "",
   })), [stocks])
 
-  const requestClient = async (): Promise<SectorRatioResponse[]> => {
-    const response = await findSectorRatios({ tickerShares });
+  const requestClient = async (): Promise<YearlyDividendResponse> => {
+    const response = await getYearlyDividends({
+      tickerShares
+    });
     return response.data;
   };
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationKey: enteredStocksQueryKeys._def,
+    mutationKey: yearlyDividendQueryKeys._def,
     mutationFn: requestClient,
     onSuccess: (data) => {
-      queryClient.setQueryData(enteredStocksQueryKeys._def, data);
+      queryClient.setQueryData(yearlyDividendQueryKeys._def, data);
     },
   });
 };

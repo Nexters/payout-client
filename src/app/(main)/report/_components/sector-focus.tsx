@@ -47,21 +47,22 @@ export const SectorFocus = React.memo(({ data }: { data: Sector[] }) => {
         <p className="text-h5 text-grey-600">Your portfolio focuses on</p>
         <p className="text-h1 text-grey-900">{sectors[0].sectorName}</p>
       </div>
-      <DonutChart
-        data={sectors.map((sector) => {
-          return {
-            name: sector.sectorName,
-            value: sector.sectorRatio * 100,
-          };
-        })}
-        className="h-[180px]"
-        variant="donut"
-        showLabel={false}
-        showAnimation={true}
-        colors={DONUT_CHART_COLORS}
-        valueFormatter={(number: number) => `${Intl.NumberFormat("us").format(number).toString()}%`}
-        onValueChange={(v) => console.log(v)}
-      />
+      <div>
+        <DonutChart
+          data={sectors.map((sector) => {
+            return {
+              name: sector.sectorName,
+              value: sector.sectorRatio * 100,
+            };
+          })}
+          className="h-[180px]"
+          variant="donut"
+          showLabel={false}
+          showAnimation={true}
+          colors={DONUT_CHART_COLORS}
+          valueFormatter={(number: number) => `${Intl.NumberFormat("us").format(number).toString()}%`}
+        />
+      </div>
       <div className="flex w-full flex-col items-center justify-center">
         {sectors.map((sector, idx) => {
           return (

@@ -47,7 +47,7 @@ const TickerList = React.memo(({ data, tickerName, hasShares, onClick }: TickerP
                 alt={"stock logo"}
                 width={40}
                 height={40}
-                className="mr-4 flex h-10 min-w-10 max-w-10 items-center justify-center rounded-full border border-grey-100 bg-grey-50"
+                className="mr-4 flex h-10 min-w-10 max-w-10 items-center justify-center rounded-full border border-grey-100 bg-grey-50 object-contain p-1"
               />
               <div className="flex flex-col">
                 <span className="mb-1 line-clamp-1 break-all text-left text-h5 text-grey-900">
