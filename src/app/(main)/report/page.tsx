@@ -8,15 +8,18 @@ import { AnnualDividend } from "./_components/annual-dividend";
 import { Loader2Icon } from "lucide-react";
 import { useYearlyDividendMutation } from "@/state/queries/use-yearly-dividend-mutation";
 import { YearlyDividendResponse } from "@/api/generated/endpoint.schemas";
+import { useMonthlyDividendMutation } from "../../../state/queries/use-monthly-dividend-mutation";
 
 const ReportPage = () => {
   const { mutate: mutateStocksSectorRatio, data: stocksSectorRatioData } = useStocksSectorRatioMutation();
   const { mutate: mutateYearlyDividend, data: yearlyDividendData } = useYearlyDividendMutation();
+  const { mutate: mutateMonthlyDividend, data: monthlyDividendData } = useMonthlyDividendMutation();
 
   React.useEffect(() => {
     mutateStocksSectorRatio();
     mutateYearlyDividend();
-  }, [mutateStocksSectorRatio, mutateYearlyDividend]);
+    mutateMonthlyDividend();
+  }, [mutateMonthlyDividend, mutateStocksSectorRatio, mutateYearlyDividend]);
 
   const stocksSectorRatio = React.useMemo(() => {
     return (
@@ -36,7 +39,7 @@ const ReportPage = () => {
     };
   }, [yearlyDividendData]);
 
-  if (!stocksSectorRatioData || !yearlyDividendData) {
+  if (!stocksSectorRatioData || !yearlyDividendData || !monthlyDividendData) {
     return (
       <div className="flex size-full items-center justify-center">
         <Loader2Icon className="animate-spin" />
@@ -49,7 +52,7 @@ const ReportPage = () => {
       <div className="flex size-full flex-col">
         <SectorFocus data={stocksSectorRatio} />
         <Divider />
-        <MonthlyDividend />
+        <MonthlyDividend data={monthlyDividendData} />
         <Divider />
         <AnnualDividend data={yearlyDividends} />
       </div>
