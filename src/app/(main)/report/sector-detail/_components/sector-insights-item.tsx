@@ -2,6 +2,7 @@ import { formatDateStringToMonthDay } from "@/utils/date";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useCallback } from "react";
+import TickerDefault from "@/components/icons/ticker-default";
 
 interface InsightsStock {
   dividendYield?: number;
@@ -49,14 +50,17 @@ export const SectorInsightsItem = React.memo(({ title, data, type }: SectorInsig
               }}
             >
               <div className="flex flex-col gap-4">
-                <Image
-                  src={stock.logoUrl ?? "/next.svg"}
-                  alt={stock.ticker}
-                  className="h-8 w-8 rounded-full border border-grey-100"
-                  width={32}
-                  height={32}
-                />
-
+                {stock.logoUrl === null ? (
+                  <TickerDefault className="h-8 min-w-8 max-w-8" />
+                ) : (
+                  <Image
+                    src={stock.logoUrl}
+                    alt={stock.ticker}
+                    className="h-8 w-8 rounded-full border border-grey-100"
+                    width={32}
+                    height={32}
+                  />
+                )}
                 <div>
                   <h5 className="text-h5 text-grey-900">{stock.ticker}</h5>
                   <p className="mt-0.5 truncate text-body2 text-main-900">
