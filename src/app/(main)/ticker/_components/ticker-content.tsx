@@ -59,10 +59,17 @@ const TickerContent = React.memo(() => {
     if (selectedStock) {
       resetData();
 
-      addStock({ ...selectedStock, count: tickerCount });
+      const existingStockIndex = stocks.findIndex((stock) => stock.stockId === selectedStock.stockId);
+
+      if (existingStockIndex !== -1) {
+        // 주식이 이미 존재하는 경우 업데이트
+        editStock({ ...selectedStock, count: tickerCount });
+      } else {
+        addStock({ ...selectedStock, count: tickerCount });
+      }
       isDrawerOpenChange(false);
     }
-  }, [addStock, isDialogOpenChange, isDrawerOpenChange, resetData, selectedStock, stocks.length, tickerCount]);
+  }, [addStock, editStock, isDialogOpenChange, isDrawerOpenChange, resetData, selectedStock, stocks, tickerCount]);
 
   const handleInputClear = React.useCallback((type: DrawerType) => {
     if (type === "name") {
