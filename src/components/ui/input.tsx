@@ -46,11 +46,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     const [inputState, setInputState] = useState<InputState>("default");
 
     const handleBlur = () => {
-      if (type === "number" && Number(props.value) <= 0) {
-        setInputState("error");
-      } else {
-        setInputState("default");
-      }
+      setTimeout(() => {
+        if (type === "number" && Number(props.value) <= 0) {
+          setInputState("error");
+        } else {
+          setInputState("default");
+        }
+      }, 50);
     };
 
     const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
