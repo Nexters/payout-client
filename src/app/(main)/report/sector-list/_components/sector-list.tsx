@@ -11,7 +11,7 @@ export const SectorList = React.memo(({ sectorList }: { sectorList: Sector[] }) 
 
   const onSectorClick = React.useCallback(
     (sector: Sector, idx: number) => {
-      router.push(`/report/sector-detail/${sector.sectorName}?i=${idx}`);
+      router.push(`/report/sector-detail/${sector.sectorValue}?i=${idx}`);
     },
     [router]
   );

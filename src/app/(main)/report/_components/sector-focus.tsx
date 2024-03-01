@@ -32,7 +32,7 @@ export const SectorFocus = React.memo(({ data }: { data: Sector[] }) => {
 
   const onSectorClick = React.useCallback(
     (sector: Sector, idx: number) => {
-      router.push(`/report/sector-detail/${sector.sectorName}?i=${idx}`);
+      router.push(`/report/sector-detail/${sector.sectorValue}?i=${idx}`);
     },
     [router]
   );
