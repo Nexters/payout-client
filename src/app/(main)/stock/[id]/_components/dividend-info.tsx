@@ -28,7 +28,7 @@ export const DividendInfo = React.memo(({ dividendYield, dividendPerShare, divid
 
       {dividendMonths && (
         <div className="flex w-full flex-col items-center justify-between gap-2 bg-grey-50 p-4">
-          <p className="text-body3 text-grey-500">Dividend Frequency</p>
+          <p className="text-body3 text-grey-500">Payment Frequency</p>
           <span className="text-center text-h5 text-grey-800">
             {`${dividendMonths.length} Times`}
             <span className=" text-body3 text-main-900">{` (${dividendMonths

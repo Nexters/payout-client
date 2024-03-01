@@ -6,7 +6,7 @@ export const viewport: Viewport = {
 };
 
 const LandingLayout = ({ children }: { children: React.ReactNode }) => {
-  return <div className="relative flex w-full flex-col items-center justify-center">{children}</div>;
+  return <>{children}</>;
 };
 
 export default LandingLayout;
