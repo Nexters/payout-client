@@ -76,7 +76,7 @@ export const MonthlyDividend = React.memo(({ data }: MonthlyDividendProps) => {
         showLegend={false}
       />
 
-      <div className="mb-2 flex justify-between rounded-3xl border border-gray-100 p-1.5">
+      <div className="mb-2 flex justify-between rounded-3xl border border-gray-100 bg-grey-100 p-1.5">
         <ShadcnButton
           className={`flex flex-1 items-center justify-center rounded-3xl ${
             halfToggleState === "first" ? "bg-white" : "bg-gray-100"
