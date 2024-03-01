@@ -40,9 +40,12 @@ export const TickerDrawer = React.memo(
   }: TickerDrawerProps) => {
     const debouncedTickerName = useDebounce(tickerName, 400); // 디바운스 적용
     const { data, isLoading } = useFilteredStocksQuery(debouncedTickerName);
+    const hasTicker = React.useMemo(() => {
+      return tickerCount > 0;
+    }, [tickerCount]);
     const isSubmittable = React.useMemo(() => {
-      return drawerType === "count" && tickerCount > 0;
-    }, [drawerType, tickerCount]);
+      return drawerType === "count" && hasTicker;
+    }, [drawerType, hasTicker]);
 
     const title = React.useMemo(() => {
       switch (drawerType) {
@@ -128,8 +131,14 @@ export const TickerDrawer = React.memo(
                 Delete
               </div>
             </DrawerClose>
-            <DrawerClose className="h-14 w-full" onClick={handleConfirmClick}>
-              <div className="flex h-full items-center justify-center rounded-lg bg-main-700 font-bold text-white">
+            <DrawerClose className="h-14 w-full" onClick={handleConfirmClick} disabled={!hasTicker}>
+              <div
+                className="flex h-full items-center justify-center rounded-lg bg-main-700 font-bold text-white"
+                style={{
+                  backgroundColor: hasTicker ? "#4F6AFC" : "#7692DA",
+                  color: hasTicker ? "#fff" : "rgba(255, 255, 255, 0.40)",
+                }}
+              >
                 Confirm
               </div>
             </DrawerClose>
