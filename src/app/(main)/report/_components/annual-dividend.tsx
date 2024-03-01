@@ -34,7 +34,7 @@ export const AnnualDividend = ({ data }: AnnualDividendProps) => {
 
   return (
     <div className="flex size-full flex-col items-center justify-start gap-6 px-5 py-8">
-      <div className="flex w-full flex-col items-start">
+      <div className="flex w-full flex-col items-start gap-y-0.5">
         <p className=" text-h5 text-grey-600">Annual Dividend Income</p>
         <p className=" text-h1 text-grey-900">{`$${data.totalDividend.toFixed(2)}`}</p>
       </div>

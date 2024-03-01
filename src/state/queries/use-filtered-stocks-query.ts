@@ -23,5 +23,6 @@ export const useFilteredStocksQuery = (keyword: string) => {
     staleTime: Infinity,
     gcTime: Infinity,
     retry: 1,
+    throwOnError: true,
   });
 };

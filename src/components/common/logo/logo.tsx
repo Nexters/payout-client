@@ -1,7 +1,8 @@
+import Image from "next/image";
 import React from "react";
 
 const Logo = () => {
-  return <p className="text-[20px] font-bold text-grey-900">Payout</p>;
+  return <Image src={"/logo.svg"} alt="Payout Logo" width={68} height={20} />;
 };
 
 export default Logo;

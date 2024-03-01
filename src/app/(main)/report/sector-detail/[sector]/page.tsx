@@ -8,8 +8,9 @@ import { useQueryClient } from "@tanstack/react-query";
 import { enteredStocksQueryKeys } from "@/state/queries/use-stocks-sector-ratio";
 import { SectorRatioResponse } from "@/api/generated/endpoint.schemas";
 import { DividendList } from "../_components/dividend-list";
-import { useComingDividendStocksQuery } from "../../../../../state/queries/use-coming-dividend-stocks.ts";
-import { useBiggestDividendYieldStocksQuery } from "../../../../../state/queries/use-biggest-dividend-yield-stocks";
+
+import { useComingDividendStocksQuery } from "@/state/queries/use-coming-dividend-stocks-query";
+import { useBiggestDividendYieldStocksQuery } from "@/state/queries/use-biggest-dividend-yield-stocks-query";
 
 const SectorDetailPage = React.memo(({ params }: { params: { sector: string } }) => {
   const queryClient = useQueryClient();

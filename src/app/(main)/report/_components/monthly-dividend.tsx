@@ -48,7 +48,7 @@ export const MonthlyDividend = React.memo(({ data }: MonthlyDividendProps) => {
 
   return (
     <div className="flex flex-col gap-6 p-5 pb-8">
-      <div className="flex w-full flex-col items-start">
+      <div className="flex w-full flex-col items-start  gap-y-0.5">
         <p className=" text-h5 text-grey-600">Average Monthly Dividend Income</p>
         <p className=" text-h1 text-grey-900">{`$${250}`}</p>
       </div>

@@ -4,6 +4,7 @@ import ConsumerCyclicalIcon from "@/components/icons/sector/consumer-cyclical";
 import ConsumerDefensiveIcon from "@/components/icons/sector/consumer-defensive";
 import EnergyIcon from "@/components/icons/sector/energy";
 import ETCIcon from "@/components/icons/sector/etc";
+import ETFIcon from "@/components/icons/sector/etf";
 import FinancialServicesIcon from "@/components/icons/sector/financial-services";
 import HealthcareIcon from "@/components/icons/sector/healthcare";
 import IndustrialsIcon from "@/components/icons/sector/industries";
@@ -25,6 +26,6 @@ export const ICONS = {
   "Real Estate": <RealEstateIcon />,
   Technology: <TechnologyIcon />,
   Utilities: <UtilitiesIcon />,
-  ETF: <ETCIcon />,
+  ETF: <ETFIcon />,
   ETC: <ETCIcon />,
 } as const;

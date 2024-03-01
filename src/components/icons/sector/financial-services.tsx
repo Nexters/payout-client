@@ -4,7 +4,7 @@ export interface FinancialServicesIconProps extends React.SVGProps<SVGSVGElement
 
 const FinancialServicesIcon = React.memo(({ ...props }: FinancialServicesIconProps) => {
   return (
-    <svg {...props} width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg {...props} width="20" height="20" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         fillRule="evenodd"
         clipRule="evenodd"

@@ -19,7 +19,7 @@ export const DividendAccordion = ({ monthlyDividendList }: { monthlyDividendList
         const isOpenable = monthDividend.dividends.length > 0;
         const currentMonthDate = new Date(monthDividend.year, monthDividend.month - 1);
 
-        const month = currentMonthDate.toLocaleString("default", { month: "short" });
+        const month = currentMonthDate.toLocaleString("en-US", { month: "short" });
         let year = "";
         if (idx === 0 || monthDividend.year !== monthlyDividendList[idx - 1]?.year) {
           year = ` ${monthDividend.year}`;

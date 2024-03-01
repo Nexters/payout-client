@@ -17,5 +17,6 @@ export const useComingDividendStocksQuery = () => {
     staleTime: Infinity,
     gcTime: Infinity,
     retry: 1,
+    throwOnError: true,
   });
 };

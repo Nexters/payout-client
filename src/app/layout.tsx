@@ -10,6 +10,9 @@ const dm_sans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700
 export const metadata: Metadata = {
   title: "Payout",
   description: "Calculate your dividend payout with ease.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

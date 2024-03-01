@@ -33,5 +33,6 @@ export const useMonthlyDividendMutation = () => {
     onSuccess: (data) => {
       queryClient.setQueryData(MonthlyDividendQueryKeys._def, data);
     },
+    throwOnError: true,
   });
 };

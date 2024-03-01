@@ -4,7 +4,7 @@ export interface BasicMaterialsIconProps extends React.SVGProps<SVGSVGElement> {
 
 const BasicMaterialsIcon = React.memo(({ ...props }: BasicMaterialsIconProps) => {
   return (
-    <svg {...props} width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg {...props} width="20" height="20" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M0.792969 8.28467C0.792969 8.00853 1.01683 7.78467 1.29297 7.78467H22.8326C23.1087 7.78467 23.3326 8.00853 23.3326 8.28467V10.5142H0.792969V8.28467Z"
         fill="currentColor"

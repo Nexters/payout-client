@@ -3,15 +3,8 @@
 import React from "react";
 import { Header } from "./_components/header";
 import { DividendAccordion } from "./_components/dividend-accordion";
-import { Dividend } from "../_components/dividend-row";
 import { useMonthlyDividendMutation } from "@/state/queries/use-monthly-dividend-mutation";
 import { Loader2Icon } from "lucide-react";
-
-export interface MonthlyDividendIncome {
-  date: Date;
-  totalIncome: number;
-  dividendList: Dividend[];
-}
 
 const MonthlyDividendPage = React.memo(() => {
   const { mutate: mutateMonthlyDividend, data: monthlyDividendData } = useMonthlyDividendMutation();

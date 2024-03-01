@@ -20,7 +20,7 @@ export const SectorRow = React.memo(
         </div>
         <div className="flex flex-1 flex-col gap-1">
           <p className="text-h5 text-gray-900">{sectorName}</p>
-          <p className="text-vody2 text-gray-600">{sectorRatio}%</p>
+          <p className="text-body2 text-gray-600">{sectorRatio}%</p>
         </div>
         {isShowingMore ? (
           <Button variant={"secondary"} size={"fit"} className="h-[38px]">

@@ -17,5 +17,6 @@ export const useBiggestDividendYieldStocksQuery = () => {
     staleTime: Infinity,
     gcTime: Infinity,
     retry: 1,
+    throwOnError: true,
   });
 };
