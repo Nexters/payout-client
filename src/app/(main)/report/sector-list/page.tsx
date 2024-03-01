@@ -3,7 +3,7 @@
 import React from "react";
 import { SectorList } from "./_components/sector-list";
 import { useQueryClient } from "@tanstack/react-query";
-import { enteredStocksQueryKeys } from "@/state/queries/use-stocks-sector-ratio";
+import { enteredStocksQueryKeys } from "@/state/queries/use-stocks-sector-ratio-mutation";
 import { SectorRatioResponse } from "@/api/generated/endpoint.schemas";
 import { Loader2Icon } from "lucide-react";
 

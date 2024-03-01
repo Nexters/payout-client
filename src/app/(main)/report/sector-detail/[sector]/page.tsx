@@ -4,7 +4,7 @@ import React from "react";
 import { Header } from "../_components/header";
 import { Loader2Icon } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
-import { enteredStocksQueryKeys } from "@/state/queries/use-stocks-sector-ratio";
+import { enteredStocksQueryKeys } from "@/state/queries/use-stocks-sector-ratio-mutation";
 import { SectorRatioResponse } from "@/api/generated/endpoint.schemas";
 import { DividendList } from "../_components/dividend-list";
 

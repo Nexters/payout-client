@@ -3,7 +3,7 @@
 import React from "react";
 import { SectorFocus } from "./_components/sector-focus";
 import { MonthlyDividend } from "./_components/monthly-dividend";
-import { useStocksSectorRatioMutation } from "@/state/queries/use-stocks-sector-ratio";
+import { useStocksSectorRatioMutation } from "@/state/queries/use-stocks-sector-ratio-mutation";
 import { AnnualDividend } from "./_components/annual-dividend";
 import { Loader2Icon } from "lucide-react";
 import { useYearlyDividendMutation } from "@/state/queries/use-yearly-dividend-mutation";
