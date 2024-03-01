@@ -89,7 +89,7 @@ export const TickerDrawer = React.memo(
         </DrawerHeader>
 
         {isLoading ? (
-          <div className="flex flex-col gap-5 overflow-scroll px-5 pt-8">
+          <div className="flex h-full w-full flex-1 flex-col items-start gap-5 overflow-scroll px-5 pt-8">
             {Array.from({ length: 10 }, (_, idx) => (
               <div className="flex " key={idx}>
                 <div className="mr-4 h-10 w-10 rounded-full bg-grey-50" />
