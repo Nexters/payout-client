@@ -7,12 +7,15 @@ import { useQueryClient } from "@tanstack/react-query";
 import { enteredStocksQueryKeys } from "@/state/queries/use-stocks-sector-ratio-mutation";
 import { SectorRatioResponse } from "@/api/generated/endpoint.schemas";
 import { DividendList } from "../_components/dividend-list";
+import { SectorInsights } from "../_components/sector-insights";
+import { useComingDividendStocksQuery } from "../../../../../state/queries/use-coming-dividend-stocks-query";
+import { useBiggestDividendYieldStocksQuery } from "../../../../../state/queries/use-biggest-dividend-yield-stocks-query";
 
 const SectorDetailPage = React.memo(({ params }: { params: { sector: string } }) => {
   const queryClient = useQueryClient();
 
-  // const { data: comingDividendStocks } = useComingDividendStocksQuery();
-  // const { data: biggestDividendYieldStocks } = useBiggestDividendYieldStocksQuery();
+  const { data: comingDividendStocks } = useComingDividendStocksQuery(params.sector);
+  const { data: biggestDividendYieldStocks } = useBiggestDividendYieldStocksQuery(params.sector);
 
   const data = React.useMemo(
     () =>
@@ -48,10 +51,10 @@ const SectorDetailPage = React.memo(({ params }: { params: { sector: string } })
       <DividendList dividendList={sectorData.stockShares} />
       <div className="h-4 bg-gray-100" />
 
-      {/* <SectorInsights
+      <SectorInsights
         comingDividendStocks={comingDividendStocks}
         biggestDividendYieldStocks={biggestDividendYieldStocks}
-      /> */}
+      />
     </div>
   );
 });
