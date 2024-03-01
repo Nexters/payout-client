@@ -17,5 +17,6 @@ export const useStockByTickerQuery = (tickerName: string) => {
     staleTime: Infinity,
     gcTime: Infinity,
     retry: 1,
+    throwOnError: true,
   });
 };

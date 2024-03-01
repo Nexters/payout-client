@@ -4,7 +4,14 @@ export interface InfoProps extends React.SVGProps<SVGSVGElement> {}
 
 const Info = React.memo(({ ...props }: InfoProps) => {
   return (
-    <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width={props.width ?? 20}
+      height={props.height ?? 20}
+      viewBox="0 0 24 24"
+      fill="none"
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"

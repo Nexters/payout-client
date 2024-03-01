@@ -33,7 +33,8 @@ const BubbleChart = React.memo(({ rank, dividend, ...props }: BubbleChartProps) 
           style={{ color: STYLE_BY_RANK[rank].textColor }}
           className={cn("flex text-[32px]", rank !== 0 && "text-[28px]")}
         >
-          {dividend.totalDividend.toFixed(2)}<span className=" opacity-40">$</span>
+          <span className=" opacity-40">$</span>
+          {dividend.totalDividend.toFixed(2)}
         </p>
         <p style={{ color: STYLE_BY_RANK[rank].textColor }} className="text-body3 opacity-70">
           {dividend.ticker}

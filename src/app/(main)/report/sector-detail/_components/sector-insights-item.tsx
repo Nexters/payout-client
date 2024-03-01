@@ -54,11 +54,11 @@ export const SectorInsightsItem = React.memo(({ title, data, type }: SectorInsig
                   <TickerDefault className="h-8 min-w-8 max-w-8" />
                 ) : (
                   <Image
-                    src={stock.logoUrl}
+                    src={stock.logoUrl ?? "/next.svg"}
                     alt={stock.ticker}
-                    className="h-8 w-8 rounded-full border border-grey-100"
-                    width={32}
-                    height={32}
+                  width={40}
+                  height={40}
+                  className="mr-4 h-10 min-w-10 max-w-10 rounded-full border border-grey-100 bg-grey-50 object-contain p-1"
                   />
                 )}
                 <div>

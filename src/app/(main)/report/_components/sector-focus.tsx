@@ -31,8 +31,8 @@ export const SectorFocus = React.memo(({ data }: { data: Sector[] }) => {
   }, [data]);
 
   const onSectorClick = React.useCallback(
-    (sector: Sector) => {
-      router.push(`/report/sector-detail/${sector.sectorName}`);
+    (sector: Sector, idx: number) => {
+      router.push(`/report/sector-detail/${sector.sectorName}?i=${idx}`);
     },
     [router]
   );
@@ -42,8 +42,8 @@ export const SectorFocus = React.memo(({ data }: { data: Sector[] }) => {
   }, [router]);
 
   return (
-    <div className="flex flex-col gap-6 p-5">
-      <div className="flex w-full flex-col items-start">
+    <div className="flex flex-col gap-6 px-5 py-8">
+      <div className="flex w-full flex-col items-start gap-y-0.5">
         <p className="text-h5 text-grey-600">Your portfolio focuses on</p>
         <p className="text-h1 text-grey-900">{sectors[0].sectorName}</p>
       </div>
@@ -73,7 +73,7 @@ export const SectorFocus = React.memo(({ data }: { data: Sector[] }) => {
               sectorName={sector.sectorName}
               sectorRatio={Number((sector.sectorRatio * 100).toFixed(2))}
               isShowingMore={sector.isShowingMore}
-              onClick={sector.isShowingMore ? onExtraSectorClick : () => onSectorClick(sector)}
+              onClick={sector.isShowingMore ? onExtraSectorClick : () => onSectorClick(sector, idx)}
             />
           );
         })}

@@ -1,18 +1,18 @@
-import FirstImage from "@/app/(landing)/_assets/1.png"
+import FirstImage from "@/app/(landing)/_assets/1.png";
 import Image from "next/image";
 import React from "react";
-import Header from "./header";
+import NavigationBar from "@/components/common/navigation-bar/navigation-bar";
 
 const Intro = () => {
   return (
     <div
       style={{
-        background: "linear-gradient(0deg, #EFF1FC 21.47%, rgba(239, 241, 252, 0.00) 53.7%)"
+        background: "linear-gradient(0deg, #EFF1FC 21.47%, rgba(239, 241, 252, 0.00) 53.7%)",
       }}
-      className="flex w-full flex-col items-center gap-[60px]"
+      className="flex w-full flex-col items-center gap-[20px]"
     >
-      <Header />
-      <header className="flex w-full max-w-[375px] flex-col items-center justify-center gap-4 px-5 pt-5">
+      <NavigationBar />
+      <header className="flex w-full max-w-[375px] flex-col items-center justify-center gap-4 px-5">
         <div className="flex w-full items-center justify-center gap-2">
           <Tag title="Free" />
           <Tag title="1 Min" />
@@ -25,7 +25,7 @@ const Intro = () => {
         </div>
       </header>
       <div className="flex w-full items-center justify-center pb-10">
-        <Image src={FirstImage} alt="A chart on a phone" width={335}/>
+        <Image src={FirstImage} alt="A chart on a phone" width={335} />
       </div>
     </div>
   );

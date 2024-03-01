@@ -7,17 +7,21 @@ import React from "react";
 
 export const yearlyDividendQueryKeys = createQueryKeys("yearly-dividend");
 
-export const useYearlyDividendMutation = ()=> {
+export const useYearlyDividendMutation = () => {
   const { stocks } = useStocksStore();
 
-  const tickerShares = React.useMemo(() => stocks.map((stock) => ({
-    share: stock.count,
-    ticker: stock.ticker ?? "",
-  })), [stocks])
+  const tickerShares = React.useMemo(
+    () =>
+      stocks.map((stock) => ({
+        share: stock.count,
+        ticker: stock.ticker ?? "",
+      })),
+    [stocks]
+  );
 
   const requestClient = async (): Promise<YearlyDividendResponse> => {
     const response = await getYearlyDividends({
-      tickerShares
+      tickerShares,
     });
     return response.data;
   };
@@ -29,5 +33,6 @@ export const useYearlyDividendMutation = ()=> {
     onSuccess: (data) => {
       queryClient.setQueryData(yearlyDividendQueryKeys._def, data);
     },
+    throwOnError: true,
   });
 };

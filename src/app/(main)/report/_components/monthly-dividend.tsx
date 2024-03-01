@@ -20,15 +20,25 @@ export const MonthlyDividend = React.memo(({ data }: MonthlyDividendProps) => {
   const [halfToggleState, setHalfToggleState] = useState<halfToggleType>("first");
   const router = useRouter();
 
-  const monthlyDividends = data.map((item) => {
-    return {
-      date:
-        parseInt((item.year ?? 0).toString().slice(-2)) +
-        "." +
-        ((item.month ?? 0) < 10 ? `0${item.month}` : (item.month ?? 0).toString()),
-      totalDividend: item.totalDividend,
-    };
-  });
+  const monthlyDividends = React.useMemo(
+    () =>
+      data.map((item) => {
+        return {
+          date:
+            parseInt((item.year ?? 0).toString().slice(-2)) +
+            "." +
+            ((item.month ?? 0) < 10 ? `0${item.month}` : (item.month ?? 0).toString()),
+          totalDividend: item.totalDividend,
+        };
+      }),
+    [data]
+  );
+
+  const averageDividendIncome = React.useMemo(() => {
+    return data.reduce((prev, cur) => {
+      return prev + cur.totalDividend;
+    }, 0);
+  }, [data]);
 
   const handleToggle = (type: halfToggleType) => {
     setHalfToggleState(type);
@@ -48,9 +58,9 @@ export const MonthlyDividend = React.memo(({ data }: MonthlyDividendProps) => {
 
   return (
     <div className="flex flex-col gap-6 p-5 pb-8">
-      <div className="flex w-full flex-col items-start">
+      <div className="flex w-full flex-col items-start  gap-y-0.5">
         <p className=" text-h5 text-grey-600">Average Monthly Dividend Income</p>
-        <p className=" text-h1 text-grey-900">{`$${250}`}</p>
+        <p className=" text-h1 text-grey-900">{`$${(averageDividendIncome / 12).toFixed(2)}`}</p>
       </div>
       <BarChart
         index="date"

@@ -7,13 +7,17 @@ import React from "react";
 
 export const enteredStocksQueryKeys = createQueryKeys("entered-stocks");
 
-export const useStocksSectorRatioMutation = ()=> {
+export const useStocksSectorRatioMutation = () => {
   const { stocks } = useStocksStore();
 
-  const tickerShares = React.useMemo(() => stocks.map((stock) => ({
-    share: stock.count,
-    ticker: stock.ticker ?? "",
-  })), [stocks])
+  const tickerShares = React.useMemo(
+    () =>
+      stocks.map((stock) => ({
+        share: stock.count,
+        ticker: stock.ticker ?? "",
+      })),
+    [stocks]
+  );
 
   const requestClient = async (): Promise<SectorRatioResponse[]> => {
     const response = await findSectorRatios({ tickerShares });
@@ -27,5 +31,6 @@ export const useStocksSectorRatioMutation = ()=> {
     onSuccess: (data) => {
       queryClient.setQueryData(enteredStocksQueryKeys._def, data);
     },
+    throwOnError: true,
   });
 };

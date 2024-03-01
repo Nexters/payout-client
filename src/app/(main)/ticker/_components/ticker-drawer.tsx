@@ -5,7 +5,7 @@ import Input from "@/components/ui/input";
 import React from "react";
 import TickerList from "./ticker-list";
 import useDebounce from "@/hooks/use-debounce";
-import { useFilteredStocksQuery } from "@/state/queries/use-filtered-stocks";
+import { useFilteredStocksQuery } from "@/state/queries/use-filtered-stocks-query";
 import { DrawerType } from "./ticker-content";
 import { Stock } from "@/state/stores/stocks-store";
 import { exhaustiveCheck } from "@/utils/exhaustive-check";
