@@ -1,7 +1,7 @@
 "use client";
 
-import Intro from "@/app/(main)/ticker/_components/intro";
-import { TickerDrawer } from "@/app/(main)/ticker/_components/ticker-drawer";
+import Intro from "@/app/(input)/ticker/_components/intro";
+import { TickerDrawer } from "@/app/(input)/ticker/_components/ticker-drawer";
 import { Dialog } from "@/components/common/dialog/dialog";
 import Toast from "@/components/common/toast/toast";
 import { Stock, useStocksStore } from "@/state/stores/stocks-store";
