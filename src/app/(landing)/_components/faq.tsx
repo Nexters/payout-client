@@ -15,13 +15,15 @@ const FAQ = () => {
         <AccordionItem value="item-2" className="rounded border border-grey-100 p-4">
           <AccordionTrigger>Are stock data updated real-time?</AccordionTrigger>
           <AccordionContent>
-            Stock Data are updated daily at midnight UTC, and Dividend Data are estimated based on the data of the
+            Stock data are updated daily at midnight UTC, and dividend data are estimated based on the data of the
             preceding year.
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-3" className="rounded border border-grey-100 p-4">
           <AccordionTrigger>How can I suggest ideas for Payout?</AccordionTrigger>
-          <AccordionContent>Idea suggestions are always appreciated! Please contact us at payout.developer@gmail.com</AccordionContent>
+          <AccordionContent>
+            Idea suggestions are always appreciated! Please contact us at payout.developer@gmail.com
+          </AccordionContent>
         </AccordionItem>
       </Accordion>
     </div>

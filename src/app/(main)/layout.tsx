@@ -8,10 +8,10 @@ export const viewport: Viewport = {
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <>
+    <div className="flex size-full flex-col">
       <NavigationBar />
-      <div className="h-[calc(100%-50px)] w-full">{children}</div>
-    </>
+      <div className="h-[calc(100%-50px)] w-full overflow-auto">{children}</div>
+    </div>
   );
 };
 

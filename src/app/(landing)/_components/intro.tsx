@@ -1,7 +1,6 @@
 import FirstImage from "@/app/(landing)/_assets/1.png";
 import Image from "next/image";
 import React from "react";
-import NavigationBar from "@/components/common/navigation-bar/navigation-bar";
 
 const Intro = () => {
   return (
@@ -11,7 +10,6 @@ const Intro = () => {
       }}
       className="flex w-full flex-col items-center gap-[20px]"
     >
-      <NavigationBar />
       <header className="flex w-full max-w-[375px] flex-col items-center justify-center gap-4 px-5">
         <div className="flex w-full items-center justify-center gap-2">
           <Tag title="Free" />
