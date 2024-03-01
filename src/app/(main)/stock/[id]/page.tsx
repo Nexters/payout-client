@@ -44,7 +44,6 @@ export default function StockPage({ params }: { params: { id: string } }) {
       </DrawerPortal>
       <div className="flex h-full w-full flex-col pt-2.5">
         <Header stock={data} handleInfoClick={handleInfoClick} />
-        <div className="h-4 bg-grey-100" />
         <InvestmentTip exDividendDate={data.exDividendDate} earliestPaymentDate={data.earliestPaymentDate} />
         <DividendInfo
           dividendPerShare={data.dividendPerShare}
