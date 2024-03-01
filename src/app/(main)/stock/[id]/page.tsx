@@ -40,7 +40,7 @@ export default function StockPage({ params }: { params: { id: string } }) {
     <DrawerPrimitive open={showStockInfo}>
       <DrawerPortal>
         <DrawerOverlay onClick={() => setShowStockInfo(false)} />
-        <StockInfoDrawer handleInfoClick={handleInfoClick} />
+        <StockInfoDrawer lastModifiedAt={data.lastModifiedAt} handleInfoClick={handleInfoClick} />
       </DrawerPortal>
       <div className="flex h-full w-full flex-col pt-2.5">
         <Header stock={data} handleInfoClick={handleInfoClick} />
