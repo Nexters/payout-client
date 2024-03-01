@@ -27,7 +27,11 @@ export const Header = React.memo(({ stock, handleInfoClick }: HeaderProps) => {
         )}
       </div>
 
-      <div className="h-4 bg-grey-100" />
+      <Divider />
     </>
   );
+});
+
+const Divider = React.memo(() => {
+  return <div className="h-4 w-full shrink-0 bg-grey-100" />;
 });
