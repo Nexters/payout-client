@@ -4,7 +4,14 @@ export interface RealEstateIconProps extends React.SVGProps<SVGSVGElement> {}
 
 const RealEstateIcon = React.memo(({ ...props }: RealEstateIconProps) => {
   return (
-    <svg {...props} width="20" height="20" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      {...props}
+      width={props.width ?? 20}
+      height={props.height ?? 20}
+      viewBox="0 0 24 25"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"

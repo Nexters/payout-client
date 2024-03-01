@@ -4,7 +4,14 @@ export interface ETFIconProps extends React.SVGProps<SVGSVGElement> {}
 
 const ETFIcon = React.memo(({ ...props }: ETFIconProps) => {
   return (
-    <svg {...props} width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      {...props}
+      width={props.width ?? 20}
+      height={props.height ?? 20}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M16.6274 16.6755V7.19995H22.8001V8.67543H18.4549V11.2068H21.9337V12.6416H18.4549V16.6755H16.6274Z"
         fill="currentColor"

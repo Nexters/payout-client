@@ -29,3 +29,19 @@ export const ICONS = {
   ETF: <ETFIcon />,
   ETC: <ETCIcon />,
 } as const;
+
+export const LARGE_ICONS = {
+  "Basic Materials": <BasicMaterialsIcon width={32} height={32} />,
+  "Communication Services": <CommunicationServicesIcon width={32} height={32} />,
+  "Consumer Cyclical": <ConsumerCyclicalIcon width={32} height={32} />,
+  "Consumer Defensive": <ConsumerDefensiveIcon width={32} height={32} />,
+  Energy: <EnergyIcon width={32} height={32} />,
+  "Financial Services": <FinancialServicesIcon width={32} height={32} />,
+  Healthcare: <HealthcareIcon width={32} height={32} />,
+  Industrials: <IndustrialsIcon width={32} height={32} />,
+  "Real Estate": <RealEstateIcon width={32} height={32} />,
+  Technology: <TechnologyIcon width={32} height={32} />,
+  Utilities: <UtilitiesIcon width={32} height={32} />,
+  ETF: <ETFIcon width={32} height={32} />,
+  ETC: <ETCIcon width={32} height={32} />,
+} as const;

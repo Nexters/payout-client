@@ -4,7 +4,14 @@ export interface TechnologyIconProps extends React.SVGProps<SVGSVGElement> {}
 
 const TechnologyIcon = React.memo(({ ...props }: TechnologyIconProps) => {
   return (
-    <svg {...props} width="20" height="20" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      {...props}
+      width={props.width ?? 20}
+      height={props.height ?? 20}
+      viewBox="0 0 25 25"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"

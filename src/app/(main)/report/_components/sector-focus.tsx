@@ -31,8 +31,8 @@ export const SectorFocus = React.memo(({ data }: { data: Sector[] }) => {
   }, [data]);
 
   const onSectorClick = React.useCallback(
-    (sector: Sector) => {
-      router.push(`/report/sector-detail/${sector.sectorName}`);
+    (sector: Sector, idx: number) => {
+      router.push(`/report/sector-detail/${sector.sectorName}?i=${idx}`);
     },
     [router]
   );
@@ -73,7 +73,7 @@ export const SectorFocus = React.memo(({ data }: { data: Sector[] }) => {
               sectorName={sector.sectorName}
               sectorRatio={Number((sector.sectorRatio * 100).toFixed(2))}
               isShowingMore={sector.isShowingMore}
-              onClick={sector.isShowingMore ? onExtraSectorClick : () => onSectorClick(sector)}
+              onClick={sector.isShowingMore ? onExtraSectorClick : () => onSectorClick(sector, idx)}
             />
           );
         })}
