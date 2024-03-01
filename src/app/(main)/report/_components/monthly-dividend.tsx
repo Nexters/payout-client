@@ -79,8 +79,8 @@ export const MonthlyDividend = React.memo(({ data }: MonthlyDividendProps) => {
       <div className="mb-2 flex justify-between rounded-3xl border border-gray-100 bg-grey-100 p-1.5">
         <ShadcnButton
           className={`flex flex-1 items-center justify-center rounded-3xl ${
-            halfToggleState === "first" ? "bg-white" : "bg-gray-100"
-          } text-h5 text-gray-700`}
+            halfToggleState === "first" ? "bg-white text-h6" : "bg-gray-100 text-body2"
+          } `}
           style={{ boxShadow: halfToggleState === "first" ? "0px 2px 10px 0px rgba(0, 0, 0, 0.08)" : undefined }}
           onClick={() => handleToggle("first")}
         >
@@ -88,8 +88,8 @@ export const MonthlyDividend = React.memo(({ data }: MonthlyDividendProps) => {
         </ShadcnButton>
         <ShadcnButton
           className={`flex flex-1 items-center justify-center rounded-3xl ${
-            halfToggleState === "second" ? "bg-white" : "bg-gray-100"
-          } text-h5 text-gray-700`}
+            halfToggleState === "second" ? "bg-white text-h6" : "bg-gray-100 text-body2"
+          } `}
           style={{ boxShadow: halfToggleState === "second" ? "0px 2px 10px 0px rgba(0, 0, 0, 0.08)" : undefined }}
           onClick={() => handleToggle("second")}
         >
