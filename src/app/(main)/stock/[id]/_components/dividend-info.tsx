@@ -16,7 +16,9 @@ export const DividendInfo = React.memo(({ dividendYield, dividendPerShare, divid
       <div className="mb-2 flex w-full justify-between gap-2">
         <div className="flex flex-1 flex-col items-center justify-between gap-2 bg-grey-50 p-4">
           <p className="text-body3 text-grey-500">Dividend Yield</p>
-          <p className="text-h5 text-grey-800">{`${dividendYield?.toFixed(2) ?? 0}%`}</p>
+          <p className="text-h5 text-grey-800">
+            {`${(dividendYield !== undefined ? dividendYield * 100 : 0).toFixed(2)}%`}
+          </p>
         </div>
         <div className="flex flex-1 flex-col items-center justify-between bg-grey-50 p-4">
           <p className="text-body3 text-grey-500">Dividend per Share</p>

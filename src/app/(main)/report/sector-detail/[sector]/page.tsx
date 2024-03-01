@@ -25,13 +25,13 @@ const SectorDetailPage = React.memo(({ params }: { params: { sector: string } })
     [queryClient]
   );
 
-  const sectorName = React.useMemo(() => {
+  const sectorValue = React.useMemo(() => {
     return params.sector.split("%20").join(" ");
   }, [params.sector]);
 
   const sectorData = React.useMemo(() => {
-    return data?.find((each) => each.sectorName === sectorName);
-  }, [data, sectorName]);
+    return data?.find((each) => each.sectorValue === sectorValue);
+  }, [data, sectorValue]);
 
   if (!sectorData) {
     return (
