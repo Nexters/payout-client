@@ -59,11 +59,11 @@ const TickerContent = React.memo(() => {
     if (selectedStock) {
       resetData();
 
-      const existingStockIndex = stocks.findIndex((stock) => stock.stockId === selectedStock.stockId);
+      const existingStock = stocks.find((stock) => stock.stockId === selectedStock.stockId);
 
-      if (existingStockIndex !== -1) {
+      if (existingStock !== undefined) {
         // 주식이 이미 존재하는 경우 업데이트
-        editStock({ ...selectedStock, count: tickerCount });
+        editStock({ ...selectedStock, count: existingStock.count + tickerCount });
       } else {
         addStock({ ...selectedStock, count: tickerCount });
       }
