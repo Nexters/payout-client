@@ -115,4 +115,7 @@ body,
   input:disabled {
     background-color: white;
   }
+  input::placeholder {
+    color: #b0b8c1;
+  }
 }
