@@ -38,8 +38,8 @@ export const TickerDrawer = React.memo(
     handleDeleteClick,
     handleConfirmClick,
   }: TickerDrawerProps) => {
-    const debouncedTickerName = useDebounce(tickerName, 1000); // 디바운스 적용
-    const { data } = useFilteredStocksQuery(debouncedTickerName);
+    const debouncedTickerName = useDebounce(tickerName, 400); // 디바운스 적용
+    const { data, isLoading } = useFilteredStocksQuery(debouncedTickerName);
     const isSubmittable = React.useMemo(() => {
       return drawerType === "count" && tickerCount > 0;
     }, [drawerType, tickerCount]);
@@ -88,8 +88,21 @@ export const TickerDrawer = React.memo(
           )}
         </DrawerHeader>
 
-        {drawerType === "name" && !!data && (
-          <TickerList data={data} tickerName={tickerName} onClick={handleTickerClick} />
+        {isLoading ? (
+          <div className="flex h-full w-full flex-1 flex-col items-start gap-5 overflow-scroll px-5 pt-8">
+            {Array.from({ length: 10 }, (_, idx) => (
+              <div className="flex " key={idx}>
+                <div className="mr-4 h-10 w-10 rounded-full bg-grey-50" />
+                <div className="flex flex-col">
+                  <div className="mb-1 rounded-sm bg-grey-50" style={{ width: 54, height: 19 }} />
+                  <div className=" rounded-sm bg-grey-50" style={{ width: 220, height: 17 }} />
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          drawerType === "name" &&
+          !!data && <TickerList data={data} tickerName={tickerName} onClick={handleTickerClick} />
         )}
 
         {drawerType === "count" && (
