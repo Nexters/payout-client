@@ -56,9 +56,9 @@ export const SectorInsightsItem = React.memo(({ title, data, type }: SectorInsig
                   <Image
                     src={stock.logoUrl ?? "/next.svg"}
                     alt={stock.ticker}
-                  width={40}
-                  height={40}
-                  className="mr-4 h-10 min-w-10 max-w-10 rounded-full border border-grey-100 bg-grey-50 object-contain p-1"
+                    width={40}
+                    height={40}
+                    className="mr-4 h-10 min-w-10 max-w-10 rounded-full border border-grey-100 bg-grey-50 object-contain p-1"
                   />
                 )}
                 <div>
@@ -66,7 +66,7 @@ export const SectorInsightsItem = React.memo(({ title, data, type }: SectorInsig
                   <p className="mt-0.5 truncate text-body2 text-main-900">
                     {type === "Date" && stock.exDividendDate && formatDateStringToMonthDay(stock.exDividendDate)}
                     {type === "Rate" &&
-                      `${stock.dividendYield !== undefined ? Math.floor(stock.dividendYield * 100) / 100 : 0}%`}
+                      `${(stock.dividendYield !== undefined ? stock.dividendYield * 100 : 0).toFixed(2)}%`}
                   </p>
                 </div>
               </div>

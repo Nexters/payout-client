@@ -21,7 +21,9 @@ export const Header = React.memo(({ stock, handleInfoClick }: HeaderProps) => {
         <Info className="text-grey-400" onClick={handleInfoClick} />
       </div>
 
-      <div className="inline-block rounded bg-grey-100 px-2 py-1 text-body3 text-grey-700">{stock.industry}</div>
+      {stock.industry && (
+        <div className="inline-block rounded bg-grey-100 px-2 py-1 text-body3 text-grey-700">{stock.industry}</div>
+      )}
     </div>
   );
 });

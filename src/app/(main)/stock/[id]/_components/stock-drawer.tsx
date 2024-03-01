@@ -9,12 +9,14 @@ import {
   DrawerDescription,
 } from "@/components/ui/drawer";
 import React from "react";
+import { formatDate } from "../../../../../utils/date";
 
 interface StockInfoDrawerProps {
+  lastModifiedAt: string;
   handleInfoClick: () => void;
 }
 
-export const StockInfoDrawer = React.memo(({ handleInfoClick }: StockInfoDrawerProps) => {
+export const StockInfoDrawer = React.memo(({ lastModifiedAt, handleInfoClick }: StockInfoDrawerProps) => {
   return (
     <DrawerContent className="mx-auto max-w-screen-md">
       <DrawerHeader>
@@ -22,7 +24,7 @@ export const StockInfoDrawer = React.memo(({ handleInfoClick }: StockInfoDrawerP
           <p className=" text-h3 font-semibold text-grey-900">{"Latest Price"}</p>
           <p className="mt-1 ">
             <span className="text-body3 text-grey-600">{`Last updated `}</span>
-            <span className="text-body3 text-main-700">2024/01/27 21:38</span>
+            <span className="text-body3 text-main-700">{`${formatDate(lastModifiedAt)}`}</span>
           </p>
         </DrawerTitle>
         <DrawerDescription>

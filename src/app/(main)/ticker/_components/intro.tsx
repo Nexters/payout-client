@@ -11,7 +11,7 @@ const Intro = () => {
   return (
     <div className={`${hasStock && "border-b border-b-grey-100"} sticky top-0 w-full bg-white px-4`}>
       <h2 className="pt-4 text-h2">
-        You added <span className="text-main-700">{stocks.length}</span> {`${hasStock ? "stocks" : "stock"}`}.
+        You added <span className="text-main-700">{stocks.length}</span> {`${stocks.length > 1 ? "stocks" : "stock"}`}.
       </h2>
       <div className="flex flex-col justify-start pb-4 pt-10 text-lg">
         <Button

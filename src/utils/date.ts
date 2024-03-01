@@ -15,7 +15,6 @@ export function formatDateStringToMonthDay(dateString: string): string {
   return formattedDate + suffix;
 }
 
-
 /**
  * This function calculates the start year and end year based on the given date and returns a date range.
  * @param date Date object of the starting date
@@ -36,3 +35,23 @@ export const getYearRange = (date: Date): string => {
   const dateRange = `${startYear}.${formattedStartMonth} ~ ${endYear}.${formattedEndMonth}`;
   return dateRange;
 };
+
+/**
+ * "2024-02-29T22:02:09.899803Z" > 2024/03/01 07:02
+ * @param dateString
+ * @returns string
+ */
+export function formatDate(dateString: string) {
+  try {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const day = date.getDate().toString().padStart(2, "0");
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+
+    return `${year}/${month}/${day} ${hours}:${minutes}`;
+  } catch {
+    return undefined;
+  }
+}

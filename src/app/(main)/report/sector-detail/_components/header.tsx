@@ -29,7 +29,9 @@ export const Header = React.memo(({ sectorName, sectorRatio, tickerCount }: Head
         </div>
       </div>
 
-      <div className="inline-block rounded-2xl bg-grey-100 px-2.5 py-1.5 text-h6">{`${tickerCount} Stocks`}</div>
+      <div className="inline-block rounded-2xl bg-grey-100 px-2.5 py-1.5 text-h6">{`${tickerCount} Stock${
+        tickerCount > 1 ? "s" : ""
+      }`}</div>
     </div>
   );
 });

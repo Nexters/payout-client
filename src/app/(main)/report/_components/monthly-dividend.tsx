@@ -76,21 +76,27 @@ export const MonthlyDividend = React.memo(({ data }: MonthlyDividendProps) => {
         showLegend={false}
       />
 
-      <div className="mb-2 flex justify-between rounded-3xl border border-gray-100 p-1.5">
+      <div className="mb-2 flex items-center justify-between rounded-3xl border border-gray-100 bg-grey-100 p-1.5">
         <ShadcnButton
-          className={`flex flex-1 items-center justify-center rounded-3xl ${
-            halfToggleState === "first" ? "bg-white" : "bg-gray-100"
-          } text-h5 text-gray-700`}
-          style={{ boxShadow: halfToggleState === "first" ? "0px 2px 10px 0px rgba(0, 0, 0, 0.08)" : undefined }}
+          className={`flex h-9 flex-1 items-center justify-center rounded-3xl ${
+            halfToggleState === "first" ? "bg-white text-h6 " : "bg-gray-100 text-body2 "
+          } `}
+          style={{
+            boxShadow: halfToggleState === "first" ? "0px 2px 10px 0px rgba(0, 0, 0, 0.08)" : undefined,
+            color: halfToggleState === "first" ? "#4e5968" : "#8b95a1",
+          }}
           onClick={() => handleToggle("first")}
         >
           First Half
         </ShadcnButton>
         <ShadcnButton
-          className={`flex flex-1 items-center justify-center rounded-3xl ${
-            halfToggleState === "second" ? "bg-white" : "bg-gray-100"
-          } text-h5 text-gray-700`}
-          style={{ boxShadow: halfToggleState === "second" ? "0px 2px 10px 0px rgba(0, 0, 0, 0.08)" : undefined }}
+          className={`flex h-9 flex-1 items-center justify-center rounded-3xl ${
+            halfToggleState === "second" ? "bg-white text-h6" : "bg-gray-100 text-body2"
+          } `}
+          style={{
+            boxShadow: halfToggleState === "second" ? "0px 2px 10px 0px rgba(0, 0, 0, 0.08)" : undefined,
+            color: halfToggleState === "second" ? "#4e5968" : "#8b95a1",
+          }}
           onClick={() => handleToggle("second")}
         >
           Second Half

@@ -5,9 +5,9 @@ import { UpcomingDividendResponse } from "../../api/generated/endpoint.schemas";
 
 export const comingDividendStocksQueryKeys = createQueryKeys("coming-dividend-stocks");
 
-export const useComingDividendStocksQuery = () => {
+export const useComingDividendStocksQuery = (sector: string) => {
   const requestClient = async (): Promise<UpcomingDividendResponse> => {
-    const { data } = await getUpComingDividendStocks({ pageNumber: 1, pageSize: 5 });
+    const { data } = await getUpComingDividendStocks({ sector, pageNumber: 1, pageSize: 5 });
     return data;
   };
 

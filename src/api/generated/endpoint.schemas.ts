@@ -7,6 +7,10 @@
  */
 export type GetBiggestDividendYieldStocksParams = {
   /**
+   * sector value
+   */
+  sector: string;
+  /**
    * page number(start with 1) for pagination
    */
   pageNumber: number;
@@ -17,6 +21,10 @@ export type GetBiggestDividendYieldStocksParams = {
 };
 
 export type GetUpComingDividendStocksParams = {
+  /**
+   * sector value
+   */
+  sector: string;
   /**
    * page number(start with 1) for pagination
    */
@@ -71,6 +79,7 @@ export interface UpcomingDividendResponse {
 export type StockDetailResponseDividendMonthsItem =
   (typeof StockDetailResponseDividendMonthsItem)[keyof typeof StockDetailResponseDividendMonthsItem];
 
+// eslint-disable-next-line @typescript-eslint/no-redeclare
 export const StockDetailResponseDividendMonthsItem = {
   JANUARY: "JANUARY",
   FEBRUARY: "FEBRUARY",
@@ -95,9 +104,11 @@ export interface StockDetailResponse {
   exchange: string;
   exDividendDate: string;
   industry: string;
+  lastModifiedAt: string;
   logoUrl: string;
   price: number;
   sectorName: string;
+  sectorValue: string;
   stockId: string;
   ticker: string;
   volume: number;
@@ -141,6 +152,7 @@ export interface StockResponse {
   logoUrl: string;
   price: number;
   sectorName: string;
+  sectorValue: string;
   stockId: string;
   ticker: string;
   volume: number;
@@ -154,6 +166,7 @@ export interface StockShareResponse {
 export interface SectorRatioResponse {
   sectorName: string;
   sectorRatio: number;
+  sectorValue: string;
   stockShares: StockShareResponse[];
 }
 
