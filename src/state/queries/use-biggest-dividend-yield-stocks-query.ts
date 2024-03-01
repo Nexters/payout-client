@@ -12,7 +12,7 @@ export const useBiggestDividendYieldStocksQuery = (sector: string) => {
   };
 
   return useQuery({
-    queryKey: [biggestDividendYieldStocksQueryKeys._def],
+    queryKey: [biggestDividendYieldStocksQueryKeys._def, sector],
     queryFn: () => requestClient(),
     staleTime: Infinity,
     gcTime: Infinity,

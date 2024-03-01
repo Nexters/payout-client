@@ -12,7 +12,7 @@ export const useComingDividendStocksQuery = (sector: string) => {
   };
 
   return useQuery({
-    queryKey: [comingDividendStocksQueryKeys._def],
+    queryKey: [comingDividendStocksQueryKeys._def, sector],
     queryFn: () => requestClient(),
     staleTime: Infinity,
     gcTime: Infinity,
