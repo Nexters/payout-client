@@ -46,7 +46,7 @@ export const DividendAccordion = ({ monthlyDividendList }: { monthlyDividendList
             className={cn("rounded-lg border border-grey-200 p-5")}
           >
             <AccordionTrigger>
-              <div className={cn("flex w-full items-center justify-between", isOpenable && "pr-5")}>
+              <div className={cn("flex w-full items-center justify-between", isOpenable && "pr-3")}>
                 <p className=" text-h4 text-grey-900">{`${month}${year}`}</p>
                 <p className=" text-h4 text-grey-900">${monthDividend.totalDividend.toFixed(2)}</p>
               </div>
