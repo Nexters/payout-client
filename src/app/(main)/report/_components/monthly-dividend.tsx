@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { MonthlyDividendResponse } from "@/api/generated/endpoint.schemas";
-import { BarChart } from "@tremor/react";
+import { BarChart, EventProps } from "@tremor/react";
 import { Button as ShadcnButton } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/common/button/button";
@@ -19,7 +19,7 @@ interface MonthlyDividendProps {
 export const MonthlyDividend = React.memo(({ data }: MonthlyDividendProps) => {
   const [halfToggleState, setHalfToggleState] = useState<halfToggleType>("first");
   const router = useRouter();
-
+  const [showTooltip, setShowToolTip] = useState<boolean>(true);
   const monthlyDividends = React.useMemo(
     () =>
       data.map((item) => {
@@ -56,26 +56,33 @@ export const MonthlyDividend = React.memo(({ data }: MonthlyDividendProps) => {
     return monthlyDividends.slice(6, 12);
   }, [halfToggleState, monthlyDividends]);
 
+  const handleonValueChange = useCallback((v: EventProps) => {
+    const isShow = v !== null;
+    setShowToolTip(isShow);
+  }, []);
+
   return (
     <div className="flex flex-col gap-6 p-5 pb-8">
       <div className="flex w-full flex-col items-start  gap-y-0.5">
         <p className=" text-h5 text-grey-600">Average Monthly Dividend Income</p>
         <p className=" text-h1 text-grey-900">{`$${(averageDividendIncome / 12).toFixed(2)}`}</p>
       </div>
-      <BarChart
-        index="date"
-        categories={["totalDividend"]}
-        data={shownChartData}
-        className="h-[165px]"
-        showAnimation={true}
-        colors={COLORS}
-        valueFormatter={dataFormatter}
-        onValueChange={(v) => console.log(v)}
-        showGridLines={false}
-        showYAxis={false}
-        showLegend={false}
-      />
-
+      <div>
+        <BarChart
+          index="date"
+          categories={["totalDividend"]}
+          data={shownChartData}
+          className="h-[165px]"
+          showAnimation={true}
+          colors={COLORS}
+          valueFormatter={dataFormatter}
+          onValueChange={handleonValueChange}
+          showGridLines={false}
+          showYAxis={false}
+          showLegend={false}
+          showTooltip={showTooltip}
+        />
+      </div>
       <div className="mb-2 flex items-center justify-between rounded-3xl border border-gray-100 bg-grey-100 p-1.5">
         <ShadcnButton
           className={`flex h-9 flex-1 items-center justify-center rounded-3xl ${
