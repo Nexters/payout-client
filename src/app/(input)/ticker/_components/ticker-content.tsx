@@ -79,7 +79,10 @@ const TickerContent = React.memo(() => {
     return setTickerCount(0);
   }, []);
 
-  const handleNameFocus = React.useCallback(() => {
+  const handleNameFocus = React.useCallback((e: React.FocusEvent<HTMLInputElement>) => {
+    e.preventDefault();
+
+    e.target.focus({ preventScroll: true });
     setDrawerType("name");
   }, []);
 

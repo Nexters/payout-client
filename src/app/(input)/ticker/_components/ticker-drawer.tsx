@@ -19,12 +19,11 @@ interface TickerDrawerProps {
   handleCountChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmitClick: () => void;
   handleInputClear: (type: DrawerType) => void;
-  handleNameFocus: () => void;
+  handleNameFocus: (e: React.FocusEvent<HTMLInputElement>) => void;
   handleDeleteClick: () => void;
   handleConfirmClick: () => void;
 }
 
-const DRAWER_OFFSET = 96;
 export const TickerDrawer = React.memo(
   ({
     drawerType,
@@ -41,7 +40,6 @@ export const TickerDrawer = React.memo(
   }: TickerDrawerProps) => {
     const debouncedTickerName = useDebounce(tickerName, 400); // 디바운스 적용
     const { data, isLoading } = useFilteredStocksQuery(debouncedTickerName);
-    const drawerRef = React.useRef<HTMLDivElement>(null);
     const hasTicker = React.useMemo(() => {
       return tickerCount > 0;
     }, [tickerCount]);
@@ -63,30 +61,8 @@ export const TickerDrawer = React.memo(
       }
     }, [drawerType]);
 
-    // This code is simplified for the sake of this article
-    React.useEffect(() => {
-      function onVisualViewportChange() {
-        if (drawerRef.current === null) return;
-
-        const visualViewportHeight = window.visualViewport?.height ?? 0;
-        const keyboardHeight = window.innerHeight - visualViewportHeight;
-
-        // Difference between window height and height excluding the keyboard
-        const diffFromInitial = window.innerHeight - visualViewportHeight;
-
-        const drawerHeight = drawerRef.current?.getBoundingClientRect().height || 0;
-
-        drawerRef.current.style.height = `${visualViewportHeight - DRAWER_OFFSET}px`;
-        drawerRef.current.style.bottom = `${Math.max(diffFromInitial, 0)}px`;
-      }
-
-      window.visualViewport?.addEventListener("resize", onVisualViewportChange);
-
-      return () => window.visualViewport?.removeEventListener("resize", onVisualViewportChange);
-    }, []);
-
     return (
-      <DrawerContent ref={drawerRef} className="mx-auto h-[calc(100%-100px)] max-w-screen-md">
+      <DrawerContent className="mx-auto h-[calc(100%-100px)] max-w-screen-md">
         <DrawerHeader className="pb-0">
           <DrawerTitle className="mb-10 text-h3 font-semibold text-grey-900">{title}</DrawerTitle>
           <Input
