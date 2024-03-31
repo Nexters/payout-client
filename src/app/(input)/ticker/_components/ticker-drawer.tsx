@@ -24,6 +24,7 @@ interface TickerDrawerProps {
   handleConfirmClick: () => void;
 }
 
+const DRAWER_OFFSET = 96;
 export const TickerDrawer = React.memo(
   ({
     drawerType,
@@ -68,15 +69,14 @@ export const TickerDrawer = React.memo(
         if (drawerRef.current === null) return;
 
         const visualViewportHeight = window.visualViewport?.height ?? 0;
-        // const keyboardHeight = window.innerHeight - visualViewportHeight;
+        const keyboardHeight = window.innerHeight - visualViewportHeight;
 
         // Difference between window height and height excluding the keyboard
         const diffFromInitial = window.innerHeight - visualViewportHeight;
 
-        // const drawerHeight = drawerRef.current?.getBoundingClientRect().height || 0;
+        const drawerHeight = drawerRef.current?.getBoundingClientRect().height || 0;
 
-        drawerRef.current.style.height = `${visualViewportHeight - (window.innerHeight - 100)}px`;
-        drawerRef.current.style.bottom = `${Math.max(diffFromInitial, 0)}px`;
+        drawerRef.current.style.height = `${visualViewportHeight - DRAWER_OFFSET}px`;
       }
 
       window.visualViewport?.addEventListener("resize", onVisualViewportChange);
