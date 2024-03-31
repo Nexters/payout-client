@@ -77,6 +77,7 @@ export const TickerDrawer = React.memo(
         const drawerHeight = drawerRef.current?.getBoundingClientRect().height || 0;
 
         drawerRef.current.style.height = `${visualViewportHeight - DRAWER_OFFSET}px`;
+        drawerRef.current.style.bottom = `${Math.max(diffFromInitial, 0)}px`;
       }
 
       window.visualViewport?.addEventListener("resize", onVisualViewportChange);
