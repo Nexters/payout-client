@@ -62,7 +62,7 @@ export const TickerDrawer = React.memo(
     }, [drawerType]);
 
     return (
-      <DrawerContent className="mx-auto h-[calc(100%-100px)] max-w-screen-md">
+      <DrawerContent className="top-0 mx-auto h-[calc(100%-36px)] max-w-screen-md">
         <DrawerHeader className="pb-0">
           <DrawerTitle className="mb-10 text-h3 font-semibold text-grey-900">{title}</DrawerTitle>
           <Input
@@ -108,7 +108,7 @@ export const TickerDrawer = React.memo(
           !!data && <TickerList data={data} tickerName={tickerName} onClick={handleTickerClick} />
         )}
 
-        {drawerType === "count" && (
+        {isSubmittable && (
           <DrawerFooter>
             <DrawerClose onClick={handleSubmitClick} disabled={!isSubmittable}>
               <div
