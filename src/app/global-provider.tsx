@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { hotjar } from 'react-hotjar';
 import axios, { AxiosError, AxiosResponse } from "axios";
 import React from "react";
+import GAProvider from "./ga-provider";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -44,6 +45,7 @@ export const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <QueryClientProvider client={client}>
       {children}
+      <GAProvider/>
       <ReactQueryDevtools />
     </QueryClientProvider>
   );
