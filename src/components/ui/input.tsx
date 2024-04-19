@@ -73,6 +73,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             className={"h-9 w-full text-lg outline-none"}
             type={type}
+            inputMode={type === "number" ? "numeric" : undefined}
             onFocus={handleFocus} // 수정된 handleFocus 함수로 변경
             onBlur={handleBlur}
             {...props}
