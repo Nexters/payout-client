@@ -6,6 +6,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { hotjar } from "react-hotjar";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import React from "react";
+import { useViewEvent } from "@/hooks/use-view-event";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,6 +33,7 @@ const HJSV = 6;
 
 export const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
   const [client] = React.useState(() => new QueryClient());
+  useViewEvent();
 
   React.useEffect(() => {
     if (process.env.NODE_ENV !== "development") {
@@ -45,7 +47,6 @@ export const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <QueryClientProvider client={client}>
       {children}
-      {/* <GAProvider /> */}
       <GoogleAnalytics gaId="G-K20DRKXNTC" />
       <ReactQueryDevtools />
     </QueryClientProvider>
