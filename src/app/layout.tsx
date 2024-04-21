@@ -8,6 +8,7 @@ import { Toaster } from "@/components/ui/sonner";
 const dm_sans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://pay-out.us"),
   title: "Payout",
   description: "Calculate your dividend payout with ease.",
   icons: {
