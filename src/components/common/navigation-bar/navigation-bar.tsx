@@ -8,7 +8,6 @@ import { toast } from "sonner";
 
 const ShareData = {
   title: "Payout",
-  text: "Self-check Your Dividend Portfolio",
 };
 
 function validateReportUrl(url: string) {
