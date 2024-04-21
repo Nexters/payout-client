@@ -51,7 +51,7 @@ export const SectorInsightsItem = React.memo(({ title, data, type }: SectorInsig
             >
               <div className="flex flex-col gap-4">
                 {stock.logoUrl === null ? (
-                  <TickerDefault className="h-8 min-w-8 max-w-8" />
+                  <TickerDefault className="h-10 min-w-10 max-w-10" />
                 ) : (
                   <Image
                     src={stock.logoUrl ?? "/next.svg"}
