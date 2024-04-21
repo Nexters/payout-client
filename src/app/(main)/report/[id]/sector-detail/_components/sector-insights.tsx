@@ -1,7 +1,7 @@
 import React from "react";
 import { SectorInsightsItem } from "./sector-insights-item";
-import { StockDividendYieldResponse, UpcomingDividendResponse } from "../../../../../api/generated/endpoint.schemas";
-import { formatDate } from "../../../../../utils/date";
+import { StockDividendYieldResponse, UpcomingDividendResponse } from "../../../../../../api/generated/endpoint.schemas";
+import { formatDate } from "../../../../../../utils/date";
 
 interface SectorInsightsProps {
   comingDividendStocks?: UpcomingDividendResponse;

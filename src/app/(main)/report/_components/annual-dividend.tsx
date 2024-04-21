@@ -1,7 +1,7 @@
 import { YearlyDividendResponse } from "@/api/generated/endpoint.schemas";
 import BubbleChart from "@/components/common/bubble-chart/bubble-chart";
 import { Button } from "@/components/common/button/button";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import React from "react";
 
 interface AnnualDividendProps {
@@ -12,10 +12,11 @@ const bubbleStyles = ["absolute bottom-3 left-0", "absolute right-0 top-0", "abs
 
 export const AnnualDividend = ({ data }: AnnualDividendProps) => {
   const router = useRouter();
+  const { id } = useParams<{ id: string }>();
 
   const handleButtonClick = React.useCallback(() => {
-    router.push("/report/dividend/yearly");
-  }, [router]);
+    router.push(`/report/${id}/dividend/yearly`);
+  }, [id, router]);
 
   if (data.dividends.length === 1) {
     return (

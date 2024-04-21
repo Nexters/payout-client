@@ -5,9 +5,11 @@ import { Header } from "./_components/header";
 import { DividendAccordion } from "./_components/dividend-accordion";
 import { useMonthlyDividendMutation } from "@/state/queries/use-monthly-dividend-mutation";
 import { Loader2Icon } from "lucide-react";
+import { useParams } from "next/navigation";
 
 const MonthlyDividendPage = React.memo(() => {
-  const { mutate: mutateMonthlyDividend, data: monthlyDividendData } = useMonthlyDividendMutation();
+  const { id } = useParams<{ id: string }>();
+  const { mutate: mutateMonthlyDividend, data: monthlyDividendData } = useMonthlyDividendMutation(id);
 
   React.useEffect(() => {
     mutateMonthlyDividend();
@@ -24,7 +26,7 @@ const MonthlyDividendPage = React.memo(() => {
   return (
     <div className="flex size-full flex-col items-center justify-start">
       <Header />
-      <DividendAccordion monthlyDividendList={monthlyDividendData} />
+      <DividendAccordion monthlyDividendList={monthlyDividendData.data} />
     </div>
   );
 });

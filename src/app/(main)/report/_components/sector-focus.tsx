@@ -4,7 +4,7 @@ import React from "react";
 import { DonutChart } from "@tremor/react";
 import { SectorRow } from "./sector-row";
 import { SectorRatioResponse } from "@/api/generated/endpoint.schemas";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { DONUT_CHART_COLORS, ICONS } from "../_data";
 
 export interface Sector extends SectorRatioResponse {
@@ -14,6 +14,7 @@ export interface Sector extends SectorRatioResponse {
 
 export const SectorFocus = React.memo(({ data }: { data: Sector[] }) => {
   const router = useRouter();
+  const { id } = useParams<{ id: string }>();
 
   const sectors: Sector[] = React.useMemo(() => {
     if (data.length > 4)
@@ -32,14 +33,14 @@ export const SectorFocus = React.memo(({ data }: { data: Sector[] }) => {
 
   const onSectorClick = React.useCallback(
     (sector: Sector, idx: number) => {
-      router.push(`/report/sector-detail/${sector.sectorValue}?i=${idx}`);
+      router.push(`/report/${id}/sector-detail/${sector.sectorValue}?i=${idx}`);
     },
-    [router]
+    [id, router]
   );
 
   const onExtraSectorClick = React.useCallback(() => {
-    router.push("/report/sector-list");
-  }, [router]);
+    router.push(`/report/${id}/sector-list`);
+  }, [id, router]);
 
   return (
     <div className="flex flex-col gap-6 px-5 py-8">
