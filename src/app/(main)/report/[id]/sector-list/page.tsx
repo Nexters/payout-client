@@ -2,21 +2,18 @@
 
 import React from "react";
 import { SectorList } from "./_components/sector-list";
-import { useQueryClient } from "@tanstack/react-query";
-import { enteredStocksQueryKeys } from "@/state/queries/use-stocks-sector-ratio-mutation";
-import { SectorRatioResponse } from "@/api/generated/endpoint.schemas";
+import { useStocksSectorRatioMutation } from "@/state/queries/use-stocks-sector-ratio-mutation";
 import { Loader2Icon } from "lucide-react";
+import { useParams } from "next/navigation";
 
 const SectorListPage = React.memo(() => {
-  const queryClient = useQueryClient();
+  const { id } = useParams<{ id: string }>();
 
-  const data = React.useMemo(
-    () =>
-      queryClient
-        .getQueriesData({})
-        .find(([queryKey]) => enteredStocksQueryKeys._def === queryKey)?.[1] as SectorRatioResponse[],
-    [queryClient]
-  );
+  const { data, mutate } = useStocksSectorRatioMutation(id);
+
+  React.useEffect(() => {
+    mutate();
+  }, [mutate]);
 
   if (!data) {
     return (
@@ -28,7 +25,7 @@ const SectorListPage = React.memo(() => {
 
   return (
     <div className="flex size-full flex-col items-center justify-start gap-5">
-      <SectorList sectorList={data} />
+      <SectorList sectorList={data.data} />
     </div>
   );
 });
