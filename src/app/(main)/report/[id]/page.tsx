@@ -1,19 +1,21 @@
 "use client";
 
 import React from "react";
-import { SectorFocus } from "./_components/sector-focus";
-import { MonthlyDividend } from "./_components/monthly-dividend";
+import { SectorFocus } from "../_components/sector-focus";
+import { MonthlyDividend } from "../_components/monthly-dividend";
 import { useStocksSectorRatioMutation } from "@/state/queries/use-stocks-sector-ratio-mutation";
-import { AnnualDividend } from "./_components/annual-dividend";
+import { AnnualDividend } from "../_components/annual-dividend";
 import { Loader2Icon } from "lucide-react";
 import { useYearlyDividendMutation } from "@/state/queries/use-yearly-dividend-mutation";
 import { YearlyDividendResponse } from "@/api/generated/endpoint.schemas";
-import { useMonthlyDividendMutation } from "../../../state/queries/use-monthly-dividend-mutation";
+import { useMonthlyDividendMutation } from "../../../../state/queries/use-monthly-dividend-mutation";
+import { useParams } from "next/navigation";
 
 const ReportPage = () => {
-  const { mutate: mutateStocksSectorRatio, data: stocksSectorRatioData } = useStocksSectorRatioMutation();
-  const { mutate: mutateYearlyDividend, data: yearlyDividendData } = useYearlyDividendMutation();
-  const { mutate: mutateMonthlyDividend, data: monthlyDividendData } = useMonthlyDividendMutation();
+  const { id } = useParams<{ id: string }>();
+  const { mutate: mutateStocksSectorRatio, data: stocksSectorRatioData } = useStocksSectorRatioMutation(id);
+  const { mutate: mutateYearlyDividend, data: yearlyDividendData } = useYearlyDividendMutation(id);
+  const { mutate: mutateMonthlyDividend, data: monthlyDividendData } = useMonthlyDividendMutation(id);
 
   React.useEffect(() => {
     mutateStocksSectorRatio();
@@ -23,7 +25,7 @@ const ReportPage = () => {
 
   const stocksSectorRatio = React.useMemo(() => {
     return (
-      stocksSectorRatioData?.sort((a, b) => {
+      stocksSectorRatioData?.data?.sort((a, b) => {
         return b.sectorRatio - a.sectorRatio;
       }) ?? []
     );
@@ -31,9 +33,9 @@ const ReportPage = () => {
 
   const yearlyDividends: YearlyDividendResponse = React.useMemo(() => {
     return {
-      totalDividend: yearlyDividendData?.totalDividend ?? 0,
+      totalDividend: yearlyDividendData?.data.totalDividend ?? 0,
       dividends:
-        yearlyDividendData?.dividends.sort((a, b) => {
+        yearlyDividendData?.data.dividends.sort((a, b) => {
           return b.totalDividend - a.totalDividend;
         }) ?? [],
     };
@@ -52,7 +54,7 @@ const ReportPage = () => {
       <div className="flex size-full flex-col">
         <SectorFocus data={stocksSectorRatio} />
         <Divider />
-        <MonthlyDividend data={monthlyDividendData} />
+        <MonthlyDividend data={monthlyDividendData.data} />
         <Divider />
         <AnnualDividend data={yearlyDividends} />
       </div>

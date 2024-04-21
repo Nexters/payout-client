@@ -5,11 +5,34 @@
  * Payout Server API 명세서입니다.
  * OpenAPI spec version: 1.0.0
  */
+export type GetBiggestDividendYieldStocksSector =
+  (typeof GetBiggestDividendYieldStocksSector)[keyof typeof GetBiggestDividendYieldStocksSector];
+
+export const GetBiggestDividendYieldStocksSector = {
+  TECHNOLOGY: "TECHNOLOGY",
+  COMMUNICATION_SERVICES: "COMMUNICATION_SERVICES",
+  HEALTHCARE: "HEALTHCARE",
+  CONSUMER_CYCLICAL: "CONSUMER_CYCLICAL",
+  CONSUMER_DEFENSIVE: "CONSUMER_DEFENSIVE",
+  BASIC_MATERIALS: "BASIC_MATERIALS",
+  FINANCIAL_SERVICES: "FINANCIAL_SERVICES",
+  INDUSTRIALS: "INDUSTRIALS",
+  REAL_ESTATE: "REAL_ESTATE",
+  ENERGY: "ENERGY",
+  UTILITIES: "UTILITIES",
+  INDUSTRIAL_GOODS: "INDUSTRIAL_GOODS",
+  FINANCIAL: "FINANCIAL",
+  SERVICES: "SERVICES",
+  CONGLOMERATES: "CONGLOMERATES",
+  ETF: "ETF",
+  ETC: "ETC",
+} as const;
+
 export type GetBiggestDividendYieldStocksParams = {
   /**
    * sector value
    */
-  sector: string;
+  sector: GetBiggestDividendYieldStocksSector;
   /**
    * page number(start with 1) for pagination
    */
@@ -20,11 +43,34 @@ export type GetBiggestDividendYieldStocksParams = {
   pageSize: number;
 };
 
+export type GetUpComingDividendStocksSector =
+  (typeof GetUpComingDividendStocksSector)[keyof typeof GetUpComingDividendStocksSector];
+
+export const GetUpComingDividendStocksSector = {
+  TECHNOLOGY: "TECHNOLOGY",
+  COMMUNICATION_SERVICES: "COMMUNICATION_SERVICES",
+  HEALTHCARE: "HEALTHCARE",
+  CONSUMER_CYCLICAL: "CONSUMER_CYCLICAL",
+  CONSUMER_DEFENSIVE: "CONSUMER_DEFENSIVE",
+  BASIC_MATERIALS: "BASIC_MATERIALS",
+  FINANCIAL_SERVICES: "FINANCIAL_SERVICES",
+  INDUSTRIALS: "INDUSTRIALS",
+  REAL_ESTATE: "REAL_ESTATE",
+  ENERGY: "ENERGY",
+  UTILITIES: "UTILITIES",
+  INDUSTRIAL_GOODS: "INDUSTRIAL_GOODS",
+  FINANCIAL: "FINANCIAL",
+  SERVICES: "SERVICES",
+  CONGLOMERATES: "CONGLOMERATES",
+  ETF: "ETF",
+  ETC: "ETC",
+} as const;
+
 export type GetUpComingDividendStocksParams = {
   /**
    * sector value
    */
-  sector: string;
+  sector: GetUpComingDividendStocksSector;
   /**
    * page number(start with 1) for pagination
    */
@@ -141,6 +187,14 @@ export interface YearlyDividendResponse {
 }
 
 export interface DividendRequest {
+  tickerShares: TickerShare[];
+}
+
+export interface PortfolioResponse {
+  id: string;
+}
+
+export interface PortfolioRequest {
   tickerShares: TickerShare[];
 }
 

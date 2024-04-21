@@ -1,7 +1,9 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { usePortfolioMutation } from "@/state/mutations/use-portfolio-mutation";
 import { useStocksStore } from "@/state/stores/stocks-store";
 import { sendGAEvent } from "@next/third-parties/google";
+import { Loader2Icon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -9,12 +11,22 @@ export default function TickerFooter() {
   const { stocks } = useStocksStore();
   const router = useRouter();
 
-  const handleTickerSubmit = React.useCallback(() => {
+  const { mutateAsync, isPending } = usePortfolioMutation();
+
+  const handleTickerSubmit = React.useCallback(async () => {
     sendGAEvent({
       event: "Analyzie My Portfolio Button Click",
     });
-    router.push(`/report`);
-  }, [router]);
+    const response = await mutateAsync({
+      tickerShares: stocks.map((stock) => {
+        return {
+          share: stock.count,
+          ticker: stock.ticker,
+        };
+      }),
+    });
+    router.push(`/report/${response.data.id}`);
+  }, [mutateAsync, router, stocks]);
 
   if (stocks.length === 0) return null;
 
@@ -27,6 +39,7 @@ export default function TickerFooter() {
       }}
     >
       <Button
+        disabled={isPending}
         variant={"default"}
         className="mt-14 h-14 w-full rounded-lg bg-main-700 p-4"
         style={{
@@ -35,7 +48,11 @@ export default function TickerFooter() {
         }}
         onClick={handleTickerSubmit}
       >
-        <p className="text-h5 text-white">Analyze My Portfolio</p>
+        {isPending ? (
+          <Loader2Icon className="animate-spin" />
+        ) : (
+          <p className="text-h5 text-white">Analyze My Portfolio</p>
+        )}
       </Button>
     </div>
   );
