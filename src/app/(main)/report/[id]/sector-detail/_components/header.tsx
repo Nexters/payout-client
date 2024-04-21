@@ -1,6 +1,6 @@
 import React from "react";
 import { useSearchParams } from "next/navigation";
-import { DONUT_CHART_COLORS, LARGE_ICONS } from "../../_data";
+import { DONUT_CHART_COLORS, LARGE_ICONS } from "../../../_data";
 
 interface HeaderProps {
   sectorName: string;

@@ -6,9 +6,11 @@ import { DividendList } from "./_components/dividend-list";
 import { useYearlyDividendMutation } from "@/state/queries/use-yearly-dividend-mutation";
 import { YearlyDividendResponse } from "@/api/generated/endpoint.schemas";
 import { Loader2Icon } from "lucide-react";
+import { useParams } from "next/navigation";
 
 const YearlyDividendPage = React.memo(() => {
-  const { mutate: mutateYearlyDividend, data: yearlyDividendData } = useYearlyDividendMutation();
+  const { id } = useParams<{ id: string }>();
+  const { mutate: mutateYearlyDividend, data: yearlyDividendData } = useYearlyDividendMutation(id);
 
   React.useEffect(() => {
     mutateYearlyDividend();
@@ -16,9 +18,9 @@ const YearlyDividendPage = React.memo(() => {
 
   const yearlyDividends: YearlyDividendResponse = React.useMemo(() => {
     return {
-      totalDividend: yearlyDividendData?.totalDividend ?? 0,
+      totalDividend: yearlyDividendData?.data.totalDividend ?? 0,
       dividends:
-        yearlyDividendData?.dividends.sort((a, b) => {
+        yearlyDividendData?.data.dividends.sort((a, b) => {
           return b.totalDividend - a.totalDividend;
         }) ?? [],
     };

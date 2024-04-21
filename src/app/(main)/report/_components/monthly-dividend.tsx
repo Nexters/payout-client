@@ -4,7 +4,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import { MonthlyDividendResponse } from "@/api/generated/endpoint.schemas";
 import { BarChart, EventProps } from "@tremor/react";
 import { Button as ShadcnButton } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { Button } from "@/components/common/button/button";
 
 const COLORS = ["navy-700"];
@@ -19,6 +19,8 @@ interface MonthlyDividendProps {
 export const MonthlyDividend = React.memo(({ data }: MonthlyDividendProps) => {
   const [halfToggleState, setHalfToggleState] = useState<halfToggleType>("first");
   const router = useRouter();
+  const { id } = useParams<{ id: string }>();
+
   const [showTooltip, setShowToolTip] = useState<boolean>(true);
   const monthlyDividends = React.useMemo(
     () =>
@@ -45,7 +47,7 @@ export const MonthlyDividend = React.memo(({ data }: MonthlyDividendProps) => {
   };
 
   const handleCheckMonthlyClick = () => {
-    router.push(`/report/dividend/monthly`);
+    router.push(`/report/${id}/dividend/monthly`);
   };
 
   const shownChartData = useMemo(() => {

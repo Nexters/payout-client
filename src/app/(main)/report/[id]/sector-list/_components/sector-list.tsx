@@ -1,19 +1,20 @@
 "use client";
 
 import React from "react";
-import { SectorRow } from "../../_components/sector-row";
-import { DONUT_CHART_COLORS, ICONS } from "../../_data";
-import { Sector } from "../../_components/sector-focus";
-import { useRouter } from "next/navigation";
+import { SectorRow } from "../../../_components/sector-row";
+import { DONUT_CHART_COLORS, ICONS } from "../../../_data";
+import { Sector } from "../../../_components/sector-focus";
+import { useParams, useRouter } from "next/navigation";
 
 export const SectorList = React.memo(({ sectorList }: { sectorList: Sector[] }) => {
   const router = useRouter();
+  const { id } = useParams<{ id: string }>();
 
   const onSectorClick = React.useCallback(
     (sector: Sector, idx: number) => {
-      router.push(`/report/sector-detail/${sector.sectorValue}?i=${idx}`);
+      router.push(`/report/${id}/sector-detail/${sector.sectorValue}?i=${idx}`);
     },
-    [router]
+    [id, router]
   );
 
   return (

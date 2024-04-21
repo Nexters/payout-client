@@ -3,35 +3,34 @@
 import React from "react";
 import { Header } from "../_components/header";
 import { Loader2Icon } from "lucide-react";
-import { useQueryClient } from "@tanstack/react-query";
-import { enteredStocksQueryKeys } from "@/state/queries/use-stocks-sector-ratio-mutation";
-import { SectorRatioResponse } from "@/api/generated/endpoint.schemas";
+import { useStocksSectorRatioMutation } from "@/state/queries/use-stocks-sector-ratio-mutation";
 import { DividendList } from "../_components/dividend-list";
 import { SectorInsights } from "../_components/sector-insights";
-import { useComingDividendStocksQuery } from "../../../../../state/queries/use-coming-dividend-stocks-query";
-import { useBiggestDividendYieldStocksQuery } from "../../../../../state/queries/use-biggest-dividend-yield-stocks-query";
+import { useComingDividendStocksQuery } from "../../../../../../state/queries/use-coming-dividend-stocks-query";
+import { useBiggestDividendYieldStocksQuery } from "../../../../../../state/queries/use-biggest-dividend-yield-stocks-query";
+import { useParams } from "next/navigation";
+import { GetBiggestDividendYieldStocksSector, GetUpComingDividendStocksSector } from "@/api/generated/endpoint.schemas";
 
 const SectorDetailPage = React.memo(({ params }: { params: { sector: string } }) => {
-  const queryClient = useQueryClient();
-
-  const { data: comingDividendStocks } = useComingDividendStocksQuery(params.sector);
-  const { data: biggestDividendYieldStocks } = useBiggestDividendYieldStocksQuery(params.sector);
-
-  const data = React.useMemo(
-    () =>
-      queryClient
-        .getQueriesData({})
-        .find(([queryKey]) => enteredStocksQueryKeys._def === queryKey)?.[1] as SectorRatioResponse[],
-    [queryClient]
+  const { id } = useParams<{ id: string }>();
+  const { data: comingDividendStocks } = useComingDividendStocksQuery(params.sector as GetUpComingDividendStocksSector);
+  const { data: biggestDividendYieldStocks } = useBiggestDividendYieldStocksQuery(
+    params.sector as GetBiggestDividendYieldStocksSector
   );
+
+  const { data, mutate } = useStocksSectorRatioMutation(id);
 
   const sectorValue = React.useMemo(() => {
     return params.sector.split("%20").join(" ");
   }, [params.sector]);
 
   const sectorData = React.useMemo(() => {
-    return data?.find((each) => each.sectorValue === sectorValue);
+    return data?.data.find((each) => each.sectorValue === sectorValue);
   }, [data, sectorValue]);
+
+  React.useEffect(() => {
+    mutate();
+  }, [mutate]);
 
   if (!sectorData) {
     return (
