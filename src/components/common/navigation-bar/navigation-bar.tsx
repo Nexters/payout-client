@@ -29,10 +29,10 @@ const NavigationBar = () => {
         navigator.share({ ...ShareData, url: window.location.href });
       } else {
         await navigator.clipboard.writeText(window.location.href);
-        toast.custom((t) => <Toast t={t} title={`copied`} />);
+        toast.custom((t) => <Toast t={t} title={`copied to clipboard`} />);
       }
     } catch (e) {
-      toast.custom((t) => <Toast t={t} title={`Sharing not supported or data not shareable.`} />);
+      toast.custom((t) => <Toast t={t} title={`Sharing is not supported on this device`} />);
     }
   };
 
