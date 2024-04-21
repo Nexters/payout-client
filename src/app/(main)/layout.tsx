@@ -6,6 +6,14 @@ export const viewport: Viewport = {
   themeColor: "var(--color-white)",
 };
 
+import { Metadata } from "next";
+
+export const generateMetadata = async (): Promise<Metadata> => {
+  return {
+    description: "Self-check Your Dividend Portfolio",
+  };
+};
+
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex size-full flex-col">
