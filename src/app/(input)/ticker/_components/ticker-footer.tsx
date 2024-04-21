@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { useStocksStore } from "@/state/stores/stocks-store";
+import { sendGAEvent } from "@next/third-parties/google";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -8,9 +9,12 @@ export default function TickerFooter() {
   const { stocks } = useStocksStore();
   const router = useRouter();
 
-  const handleTickerSubmit = () => {
+  const handleTickerSubmit = React.useCallback(() => {
+    sendGAEvent({
+      event: "Analyzie My Portfolio Button Click",
+    });
     router.push(`/report`);
-  };
+  }, [router]);
 
   if (stocks.length === 0) return null;
 

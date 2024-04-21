@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/common/button/button";
-import { event } from "@/utils/gtag";
 import { sendGAEvent } from "@next/third-parties/google";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -11,15 +10,8 @@ const FloatingFooter = React.memo(() => {
 
   const onButtonClick = React.useCallback(() => {
     router.push("/ticker");
-    event({
-      action: "buttonClicked",
-      category: "landing page",
-      label: "",
-      value: "",
-    });
     sendGAEvent({
-      event: "buttonClicked",
-      value: "Landing Page",
+      event: "Landing Page Button Click",
     });
   }, [router]);
 
