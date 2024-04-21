@@ -12,6 +12,8 @@ import type {
   GetBiggestDividendYieldStocksParams,
   GetUpComingDividendStocksParams,
   MonthlyDividendResponse,
+  PortfolioRequest,
+  PortfolioResponse,
   SearchStockParams,
   SectorRatioRequest,
   SectorRatioResponse,
@@ -30,6 +32,16 @@ export const findSectorRatios = <TData = AxiosResponse<SectorRatioResponse[]>>(
   options?: AxiosRequestConfig
 ): Promise<TData> => {
   return axios.post(`/api/stocks/sector-ratio`, sectorRatioRequest, options);
+};
+
+/**
+ * @summary 포트폴리오 생성
+ */
+export const createPortfolio = <TData = AxiosResponse<PortfolioResponse>>(
+  portfolioRequest: PortfolioRequest,
+  options?: AxiosRequestConfig
+): Promise<TData> => {
+  return axios.post(`/api/portfolios`, portfolioRequest, options);
 };
 
 /**
@@ -101,10 +113,44 @@ export const getBiggestDividendYieldStocks = <TData = AxiosResponse<StockDividen
   });
 };
 
+/**
+ * @summary 포트폴리오 기반 연간 배당금 조회
+ */
+export const getYearlyDividends1 = <TData = AxiosResponse<YearlyDividendResponse>>(
+  id: string,
+  options?: AxiosRequestConfig
+): Promise<TData> => {
+  return axios.get(`/api/portfolios/${id}/yearly`, options);
+};
+
+/**
+ * @summary 섹터 비중 분석
+ */
+export const getSectorRatios = <TData = AxiosResponse<SectorRatioResponse[]>>(
+  id: string,
+  options?: AxiosRequestConfig
+): Promise<TData> => {
+  return axios.get(`/api/portfolios/${id}/sector-ratio`, options);
+};
+
+/**
+ * @summary 포트폴리오 기반 월간 배당금 조회
+ */
+export const getMonthlyDividends1 = <TData = AxiosResponse<MonthlyDividendResponse[]>>(
+  id: string,
+  options?: AxiosRequestConfig
+): Promise<TData> => {
+  return axios.get(`/api/portfolios/${id}/monthly`, options);
+};
+
 export type FindSectorRatiosResult = AxiosResponse<SectorRatioResponse[]>;
+export type CreatePortfolioResult = AxiosResponse<PortfolioResponse>;
 export type GetYearlyDividendsResult = AxiosResponse<YearlyDividendResponse>;
 export type GetMonthlyDividendsResult = AxiosResponse<MonthlyDividendResponse[]>;
 export type GetStockByTickerResult = AxiosResponse<StockDetailResponse>;
 export type SearchStockResult = AxiosResponse<StockResponse[]>;
 export type GetUpComingDividendStocksResult = AxiosResponse<UpcomingDividendResponse>;
 export type GetBiggestDividendYieldStocksResult = AxiosResponse<StockDividendYieldResponse>;
+export type GetYearlyDividends1Result = AxiosResponse<YearlyDividendResponse>;
+export type GetSectorRatiosResult = AxiosResponse<SectorRatioResponse[]>;
+export type GetMonthlyDividends1Result = AxiosResponse<MonthlyDividendResponse[]>;
