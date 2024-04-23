@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { usePortfolioMutation } from "@/state/mutations/use-portfolio-mutation";
 import { useStocksStore } from "@/state/stores/stocks-store";
-import { sendGAEvent } from "@next/third-parties/google";
+import { event } from "@/utils/gtag";
 import { Loader2Icon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -14,8 +14,8 @@ export default function TickerFooter() {
   const { mutateAsync, isPending } = usePortfolioMutation();
 
   const handleTickerSubmit = React.useCallback(async () => {
-    sendGAEvent({
-      event: "Analyzie My Portfolio Button Click",
+    event({
+      action: "Analyzie My Portfolio Button Click",
     });
     const response = await mutateAsync({
       tickerShares: stocks.map((stock) => {

@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useDrawerStore } from "@/state/stores/drawer-store";
 import { useStocksStore } from "@/state/stores/stocks-store";
-import { sendGAEvent } from "@next/third-parties/google";
+import { event } from "@/utils/gtag";
 import { Plus } from "lucide-react";
 import React from "react";
 
@@ -12,8 +12,8 @@ const Intro = () => {
 
   const onAddStockClick = React.useCallback(() => {
     isDrawerOpenChange(true);
-    sendGAEvent({
-      event: "Add Stock Button Click",
+    event({
+      action: "Add Stock Button Click",
     });
   }, [isDrawerOpenChange]);
 

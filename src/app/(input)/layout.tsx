@@ -5,7 +5,7 @@ import Link from "next/link";
 import React from "react";
 import Logo from "@/components/common/logo/logo";
 import { useStocksStore } from "@/state/stores/stocks-store";
-import { sendGAEvent } from "@next/third-parties/google";
+import { event } from "@/utils/gtag";
 
 export const viewport: Viewport = {
   themeColor: "var(--color-white)",
@@ -16,8 +16,8 @@ const InputLayout = ({ children }: { children: React.ReactNode }) => {
 
   const onResetClick = React.useCallback(() => {
     removeAllStocks();
-    sendGAEvent({
-      event: "Reset Button Click",
+    event({
+      action: "Reset Button Click",
     });
   }, [removeAllStocks]);
 

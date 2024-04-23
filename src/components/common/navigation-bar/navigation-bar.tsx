@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Toast from "@/components/common/toast/toast";
 import { toast } from "sonner";
+import { event } from "@/utils/gtag";
 
 const ShareData = {
   title: "Payout",
@@ -24,6 +25,9 @@ const NavigationBar = () => {
   };
 
   const handleShareClick = async () => {
+    event({
+      action: "Share Button Click",
+    });
     try {
       if (isShareSupported()) {
         navigator.share({ ...ShareData, url: window.location.href });
