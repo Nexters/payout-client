@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Payout Client
+
+This is the frontend client for Payout, a web application designed to help users track and analyze stock dividends. It provides features for viewing dividend information, managing portfolios, and gaining insights into sector-specific dividend data.
+
+## Tech Stack
+
+*   **Framework:** [Next.js](https://nextjs.org/)
+*   **Language:** [TypeScript](https://www.typescriptlang.org/)
+*   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+*   **UI Components:** [shadcn/ui](https://ui.shadcn.com/), [Headless UI](https://headlessui.com/), [Tremor](https://www.tremor.so/)
+*   **State Management:** [TanStack Query](https://tanstack.com/query/latest)
+*   **API Client Generation:** [Orval](https://orval.dev/)
+*   **Linting:** [ESLint](https://eslint.org/)
+*   **Formatting:** [Prettier](https://prettier.io/)
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+*   Node.js (v20 or later)
+*   pnpm
+
+### Installation
+
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/your-username/payout-client.git
+    ```
+2.  Navigate to the project directory:
+    ```bash
+    cd payout-client
+    ```
+3.  Install the dependencies:
+    ```bash
+    pnpm install
+    ```
+
+### Running the Development Server
+
+To start the development server, run the following command:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+*   `pnpm dev`: Starts the development server.
+*   `pnpm build`: Creates a production build of the application.
+*   `pnpm start`: Starts the production server.
+*   `pnpm lint`: Lints the codebase using ESLint.
+*   `pnpm generate:api`: Generates the API client from the OpenAPI specification using Orval.
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+The project follows a standard Next.js App Router structure:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+.
+├── public/              # Static assets
+├── src/
+│   ├── api/             # API client generation
+│   ├── app/             # Next.js App Router pages and layouts
+│   ├── components/      # Shared UI components
+│   ├── hooks/           # Custom React hooks
+│   ├── state/           # State management (TanStack Query, Zustand)
+│   └── utils/           # Utility functions
+├── .env                 # Environment variables
+├── next.config.js       # Next.js configuration
+├── package.json         # Project dependencies and scripts
+└── tsconfig.json        # TypeScript configuration
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## API Generation
 
-## Deploy on Vercel
+This project uses [Orval](https://orval.dev/) to generate a TypeScript client for the backend API. The configuration is defined in `orval.config.js`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To regenerate the API client, run the following command:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+pnpm generate:api
+```
+
+This will use the OpenAPI specification to create the necessary API client files in the `src/api/generated` directory.
+
+## Deployment
+
+The project is configured for deployment on [Vercel](https://vercel.com/), the platform from the creators of Next.js.
